@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Services — SEjAI</title>
+  <link rel="stylesheet" href="../../css/style.css">
+  <style>
+    .services-index { padding: 80px 0 120px; }
+
+    /* ── Service Card ── */
+    .svc-cards { display: flex; flex-direction: column; gap: 28px; }
+
+    .svc-card-row {
+      display: grid;
+      grid-template-columns: 1fr 2fr auto;
+      gap: 0;
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    .svc-card-row:hover {
+      border-color: var(--border-h);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.3);
+    }
+
+    /* colored left accent */
+    .svc-card-accent {
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      padding: 40px 28px; gap: 16px;
+      border-right: 1px solid var(--border);
+      min-width: 180px;
+    }
+    .svc-card-icon { font-size: 3rem; }
+    .svc-card-num {
+      font-family: var(--font-head); font-size: 0.7rem; font-weight: 700;
+      color: var(--gray-3); letter-spacing: 0.1em; text-transform: uppercase;
+    }
+
+    .svc-card-body { padding: 36px 40px; flex: 1; }
+    .svc-card-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 4px 12px; border-radius: 100px;
+      font-size: 0.72rem; font-weight: 600;
+      border: 1px solid; margin-bottom: 14px;
+    }
+    .svc-card-body h2 {
+      font-family: var(--font-head); font-size: 2rem; font-weight: 800;
+      letter-spacing: -0.03em; color: var(--white); margin-bottom: 12px;
+    }
+    .svc-card-body p { font-size: 0.9375rem; color: var(--gray-2); line-height: 1.75; max-width: 60ch; }
+
+    .svc-card-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+    .svc-card-chip {
+      display: flex; align-items: center; gap: 6px;
+      background: var(--bg-3); border: 1px solid var(--border);
+      border-radius: 6px; padding: 5px 12px;
+      font-size: 0.78rem; color: var(--gray-2); font-weight: 500;
+    }
+
+    .svc-card-cta {
+      display: flex; flex-direction: column; justify-content: center; align-items: flex-end;
+      padding: 36px 32px; gap: 10px; border-left: 1px solid var(--border);
+      min-width: 180px;
+    }
+    .svc-card-link {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 0.875rem; font-weight: 700;
+      padding: 10px 20px; border-radius: 8px;
+      transition: all 0.2s; white-space: nowrap;
+    }
+    .svc-card-link.primary { color: var(--bg); }
+    .svc-card-link.ghost {
+      color: var(--gray-2); background: transparent;
+      border: 1px solid var(--border);
+    }
+    .svc-card-link.ghost:hover { border-color: var(--border-h); color: var(--white); background: var(--bg-3); }
+
+    /* service color theming */
+    .svc-card-row[data-svc="assetry"] .svc-card-accent { background: rgba(79,140,255,0.05); }
+    .svc-card-row[data-svc="assetry"] .svc-card-icon { filter: drop-shadow(0 0 20px rgba(79,140,255,0.5)); }
+    .svc-card-row[data-svc="assetry"] .svc-card-badge { color: var(--assetry); border-color: rgba(79,140,255,0.3); background: rgba(79,140,255,0.07); }
+    .svc-card-row[data-svc="assetry"] .svc-card-link.primary { background: var(--assetry); }
+    .svc-card-row[data-svc="assetry"] .svc-card-link.primary:hover { opacity:0.85; transform:translateY(-1px); box-shadow: 0 6px 20px rgba(79,140,255,0.3); }
+
+    .svc-card-row[data-svc="habee"] .svc-card-accent { background: rgba(52,211,153,0.05); }
+    .svc-card-row[data-svc="habee"] .svc-card-icon { filter: drop-shadow(0 0 20px rgba(52,211,153,0.5)); }
+    .svc-card-row[data-svc="habee"] .svc-card-badge { color: var(--habee); border-color: rgba(52,211,153,0.3); background: rgba(52,211,153,0.07); }
+    .svc-card-row[data-svc="habee"] .svc-card-link.primary { background: var(--habee); }
+    .svc-card-row[data-svc="habee"] .svc-card-link.primary:hover { opacity:0.85; transform:translateY(-1px); box-shadow: 0 6px 20px rgba(52,211,153,0.3); }
+
+    .svc-card-row[data-svc="fridge"] .svc-card-accent { background: rgba(249,115,22,0.05); }
+    .svc-card-row[data-svc="fridge"] .svc-card-icon { filter: drop-shadow(0 0 20px rgba(249,115,22,0.5)); }
+    .svc-card-row[data-svc="fridge"] .svc-card-badge { color: var(--fridge); border-color: rgba(249,115,22,0.3); background: rgba(249,115,22,0.07); }
+    .svc-card-row[data-svc="fridge"] .svc-card-link.primary { background: var(--fridge); }
+    .svc-card-row[data-svc="fridge"] .svc-card-link.primary:hover { opacity:0.85; transform:translateY(-1px); box-shadow: 0 6px 20px rgba(249,115,22,0.3); }
+
+    @media (max-width: 900px) {
+      .svc-card-row { grid-template-columns: 1fr; }
+      .svc-card-accent { flex-direction: row; border-right: none; border-bottom: 1px solid var(--border); padding: 20px 24px; min-width: auto; justify-content: flex-start; }
+      .svc-card-cta { flex-direction: row; border-left: none; border-top: 1px solid var(--border); min-width: auto; justify-content: flex-start; padding: 20px 24px; }
+      .svc-card-body { padding: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <nav class="nav">
+      <a href="../../index.html" class="nav-logo">SEj<span>AI</span></a>
+      <ul class="nav-links">
+        <li><a href="../../index.html">Home</a></li>
+        <li><a href="index.html">Services</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../contact.html" class="nav-cta">Contact</a></li>
+      </ul>
+      <button class="hamburger" aria-label="メニュー"><span></span><span></span><span></span></button>
+    </nav>
+  </div>
+</header>
+
+<div class="page-hero">
+  <div class="container">
+    <span class="label fade-up">Services</span>
+    <h1 class="section-title fade-up">SEjAI の<em>プロダクト</em></h1>
+    <p class="section-lead fade-up" style="margin:16px auto 0; text-align:center;">
+      資産・習慣・食——あなたの日常をAIで進化させます。
+    </p>
+  </div>
+</div>
+
+<section class="services-index">
+  <div class="container">
+    <div class="svc-cards">
+
+      <!-- ======================================================
+           Assetry
+           ====================================================== -->
+      <div class="svc-card-row fade-up" data-svc="assetry">
+        <div class="svc-card-accent">
+          <div class="svc-card-icon">💹</div>
+          <div class="svc-card-num">01</div>
+        </div>
+        <div class="svc-card-body">
+          <span class="svc-card-badge">Digital Asset Marketplace</span>
+          <h2>Assetry</h2>
+          <p>デジタル資産の取引・管理をワンプラットフォームで。AIが市場トレンドをリアルタイム分析し、最適な意思決定をサポートします。</p>
+          <div class="svc-card-chips">
+            <span class="svc-card-chip">⚡ リアルタイム市場分析</span>
+            <span class="svc-card-chip">🔐 安全な取引環境</span>
+            <span class="svc-card-chip">📊 ポートフォリオ管理</span>
+            <span class="svc-card-chip">🤖 AI価格予測</span>
+          </div>
+        </div>
+        <div class="svc-card-cta">
+          <a href="assetry.html" class="svc-card-link primary">詳細を見る →</a>
+          <a href="../contact.html" class="svc-card-link ghost">相談する</a>
+        </div>
+      </div>
+
+      <!-- ======================================================
+           Habee
+           ====================================================== -->
+      <div class="svc-card-row fade-up" data-svc="habee">
+        <div class="svc-card-accent">
+          <div class="svc-card-icon">🌿</div>
+          <div class="svc-card-num">02</div>
+        </div>
+        <div class="svc-card-body">
+          <span class="svc-card-badge">Habit Tracking App</span>
+          <h2>Habee</h2>
+          <p>習慣化を科学するモバイルアプリ。AIがあなたの行動パターンを学習し、ベストなタイミングでリマインドと改善提案を届けます。</p>
+          <div class="svc-card-chips">
+            <span class="svc-card-chip">📱 iOS / Android</span>
+            <span class="svc-card-chip">🧠 AI行動学習</span>
+            <span class="svc-card-chip">🎮 ゲーミフィケーション</span>
+            <span class="svc-card-chip">📈 進捗分析</span>
+          </div>
+        </div>
+        <div class="svc-card-cta">
+          <a href="habee.html" class="svc-card-link primary">詳細を見る →</a>
+          <a href="../contact.html" class="svc-card-link ghost">相談する</a>
+        </div>
+      </div>
+
+      <!-- ======================================================
+           FridgeChef
+           ====================================================== -->
+      <div class="svc-card-row fade-up" data-svc="fridge">
+        <div class="svc-card-accent">
+          <div class="svc-card-icon">🍳</div>
+          <div class="svc-card-num">03</div>
+        </div>
+        <div class="svc-card-body">
+          <span class="svc-card-badge">AI Recipe Assistant</span>
+          <h2>FridgeChef</h2>
+          <p>冷蔵庫の食材を入力するだけでAIがレシピを提案。食品ロスを削減しながら、毎日の「今日何作ろう」を解決します。</p>
+          <div class="svc-card-chips">
+            <span class="svc-card-chip">🥦 食材→即レシピ</span>
+            <span class="svc-card-chip">♻️ 食品ロス削減</span>
+            <span class="svc-card-chip">🥗 栄養バランス計算</span>
+            <span class="svc-card-chip">⚠️ アレルギー対応</span>
+          </div>
+        </div>
+        <div class="svc-card-cta">
+          <a href="fridgechef.html" class="svc-card-link primary">詳細を見る →</a>
+          <a href="../contact.html" class="svc-card-link ghost">相談する</a>
+        </div>
+      </div>
+
+      <!--
+      ============================================================
+      ★ 新しいサービスを追加する場合
+      ============================================================
+      1. 下のブロックをコピーして data-svc を新しい名前に変える
+      2. css/style.css の :root に --newservice カラー変数を追加
+      3. このファイル下部の .svc-card-row[data-svc="newservice"] スタイルをコピーして色を設定
+      4. pages/services/ に newservice.html を作成（_template.html をコピー）
+      ============================================================
+
+      <div class="svc-card-row fade-up" data-svc="newservice">
+        <div class="svc-card-accent">
+          <div class="svc-card-icon">🎯</div>
+          <div class="svc-card-num">04</div>
+        </div>
+        <div class="svc-card-body">
+          <span class="svc-card-badge">Service Type</span>
+          <h2>ServiceName</h2>
+          <p>サービスの説明文</p>
+          <div class="svc-card-chips">
+            <span class="svc-card-chip">特徴1</span>
+          </div>
+        </div>
+        <div class="svc-card-cta">
+          <a href="newservice.html" class="svc-card-link primary">詳細を見る →</a>
+          <a href="../contact.html" class="svc-card-link ghost">相談する</a>
+        </div>
+      </div>
+      -->
+
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="../../index.html" class="nav-logo">SEj<span style="color:var(--a)">AI</span></a>
+        <p class="footer-tagline">AI-Powered Software for Real Life.<br>資産・習慣・食をアップデートする。</p>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <a href="assetry.html">Assetry</a>
+        <a href="habee.html">Habee</a>
+        <a href="fridgechef.html">FridgeChef</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="../about.html">About SEjAI</a>
+        <a href="../about.html#team">Team</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a href="../contact.html">お問い合わせ</a>
+        <a href="mailto:hello@sejai.co.jp">hello@sejai.co.jp</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 SEjAI Inc. All rights reserved.</span>
+      <div class="footer-bottom-links">
+        <a href="assetry.html#privacy">Privacy Policy</a>
+        <a href="#">Terms</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="../../js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!--
+  ============================================================
+  ★ 変更箇所チェックリスト（新サービス追加時）
+  ============================================================
+  [ ] <title> を変更
+  [ ] --svc-color / --svc-glow / --svc-color-border / --svc-color-bg / --svc-shadow を変更
+  [ ] .btn-svc の color も確認（背景色が薄い場合は var(--white) に）
+  [ ] page-breadcrumb のサービス名を変更
+  [ ] svc-hero-badge のラベルを変更
+  [ ] h1 のサービス名を変更
+  [ ] svc-hero-desc の説明文を変更
+  [ ] ヒーロー画像: <img> タグの src を差し替え（なければ placeholder のまま）
+  [ ] Overview セクションの説明文を更新
+  [ ] Feature カードの内容を変更
+  [ ] Gallery の画像を差し替え（1〜3枚）
+  [ ] Privacy Policy の内容を記入
+  [ ] フッターのリンクを追加
+  [ ] services/index.html にカードを追加
+  ============================================================
+  -->
+  <title>ServiceName — SEjAI</title>
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="../../css/service-page.css">
+  <style>
+    /*
+      ★ このサービスのカラーテーマを設定
+      例: Assetry → #4f8cff  Habee → #34d399  FridgeChef → #f97316
+    */
+    :root {
+      --svc-color:        #4f8cff;
+      --svc-glow:         rgba(79, 140, 255, 0.12);
+      --svc-color-border: rgba(79, 140, 255, 0.3);
+      --svc-color-bg:     rgba(79, 140, 255, 0.07);
+      --svc-shadow:       rgba(79, 140, 255, 0.3);
+    }
+    /* ボタンテキストカラー: 背景が明るい場合は var(--white) に変更 */
+    .btn-svc { color: var(--bg); }
+  </style>
+</head>
+<body>
+
+<!-- ── Header ── -->
+<header class="site-header">
+  <div class="container">
+    <nav class="nav">
+      <a href="../../index.html" class="nav-logo">SEj<span>AI</span></a>
+      <ul class="nav-links">
+        <li><a href="../../index.html">Home</a></li>
+        <li><a href="index.html">Services</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../contact.html" class="nav-cta">Contact</a></li>
+      </ul>
+      <button class="hamburger" aria-label="メニュー"><span></span><span></span><span></span></button>
+    </nav>
+  </div>
+</header>
+
+<!-- ── Breadcrumb ── -->
+<div style="padding: calc(var(--header-h) + 24px) 0 0; background: var(--bg);">
+  <div class="container">
+    <p style="font-size:0.8125rem; color:var(--gray-3);">
+      <a href="../../index.html" style="color:var(--gray-3); transition:color 0.2s;" onmouseover="this.style.color='var(--white)'" onmouseout="this.style.color='var(--gray-3)'">Home</a>
+      <span style="margin:0 8px; opacity:0.4;">/</span>
+      <a href="index.html" style="color:var(--gray-3); transition:color 0.2s;" onmouseover="this.style.color='var(--white)'" onmouseout="this.style.color='var(--gray-3)'">Services</a>
+      <span style="margin:0 8px; opacity:0.4;">/</span>
+      <span style="color: var(--svc-color);">ServiceName</span> <!-- ★ 変更 -->
+    </p>
+  </div>
+</div>
+
+<!-- ── Hero ── -->
+<section class="svc-hero">
+  <div class="container">
+    <div class="svc-hero-inner">
+      <div class="fade-up">
+        <span class="svc-hero-badge">🎯 Service Type</span> <!-- ★ 変更 -->
+        <h1>ServiceName</h1> <!-- ★ 変更 -->
+        <p class="svc-hero-desc">
+          サービスのキャッチコピー・概要を1〜2文で記載します。ユーザーが一目で価値を理解できる文章に。
+        </p>
+        <div class="svc-hero-actions">
+          <a href="../contact.html" class="btn btn-svc">今すぐ始める →</a>
+          <a href="#features" class="btn btn-ghost">機能を見る</a>
+        </div>
+      </div>
+      <div class="svc-hero-img-wrap fade-up">
+        <!--
+          ★ 画像がある場合: <img> タグのコメントを解除して src を設定
+             <img src="../../img/services/servicename-hero.jpg" alt="ServiceName">
+          ★ 画像がない場合: placeholder のまま
+        -->
+        <div class="svc-hero-img-placeholder">
+          <span>🎯</span> <!-- ★ 変更: サービスのアイコン -->
+          <p>Hero Image</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Overview ── -->
+<section class="svc-overview">
+  <div class="container">
+    <div class="svc-overview-grid">
+      <div class="fade-up">
+        <span class="label">Overview</span>
+        <h2 class="section-title" style="margin-top:12px;">サービスの<em>概要</em></h2>
+        <p class="section-lead" style="margin-top:16px;">
+          サービスの詳細な説明文をここに記載します。どんな課題を解決するのか、どんな人に向けたサービスなのかを明確に。
+        </p>
+        <p style="font-size:0.9375rem; color:var(--gray-2); margin-top:14px; line-height:1.8;">
+          追加の説明文をここに記載します。技術的な特徴や差別化ポイントなどを補足します。
+        </p>
+      </div>
+      <div class="fade-up">
+        <!-- 補足情報・数値・カード等 -->
+        <div style="display:flex; flex-direction:column; gap:16px;">
+          <div style="background:var(--bg-2); border:1px solid var(--border); border-radius:12px; padding:24px 28px;">
+            <div style="font-size:0.75rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:var(--gray-3); margin-bottom:8px;">ポイント 1</div>
+            <div style="font-size:0.9375rem; color:var(--gray-1); font-weight:500; line-height:1.5;">ここにサービスの強みや特徴を記載</div>
+          </div>
+          <div style="background:var(--bg-2); border:1px solid var(--border); border-radius:12px; padding:24px 28px;">
+            <div style="font-size:0.75rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:var(--gray-3); margin-bottom:8px;">ポイント 2</div>
+            <div style="font-size:0.9375rem; color:var(--gray-1); font-weight:500; line-height:1.5;">ここにサービスの強みや特徴を記載</div>
+          </div>
+          <div style="background:var(--bg-2); border:1px solid var(--border); border-radius:12px; padding:24px 28px;">
+            <div style="font-size:0.75rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:var(--gray-3); margin-bottom:8px;">ポイント 3</div>
+            <div style="font-size:0.9375rem; color:var(--gray-1); font-weight:500; line-height:1.5;">ここにサービスの強みや特徴を記載</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Features ── -->
+<section class="svc-features" id="features">
+  <div class="container">
+    <div class="fade-up">
+      <span class="label">Features</span>
+      <h2 class="section-title" style="margin-top:12px;">主な<em>機能</em></h2>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card fade-up">
+        <div class="feature-icon">⚡</div>
+        <h3>機能名 1</h3>
+        <p>機能の説明文。どんな価値をユーザーに提供するかを簡潔に。</p>
+      </div>
+      <div class="feature-card fade-up">
+        <div class="feature-icon">🔐</div>
+        <h3>機能名 2</h3>
+        <p>機能の説明文。どんな価値をユーザーに提供するかを簡潔に。</p>
+      </div>
+      <div class="feature-card fade-up">
+        <div class="feature-icon">📊</div>
+        <h3>機能名 3</h3>
+        <p>機能の説明文。どんな価値をユーザーに提供するかを簡潔に。</p>
+      </div>
+      <div class="feature-card fade-up">
+        <div class="feature-icon">🤖</div>
+        <h3>機能名 4</h3>
+        <p>機能の説明文。どんな価値をユーザーに提供するかを簡潔に。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Gallery ── -->
+<!--
+  ★ 画像枚数に応じてクラスを変える:
+  1枚: <div class="gallery-1">
+  2枚: <div class="gallery-2">
+  3枚: <div class="gallery-3">
+-->
+<section class="svc-gallery">
+  <div class="container">
+    <div class="gallery-label-row fade-up">
+      <div>
+        <span class="label">Gallery</span>
+        <h2 class="section-title" style="margin-top:12px;">スクリーン<em>ショット</em></h2>
+      </div>
+    </div>
+
+    <!-- ★ 画像3枚の例 (gallery-3) -->
+    <div class="gallery-3 fade-up">
+      <div class="gallery-img">
+        <!--
+          ★ 画像差し替え: コメントを外して src を設定
+          <img src="../../img/services/servicename-01.jpg" alt="ServiceName スクリーンショット 1">
+        -->
+        <div class="gallery-img-placeholder"><span>🖼</span><p>Screenshot 01</p></div>
+      </div>
+      <div class="gallery-col">
+        <div class="gallery-img">
+          <!--<img src="../../img/services/servicename-02.jpg" alt="ServiceName スクリーンショット 2">-->
+          <div class="gallery-img-placeholder"><span>🖼</span><p>Screenshot 02</p></div>
+        </div>
+        <div class="gallery-img">
+          <!--<img src="../../img/services/servicename-03.jpg" alt="ServiceName スクリーンショット 3">-->
+          <div class="gallery-img-placeholder"><span>🖼</span><p>Screenshot 03</p></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── Privacy Policy ── -->
+<section class="svc-privacy" id="privacy">
+  <div class="container">
+    <span class="label fade-up">Privacy Policy</span>
+    <h2 class="section-title fade-up" style="margin-top:12px;">ServiceName<br><em>プライバシーポリシー</em></h2>
+    <div class="pp-box fade-up">
+      <h3>ServiceName プライバシーポリシー</h3>
+      <p>SEjAI Inc.（以下「当社」）は、「ServiceName」の提供にあたり、以下の方針でユーザーの個人情報を取り扱います。</p>
+
+      <h4>1. 収集する情報</h4>
+      <ul>
+        <li>収集する情報の種類をここに記載</li>
+        <li>収集する情報の種類をここに記載</li>
+      </ul>
+
+      <h4>2. 利用目的</h4>
+      <p>利用目的をここに記載します。</p>
+
+      <h4>3. 第三者提供</h4>
+      <p>第三者への提供方針をここに記載します。</p>
+
+      <h4>4. データ保持</h4>
+      <p>データの保持期間・削除方針をここに記載します。</p>
+
+      <h4>5. お問い合わせ</h4>
+      <p>個人情報に関するご要望は <a href="../contact.html" style="color:var(--svc-color)">お問い合わせフォーム</a> へ。</p>
+
+      <p class="pp-updated">最終更新：2025年X月X日</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ── -->
+<section class="svc-cta">
+  <div class="container" style="position:relative; z-index:1;">
+    <span class="label fade-up">Get Started</span>
+    <h2 class="section-title fade-up" style="margin-top:12px;"><em>始めてみませんか？</em></h2>
+    <p class="section-lead fade-up" style="margin:16px auto 40px; text-align:center; max-width:44ch;">
+      まずは無料プランでお試しください。導入のご相談もお気軽に。
+    </p>
+    <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;" class="fade-up">
+      <a href="../contact.html" class="btn btn-svc">今すぐ相談する →</a>
+      <a href="index.html" class="btn btn-ghost">← サービス一覧に戻る</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── Footer ── -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="../../index.html" class="nav-logo">SEj<span style="color:var(--a)">AI</span></a>
+        <p class="footer-tagline">AI-Powered Software for Real Life.<br>資産・習慣・食をアップデートする。</p>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <a href="assetry.html">Assetry</a>
+        <a href="habee.html">Habee</a>
+        <a href="fridgechef.html">FridgeChef</a>
+        <!-- ★ 新サービス追加時にリンクを追加 -->
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="../about.html">About SEjAI</a>
+        <a href="../about.html#team">Team</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a href="../contact.html">お問い合わせ</a>
+        <a href="mailto:hello@sejai.co.jp">hello@sejai.co.jp</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 SEjAI Inc. All rights reserved.</span>
+      <div class="footer-bottom-links">
+        <a href="#privacy">Privacy Policy</a>
+        <a href="#">Terms</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="../../js/main.js"></script>
+</body>
+</html>

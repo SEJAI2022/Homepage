@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FridgeChef — SEjAI</title>
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="../../css/service-page.css">
+  <style>
+    :root {
+      --svc-color:        #f97316;
+      --svc-glow:         rgba(249, 115, 22, 0.12);
+      --svc-color-border: rgba(249, 115, 22, 0.3);
+      --svc-color-bg:     rgba(249, 115, 22, 0.07);
+      --svc-shadow:       rgba(249, 115, 22, 0.3);
+    }
+    .btn-svc { color: var(--bg); }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <nav class="nav">
+      <a href="../../index.html" class="nav-logo">SEj<span>AI</span></a>
+      <ul class="nav-links">
+        <li><a href="../../index.html">Home</a></li>
+        <li><a href="index.html">Services</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../contact.html" class="nav-cta">Contact</a></li>
+      </ul>
+      <button class="hamburger" aria-label="メニュー"><span></span><span></span><span></span></button>
+    </nav>
+  </div>
+</header>
+
+<div style="padding: calc(var(--header-h) + 24px) 0 0; background: var(--bg);">
+  <div class="container">
+    <p style="font-size:0.8125rem; color:var(--gray-3);">
+      <a href="../../index.html" style="color:var(--gray-3); transition:color 0.2s;" onmouseover="this.style.color='var(--white)'" onmouseout="this.style.color='var(--gray-3)'">Home</a>
+      <span style="margin:0 8px; opacity:0.4;">/</span>
+      <a href="index.html" style="color:var(--gray-3); transition:color 0.2s;" onmouseover="this.style.color='var(--white)'" onmouseout="this.style.color='var(--gray-3)'">Services</a>
+      <span style="margin:0 8px; opacity:0.4;">/</span>
+      <span style="color: var(--svc-color);">FridgeChef</span>
+    </p>
+  </div>
+</div>
+
+<section class="svc-hero">
+  <div class="container">
+    <div class="svc-hero-inner">
+      <div class="fade-up">
+        <span class="svc-hero-badge">🍳 AI Recipe Assistant</span>
+        <h1>FridgeChef</h1>
+        <p class="svc-hero-desc">
+          冷蔵庫の食材を入力するだけで、AIが今夜のレシピを提案。
+          食品ロスを減らしながら、毎日の「今日何作ろう」を解決します。
+        </p>
+        <div class="svc-hero-actions">
+          <a href="../contact.html" class="btn btn-svc">FridgeChefを試す →</a>
+          <a href="#features" class="btn btn-ghost">機能を見る</a>
+        </div>
+      </div>
+      <div class="svc-hero-img-wrap fade-up">
+        <!--<img src="../../img/services/fridgechef-hero.jpg" alt="FridgeChef レシピ提案画面">-->
+        <div class="svc-hero-img-placeholder">
+          <span>🍳</span>
+          <p>Hero Image (e.g. recipe suggestion screen)</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="svc-overview">
+  <div class="container">
+    <div class="svc-overview-grid">
+      <div class="fade-up">
+        <span class="label">Overview</span>
+        <h2 class="section-title" style="margin-top:12px;">食材から、<em>今夜のご飯。</em></h2>
+        <p class="section-lead" style="margin-top:16px;">
+          FridgeChef は「冷蔵庫を開けても何も思い浮かばない」という毎日の悩みを、
+          AIの力でゼロにするレシピアシスタントです。
+        </p>
+        <p style="font-size:0.9375rem; color:var(--gray-2); margin-top:14px; line-height:1.8;">
+          賞味期限が近い食材を優先的に提案に組み込むことで、家庭での食品ロス削減にも貢献。
+          栄養バランス・アレルギー・調理時間など細かな条件にも対応します。
+        </p>
+      </div>
+      <div class="fade-up">
+        <div style="display:flex; flex-direction:column; gap:16px;">
+          <div style="background:var(--bg-2); border:1px solid var(--border); border-left:3px solid var(--svc-color); border-radius:12px; padding:24px 28px;">
+            <div style="font-size:0.75rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:var(--gray-3); margin-bottom:8px;">手軽さ</div>
+            <div style="font-size:0.9375rem; color:var(--gray-1); font-weight:500; line-height:1.5;">食材を入力して数秒。AIが複数のレシピ候補を即座に提案</div>
+          </div>
+          <div style="background:var(--bg-2); border:1px solid var(--border); border-left:3px solid var(--svc-color); border-radius:12px; padding:24px 28px;">
+            <div style="font-size:0.75rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:var(--gray-3); margin-bottom:8px;">サステナビリティ</div>
+            <div style="font-size:0.9375rem; color:var(--gray-1); font-weight:500; line-height:1.5;">賞味期限順に食材を優先提案。食品廃棄ゼロを目指す家庭を支援</div>
+          </div>
+          <div style="background:var(--bg-2); border:1px solid var(--border); border-left:3px solid var(--svc-color); border-radius:12px; padding:24px 28px;">
+            <div style="font-size:0.75rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:var(--gray-3); margin-bottom:8px;">カスタマイズ</div>
+            <div style="font-size:0.9375rem; color:var(--gray-1); font-weight:500; line-height:1.5;">アレルギー・カロリー制限・調理時間でフィルタリング可能</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="svc-features" id="features">
+  <div class="container">
+    <div class="fade-up">
+      <span class="label">Features</span>
+      <h2 class="section-title" style="margin-top:12px;">主な<em>機能</em></h2>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card fade-up">
+        <div class="feature-icon">🥦</div>
+        <h3>食材入力→即レシピ提案</h3>
+        <p>冷蔵庫にある食材を入力するだけで、AIが複数のレシピを即座に提案。材料が少なくても、アレンジレシピで解決します。</p>
+      </div>
+      <div class="feature-card fade-up">
+        <div class="feature-icon">♻️</div>
+        <h3>食品ロス削減サポート</h3>
+        <p>登録した食材の賞味期限を管理し、期限が近いものから優先的にレシピに組み込みます。「気づいたら腐っていた」をなくします。</p>
+      </div>
+      <div class="feature-card fade-up">
+        <div class="feature-icon">🥗</div>
+        <h3>栄養バランス計算</h3>
+        <p>提案レシピのカロリー・三大栄養素・ビタミン・ミネラルを自動計算。日々の食事管理を無理なく続けられます。</p>
+      </div>
+      <div class="feature-card fade-up">
+        <div class="feature-icon">⚠️</div>
+        <h3>アレルギー対応フィルター</h3>
+        <p>卵・乳製品・小麦・ナッツ等のアレルゲンを設定するだけで、安全なレシピだけを提案。家族全員が安心して使えます。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="svc-gallery">
+  <div class="container">
+    <div class="gallery-label-row fade-up">
+      <div>
+        <span class="label">Gallery</span>
+        <h2 class="section-title" style="margin-top:12px;">アプリ<em>スクリーンショット</em></h2>
+      </div>
+    </div>
+    <div class="gallery-3 fade-up">
+      <div class="gallery-img">
+        <!--<img src="../../img/services/fridgechef-01.jpg" alt="FridgeChef 食材入力画面">-->
+        <div class="gallery-img-placeholder"><span>🖼</span><p>食材入力画面</p></div>
+      </div>
+      <div class="gallery-col">
+        <div class="gallery-img">
+          <!--<img src="../../img/services/fridgechef-02.jpg" alt="FridgeChef レシピ提案画面">-->
+          <div class="gallery-img-placeholder"><span>🖼</span><p>レシピ提案画面</p></div>
+        </div>
+        <div class="gallery-img">
+          <!--<img src="../../img/services/fridgechef-03.jpg" alt="FridgeChef 栄養情報">-->
+          <div class="gallery-img-placeholder"><span>🖼</span><p>栄養情報・詳細画面</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="svc-privacy" id="privacy">
+  <div class="container">
+    <span class="label fade-up">Privacy Policy</span>
+    <h2 class="section-title fade-up" style="margin-top:12px;">FridgeChef<br><em>プライバシーポリシー</em></h2>
+    <div class="pp-box fade-up">
+      <h3>FridgeChef プライバシーポリシー</h3>
+      <p>当社は、AIレシピアシスタント「FridgeChef」において収集する食材・料理に関するデータを以下の方針で取り扱います。</p>
+      <h4>1. 収集する情報</h4>
+      <ul>
+        <li>入力された食材・冷蔵庫の内容（レシピ生成のため）</li>
+        <li>アレルギー情報・食事制限（ユーザー設定時）</li>
+        <li>お気に入りレシピ・調理履歴</li>
+        <li>メールアドレス（アカウント登録時）</li>
+      </ul>
+      <h4>2. データの利用目的</h4>
+      <p>収集データはレシピ提案・栄養計算・サービス個人化のためにのみ使用します。食材データは匿名化・集約化の上でAIモデルの精度向上に活用することがあります（個人を特定できる形では使用しません）。</p>
+      <h4>3. 機微情報の取り扱い</h4>
+      <p>アレルギー情報等の機微な健康情報は、暗号化して保存し、第三者への提供は行いません。</p>
+      <h4>4. データ削除</h4>
+      <p>アカウント削除を申請いただいた場合、30日以内にすべての個人データを削除します。</p>
+      <h4>5. お問い合わせ</h4>
+      <p><a href="../contact.html" style="color:var(--svc-color)">お問い合わせフォーム</a>よりご連絡ください。</p>
+      <p class="pp-updated">最終更新：2025年1月1日</p>
+    </div>
+  </div>
+</section>
+
+<section class="svc-cta">
+  <div class="container" style="position:relative; z-index:1;">
+    <span class="label fade-up">Get Started</span>
+    <h2 class="section-title fade-up" style="margin-top:12px;"><em>今夜のご飯、任せてください。</em></h2>
+    <p class="section-lead fade-up" style="margin:16px auto 40px; text-align:center; max-width:44ch;">
+      冷蔵庫の食材を登録するだけ。まずは無料で試してみてください。
+    </p>
+    <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;" class="fade-up">
+      <a href="../contact.html" class="btn btn-svc">今すぐ試す →</a>
+      <a href="index.html" class="btn btn-ghost">← サービス一覧</a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="../../index.html" class="nav-logo">SEj<span style="color:var(--a)">AI</span></a>
+        <p class="footer-tagline">AI-Powered Software for Real Life.<br>資産・習慣・食をアップデートする。</p>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <a href="assetry.html">Assetry</a>
+        <a href="habee.html">Habee</a>
+        <a href="fridgechef.html">FridgeChef</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="../about.html">About SEjAI</a>
+        <a href="../about.html#team">Team</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a href="../contact.html">お問い合わせ</a>
+        <a href="mailto:hello@sejai.co.jp">hello@sejai.co.jp</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 SEjAI Inc. All rights reserved.</span>
+      <div class="footer-bottom-links">
+        <a href="#privacy">Privacy Policy</a>
+        <a href="#">Terms</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="../../js/main.js"></script>
+</body>
+</html>

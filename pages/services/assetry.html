@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Assetry — SEjAI</title>
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="../../css/service-page.css">
+  <style>
+    :root {
+      --svc-color:        #4f8cff;
+      --svc-glow:         rgba(79, 140, 255, 0.12);
+      --svc-color-border: rgba(79, 140, 255, 0.3);
+      --svc-color-bg:     rgba(79, 140, 255, 0.07);
+      --svc-shadow:       rgba(79, 140, 255, 0.3);
+    }
+    .btn-svc { color: var(--bg); }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <nav class="nav">
+      <a href="../../index.html" class="nav-logo">SEj<span>AI</span></a>
+      <ul class="nav-links">
+        <li><a href="../../index.html">Home</a></li>
+        <li><a href="index.html">Services</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../contact.html" class="nav-cta">Contact</a></li>
+      </ul>
+      <button class="hamburger" aria-label="メニュー"><span></span><span></span><span></span></button>
+    </nav>
+  </div>
+</header>
+
+<div style="padding: calc(var(--header-h) + 24px) 0 0; background: var(--bg);">
+  <div class="container">
+    <p style="font-size:0.8125rem; color:var(--gray-3);">
+      <a href="../../index.html" style="color:var(--gray-3); transition:color 0.2s;" onmouseover="this.style.color='var(--white)'" onmouseout="this.style.color='var(--gray-3)'">Home</a>
+      <span style="margin:0 8px; opacity:0.4;">/</span>
+      <a href="index.html" style="color:var(--gray-3); transition:color 0.2s;" onmouseover="this.style.color='var(--white)'" onmouseout="this.style.color='var(--gray-3)'">Services</a>
+      <span style="margin:0 8px; opacity:0.4;">/</span>
+      <span style="color: var(--svc-color);">Assetry</span>
+    </p>
+  </div>
+</div>
+
+<!-- ── Hero ── -->
+<section class="svc-hero">
+  <div class="container">
+    <div class="svc-hero-inner">
+      <div class="fade-up">
+        <span class="svc-hero-badge">💹 Digital Asset Marketplace</span>
+        <h1>Assetry</h1>
+        <p class="svc-hero-desc">
+          デジタル資産の売買・管理をワンプラットフォームで。
+          AIが市場をリアルタイム分析し、あなたの最適な意思決定をサポートします。
+        </p>
+        <div class="svc-hero-actions">
+          <a href="../contact.html" class="btn btn-svc">Assetryを試す →</a>
+          <a href="#features" class="btn btn-ghost">機能を見る</a>
+        </div>
+      </div>
+      <div class="svc-hero-img-wrap fade-up">
+        <!--
+          ★ 画像差し替え:
+          <img src="../../img/services/assetry-hero.jpg" alt="Assetry ダッシュボード">
+        -->
+        <div class="svc-hero-img-placeholder">
+          <span>💹</span>
+          <p>Hero Image (e.g. dashboard screenshot)</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Overview ── -->
+<section class="svc-overview">
+  <div class="container">
+    <div class="svc-overview-grid">
+      <div class="fade-up">
+        <span class="label">Overview</span>
+        <h2 class="section-title" style="margin-top:12px;">資産を、<em>もっと賢く動かす。</em></h2>
+        <p class="section-lead" style="margin-top:16px;">
+          Assetry は、デジタル資産取引の複雑さを取り除き、クリエイターから本格的な投資家まで
+          誰でも安心して参加できるマーケットプレイスです。
+        </p>
+        <p style="font-size:0.9375rem; color:var(--gray-2); margin-top:14px; line-height:1.8;">
+          独自のAIエンジンが市場データを継続的に学習し、価格トレンドの予測・リスク分析・
+          最適なタイミングのアドバイスをリアルタイムで提供します。
+        </p>
+      </div>
+      <div class="fade-up">
+        <div style="display:flex; flex-direction:column; gap:16px;">
+          <div style="background:var(--bg-2); border:1px solid var(--border); border-left:3px solid var(--svc-color); border-radius:12px; padding:24px 28px;">
+            <div style="font-size:0.75rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:var(--gray-3); margin-bottom:8px;">安全性</div>
+            <div style="font-size:0.9375rem; color:var(--gray-1); font-weight:500; line-height:1.5;">KYC対応・AES-256暗号化・ゼロトラスト設計で金融グレードのセキュリティを実現</div>
+          </div>
+          <div style="background:var(--bg-2); border:1px solid var(--border); border-left:3px solid var(--svc-color); border-radius:12px; padding:24px 28px;">
+            <div style="font-size:0.75rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:var(--gray-3); margin-bottom:8px;">AI分析</div>
+            <div style="font-size:0.9375rem; color:var(--gray-1); font-weight:500; line-height:1.5;">リアルタイム市場データを元に価格予測・リスクスコアを自動算出</div>
+          </div>
+          <div style="background:var(--bg-2); border:1px solid var(--border); border-left:3px solid var(--svc-color); border-radius:12px; padding:24px 28px;">
+            <div style="font-size:0.75rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:var(--gray-3); margin-bottom:8px;">対象ユーザー</div>
+            <div style="font-size:0.9375rem; color:var(--gray-1); font-weight:500; line-height:1.5;">デジタルクリエイター・個人投資家・機関投資家まで幅広く対応</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Features ── -->
+<section class="svc-features" id="features">
+  <div class="container">
+    <div class="fade-up">
+      <span class="label">Features</span>
+      <h2 class="section-title" style="margin-top:12px;">主な<em>機能</em></h2>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card fade-up">
+        <div class="feature-icon">⚡</div>
+        <h3>リアルタイム市場分析</h3>
+        <p>数千のデータポイントを毎秒処理するAIエンジンが、市場の微細な変動を即座に検知。価格トレンドと出来高の変化を視覚的に把握できます。</p>
+      </div>
+      <div class="feature-card fade-up">
+        <div class="feature-icon">🔐</div>
+        <h3>安全な取引環境</h3>
+        <p>金融機関水準の本人確認（KYC）と不正検知システムを採用。すべての取引はAES-256で暗号化され、安全に記録されます。</p>
+      </div>
+      <div class="feature-card fade-up">
+        <div class="feature-icon">📊</div>
+        <h3>ポートフォリオ管理</h3>
+        <p>保有資産の損益・パフォーマンス・リスク分散状況を一画面で把握。カスタムアラートで重要な変動を見逃しません。</p>
+      </div>
+      <div class="feature-card fade-up">
+        <div class="feature-icon">🤖</div>
+        <h3>AI価格予測アシスト</h3>
+        <p>機械学習モデルが過去の価格パターンと市場心理を分析し、短期・中期の価格見通しをスコアで提示。意思決定の精度を高めます。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Gallery ── -->
+<section class="svc-gallery">
+  <div class="container">
+    <div class="gallery-label-row fade-up">
+      <div>
+        <span class="label">Gallery</span>
+        <h2 class="section-title" style="margin-top:12px;">スクリーン<em>ショット</em></h2>
+      </div>
+    </div>
+    <!--
+      ★ 画像を用意したら下記のように差し替え:
+      <img src="../../img/services/assetry-01.jpg" alt="...">
+
+      画像枚数に合わせてクラスを変更:
+      1枚 → gallery-1
+      2枚 → gallery-2
+      3枚 → gallery-3
+    -->
+    <div class="gallery-3 fade-up">
+      <div class="gallery-img">
+        <div class="gallery-img-placeholder"><span>🖼</span><p>ダッシュボード画面</p></div>
+      </div>
+      <div class="gallery-col">
+        <div class="gallery-img">
+          <div class="gallery-img-placeholder"><span>🖼</span><p>取引画面</p></div>
+        </div>
+        <div class="gallery-img">
+          <div class="gallery-img-placeholder"><span>🖼</span><p>ポートフォリオ分析</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Privacy Policy ── -->
+<section class="svc-privacy" id="privacy">
+  <div class="container">
+    <span class="label fade-up">Privacy Policy</span>
+    <h2 class="section-title fade-up" style="margin-top:12px;">Assetry<br><em>プライバシーポリシー</em></h2>
+    <div class="pp-box fade-up">
+      <h3>Assetry プライバシーポリシー</h3>
+      <p>SEjAI Inc.（以下「当社」）は、デジタル資産マーケットプレイス「Assetry」の提供にあたり、以下の方針でユーザーの個人情報を取り扱います。</p>
+      <h4>1. 収集する情報</h4>
+      <ul>
+        <li>氏名・メールアドレス・連絡先（登録時）</li>
+        <li>取引履歴・ウォレットアドレス（取引時）</li>
+        <li>本人確認書類（KYC対応のため）</li>
+        <li>デバイス情報・IPアドレス・利用ログ</li>
+      </ul>
+      <h4>2. 利用目的</h4>
+      <p>収集した情報はサービス提供・本人確認・不正防止・カスタマーサポート・サービス改善のために利用します。マーケティング目的の第三者提供は行いません。</p>
+      <h4>3. セキュリティ</h4>
+      <p>金融グレードの暗号化（AES-256）とゼロトラストアーキテクチャを採用。取引データは暗号化された上でセキュアなデータセンターに保存されます。</p>
+      <h4>4. データ保持</h4>
+      <p>取引記録は法令に基づき7年間保持します。退会後の個人情報は30日以内に削除（法令上の保持義務分を除く）します。</p>
+      <h4>5. お問い合わせ</h4>
+      <p>個人情報に関するご要望は <a href="../contact.html" style="color:var(--svc-color)">お問い合わせフォーム</a> へ。</p>
+      <p class="pp-updated">最終更新：2025年1月1日</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ── -->
+<section class="svc-cta">
+  <div class="container" style="position:relative; z-index:1;">
+    <span class="label fade-up">Get Started</span>
+    <h2 class="section-title fade-up" style="margin-top:12px;"><em>Assetry を始めよう。</em></h2>
+    <p class="section-lead fade-up" style="margin:16px auto 40px; text-align:center; max-width:44ch;">
+      まずは無料プランで体験。資産管理の新しいスタンダードを試してください。
+    </p>
+    <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;" class="fade-up">
+      <a href="../contact.html" class="btn btn-svc">今すぐ相談する →</a>
+      <a href="index.html" class="btn btn-ghost">← サービス一覧</a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="../../index.html" class="nav-logo">SEj<span style="color:var(--a)">AI</span></a>
+        <p class="footer-tagline">AI-Powered Software for Real Life.<br>資産・習慣・食をアップデートする。</p>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <a href="assetry.html">Assetry</a>
+        <a href="habee.html">Habee</a>
+        <a href="fridgechef.html">FridgeChef</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="../about.html">About SEjAI</a>
+        <a href="../about.html#team">Team</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a href="../contact.html">お問い合わせ</a>
+        <a href="mailto:hello@sejai.co.jp">hello@sejai.co.jp</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 SEjAI Inc. All rights reserved.</span>
+      <div class="footer-bottom-links">
+        <a href="#privacy">Privacy Policy</a>
+        <a href="#">Terms</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="../../js/main.js"></script>
+</body>
+</html>
