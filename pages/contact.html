@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — SEjAI</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .contact-section { padding: 80px 0 120px; }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1.6fr; gap: 60px; align-items: start; }
+
+    /* ── Info ── */
+    .contact-info { position: sticky; top: 96px; }
+    .contact-info-card {
+      background: var(--bg-2); border: 1px solid var(--border);
+      border-radius: 16px; padding: 36px; margin-bottom: 20px;
+    }
+    .info-row { display: flex; gap: 14px; align-items: flex-start; padding: 16px 0; border-bottom: 1px solid var(--border); }
+    .info-row:last-child { border-bottom: none; padding-bottom: 0; }
+    .info-icon {
+      width: 38px; height: 38px; border-radius: 8px;
+      background: var(--bg-3); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0;
+    }
+    .info-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gray-3); font-weight: 600; margin-bottom: 4px; }
+    .info-val { font-size: 0.9rem; color: var(--gray-1); line-height: 1.5; }
+
+    .service-links { display: flex; flex-direction: column; gap: 10px; }
+    .service-link-pill {
+      display: flex; align-items: center; gap: 10px;
+      background: var(--bg-2); border: 1px solid var(--border);
+      border-radius: 10px; padding: 12px 16px;
+      font-size: 0.875rem; font-weight: 500; color: var(--gray-2);
+      transition: all 0.2s; cursor: pointer;
+    }
+    .service-link-pill:hover { border-color: var(--border-h); color: var(--white); }
+    .slp-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+
+    /* ── Form ── */
+    .form-card {
+      background: var(--bg-2); border: 1px solid var(--border);
+      border-radius: 16px; padding: 48px;
+    }
+    .form-card h2 { font-family: var(--font-head); font-size: 1.4rem; font-weight: 700; color: var(--white); margin-bottom: 6px; }
+    .form-subtitle { font-size: 0.875rem; color: var(--gray-3); margin-bottom: 36px; }
+    .form-subtitle span { color: var(--a); }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-group { margin-bottom: 20px; }
+    .form-group label { display: block; font-size: 0.8125rem; font-weight: 600; color: var(--gray-2); margin-bottom: 8px; letter-spacing: 0.02em; }
+    .form-group label .req { color: var(--a); margin-left: 3px; }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%; padding: 11px 16px;
+      border: 1px solid var(--border); border-radius: var(--radius);
+      font-family: var(--font-body); font-size: 0.9375rem; color: var(--gray-1);
+      background: var(--bg-3); outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      appearance: none;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--a);
+      box-shadow: 0 0 0 3px rgba(79,140,255,0.15);
+    }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: var(--gray-3); }
+    .form-group textarea { resize: vertical; min-height: 130px; }
+    .form-group select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%234a5168' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right 14px center; padding-right: 38px;
+    }
+
+    .privacy-row { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 24px; }
+    .privacy-row input[type="checkbox"] { width: 16px; height: 16px; flex-shrink: 0; margin-top: 3px; accent-color: var(--a); }
+    .privacy-row label { font-size: 0.8125rem; color: var(--gray-3); line-height: 1.65; }
+    .privacy-row a { color: var(--a); }
+
+    .submit-btn { width: 100%; padding: 15px; font-size: 1rem; letter-spacing: 0.02em; }
+
+    .form-success { display: none; text-align: center; padding: 48px 20px; }
+    .form-success.show { display: block; }
+    .success-icon { font-size: 3rem; margin-bottom: 18px; }
+    .success-title { font-family: var(--font-head); font-size: 1.6rem; font-weight: 700; color: var(--white); margin-bottom: 12px; }
+    .success-text { font-size: 0.9375rem; color: var(--gray-2); line-height: 1.75; }
+
+    @media (max-width: 900px) {
+      .contact-grid { grid-template-columns: 1fr; gap: 32px; }
+      .contact-info { position: static; }
+      .form-card { padding: 28px 20px; }
+      .form-row { grid-template-columns: 1fr; gap: 0; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <nav class="nav">
+      <a href="../index.html" class="nav-logo">SEj<span>AI</span></a>
+      <ul class="nav-links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html" class="nav-cta">Contact</a></li>
+      </ul>
+      <button class="hamburger" aria-label="メニュー"><span></span><span></span><span></span></button>
+    </nav>
+  </div>
+</header>
+
+<div class="page-hero">
+  <div class="container">
+    <span class="label fade-up">Contact</span>
+    <h1 class="section-title fade-up"><em>連絡して</em>ください。</h1>
+    <p class="section-lead fade-up" style="margin:16px auto 0; text-align:center;">
+      プロダクトの質問・導入相談・採用・取材など、どんなことでもお気軽に。<br>
+      24時間以内に返信します（土日祝除く）。
+    </p>
+  </div>
+</div>
+
+<section class="contact-section">
+  <div class="container">
+    <div class="contact-grid">
+
+      <div class="contact-info fade-up">
+        <div class="contact-info-card">
+          <div class="info-row">
+            <div class="info-icon">✉️</div>
+            <div>
+              <div class="info-label">Email</div>
+              <div class="info-val">hello@sejai.co.jp</div>
+            </div>
+          </div>
+          <div class="info-row">
+            <div class="info-icon">📍</div>
+            <div>
+              <div class="info-label">Location</div>
+              <div class="info-val">〒150-0001<br>東京都渋谷区神宮前x-x-x</div>
+            </div>
+          </div>
+          <div class="info-row">
+            <div class="info-icon">🕐</div>
+            <div>
+              <div class="info-label">Response Time</div>
+              <div class="info-val">24時間以内（平日）</div>
+            </div>
+          </div>
+        </div>
+
+        <p style="font-size:0.75rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--gray-3); font-weight:600; margin-bottom:12px;">サービスについて</p>
+        <div class="service-links">
+          <div class="service-link-pill" onclick="document.getElementById('category').value='Assetry について'">
+            <span class="slp-dot" style="background:var(--assetry)"></span>💹 Assetry について相談
+          </div>
+          <div class="service-link-pill" onclick="document.getElementById('category').value='Habee について'">
+            <span class="slp-dot" style="background:var(--habee)"></span>🌿 Habee について相談
+          </div>
+          <div class="service-link-pill" onclick="document.getElementById('category').value='FridgeChef について'">
+            <span class="slp-dot" style="background:var(--fridge)"></span>🍳 FridgeChef について相談
+          </div>
+        </div>
+      </div>
+
+      <div class="fade-up">
+        <div class="form-card">
+          <h2>お問い合わせ</h2>
+          <p class="form-subtitle"><span>*</span> は必須項目です</p>
+
+          <div id="contactForm">
+            <div class="form-row">
+              <div class="form-group">
+                <label>お名前 <span class="req">*</span></label>
+                <input type="text" id="name" placeholder="Yamada Taro">
+              </div>
+              <div class="form-group">
+                <label>会社名 / 組織名</label>
+                <input type="text" placeholder="SEjAI Inc.">
+              </div>
+            </div>
+            <div class="form-group">
+              <label>メールアドレス <span class="req">*</span></label>
+              <input type="email" id="email" placeholder="hello@example.co.jp">
+            </div>
+            <div class="form-group">
+              <label>お問い合わせ種別 <span class="req">*</span></label>
+              <select id="category">
+                <option value="">選択してください</option>
+                <option>Assetry について</option>
+                <option>Habee について</option>
+                <option>FridgeChef について</option>
+                <option>採用・カジュアル面談</option>
+                <option>取材・メディア</option>
+                <option>投資・パートナーシップ</option>
+                <option>その他</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>メッセージ <span class="req">*</span></label>
+              <textarea id="message" placeholder="お問い合わせ内容をご記入ください..."></textarea>
+            </div>
+            <div class="privacy-row">
+              <input type="checkbox" id="pp">
+              <label for="pp"><a href="services.html#privacy" target="_blank">プライバシーポリシー</a>に同意の上、送信します。</label>
+            </div>
+            <button class="btn btn-primary submit-btn" onclick="handleSubmit()">送信する →</button>
+          </div>
+
+          <div class="form-success" id="formSuccess">
+            <div class="success-icon">✅</div>
+            <div class="success-title">送信完了！</div>
+            <p class="success-text">
+              お問い合わせありがとうございます。<br>
+              24時間以内（平日）にご返信いたします。
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="../index.html" class="nav-logo">SEj<span style="color:var(--a)">AI</span></a>
+        <p class="footer-tagline">AI-Powered Software for Real Life.<br>資産・習慣・食をアップデートする。</p>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <a href="services.html#assetry">Assetry</a>
+        <a href="services.html#habee">Habee</a>
+        <a href="services.html#fridgechef">FridgeChef</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="about.html">About SEjAI</a>
+        <a href="about.html#team">Team</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a href="contact.html">お問い合わせ</a>
+        <a href="mailto:hello@sejai.co.jp">hello@sejai.co.jp</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 SEjAI Inc. All rights reserved.</span>
+      <div class="footer-bottom-links">
+        <a href="services.html#privacy">Privacy Policy</a>
+        <a href="#">Terms</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+<script>
+  function handleSubmit() {
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const cat = document.getElementById('category').value;
+    const msg = document.getElementById('message').value.trim();
+    const pp = document.getElementById('pp').checked;
+    if (!name || !email || !cat || !msg) { alert('必須項目をすべてご入力ください。'); return; }
+    if (!pp) { alert('プライバシーポリシーへの同意が必要です。'); return; }
+    // ★ バックエンド送信処理をここに実装（Formspree / 独自API等）
+    document.getElementById('contactForm').style.display = 'none';
+    document.getElementById('formSuccess').classList.add('show');
+  }
+</script>
+</body>
+</html>

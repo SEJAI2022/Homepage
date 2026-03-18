@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Services — SEjAI</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .services-section { padding: 80px 0 120px; }
+
+    /* ── Service Block ── */
+    .svc-block {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+      align-items: center;
+      padding: 80px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .svc-block:last-of-type { border-bottom: none; }
+    .svc-block.flip { }
+    .svc-block.flip .svc-info { order: 2; }
+    .svc-block.flip .svc-visual { order: 1; }
+
+    .svc-num {
+      font-family: var(--font-head); font-size: 5rem; font-weight: 800;
+      line-height: 1; margin-bottom: 4px; opacity: 0.06; color: var(--white);
+    }
+    .svc-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 5px 14px; border-radius: 100px;
+      font-size: 0.75rem; font-weight: 600;
+      border: 1px solid; margin-bottom: 18px;
+    }
+    .svc-badge.assetry { color: var(--assetry); border-color: rgba(79,140,255,0.3); background: rgba(79,140,255,0.07); }
+    .svc-badge.habee   { color: var(--habee);   border-color: rgba(52,211,153,0.3); background: rgba(52,211,153,0.07); }
+    .svc-badge.fridge  { color: var(--fridge);  border-color: rgba(249,115,22,0.3); background: rgba(249,115,22,0.07); }
+
+    .svc-block h2 {
+      font-family: var(--font-head); font-size: clamp(2rem, 4vw, 2.8rem);
+      font-weight: 800; letter-spacing: -0.03em; color: var(--white);
+      margin-bottom: 18px;
+    }
+    .svc-block p { font-size: 0.9375rem; color: var(--gray-2); line-height: 1.8; margin-bottom: 14px; }
+
+    .feature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 28px; }
+    .feature-chip {
+      display: flex; align-items: flex-start; gap: 10px;
+      background: var(--bg-2); border: 1px solid var(--border);
+      border-radius: 10px; padding: 12px 14px;
+      font-size: 0.8125rem; color: var(--gray-2); line-height: 1.4;
+    }
+    .feature-chip-icon { flex-shrink: 0; font-size: 0.9rem; margin-top: 1px; }
+
+    /* visual box */
+    .svc-visual {
+      border-radius: 20px; overflow: hidden; position: relative;
+      aspect-ratio: 5/4;
+      background: var(--bg-2); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .svc-visual-inner {
+      font-size: 6rem; position: relative; z-index: 1;
+      filter: drop-shadow(0 0 40px currentColor);
+    }
+    .svc-visual::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse 70% 70% at 50% 50%, var(--glow-color, rgba(79,140,255,0.08)) 0%, transparent 70%);
+    }
+    .svc-visual.assetry { --glow-color: rgba(79,140,255,0.08); }
+    .svc-visual.habee   { --glow-color: rgba(52,211,153,0.08); }
+    .svc-visual.fridge  { --glow-color: rgba(249,115,22,0.08); }
+
+    .svc-cta-row { display: flex; gap: 12px; margin-top: 28px; flex-wrap: wrap; }
+    .btn-assetry { background: var(--assetry); color: var(--bg); }
+    .btn-assetry:hover { opacity: 0.85; transform: translateY(-1px); box-shadow: 0 8px 24px rgba(79,140,255,0.3); }
+    .btn-habee   { background: var(--habee); color: var(--bg); }
+    .btn-habee:hover   { opacity: 0.85; transform: translateY(-1px); box-shadow: 0 8px 24px rgba(52,211,153,0.3); }
+    .btn-fridge  { background: var(--fridge); color: var(--bg); }
+    .btn-fridge:hover  { opacity: 0.85; transform: translateY(-1px); box-shadow: 0 8px 24px rgba(249,115,22,0.3); }
+
+    /* ── Privacy Policy ── */
+    .privacy-section { padding: 100px 0; background: var(--bg-1); border-top: 1px solid var(--border); }
+    .pp-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin: 40px 0 32px; }
+    .pp-tab {
+      padding: 8px 20px; border-radius: 8px; font-size: 0.875rem; font-weight: 600;
+      cursor: pointer; border: 1px solid var(--border); background: var(--bg-2); color: var(--gray-2);
+      transition: all 0.2s;
+    }
+    .pp-tab:hover { border-color: var(--border-h); color: var(--white); }
+    .pp-tab.active.assetry { background: rgba(79,140,255,0.12); border-color: rgba(79,140,255,0.4); color: var(--assetry); }
+    .pp-tab.active.habee   { background: rgba(52,211,153,0.12); border-color: rgba(52,211,153,0.4); color: var(--habee); }
+    .pp-tab.active.fridge  { background: rgba(249,115,22,0.12); border-color: rgba(249,115,22,0.4); color: var(--fridge); }
+
+    .pp-content { display: none; }
+    .pp-content.active { display: block; }
+    .pp-box {
+      background: var(--bg-2); border: 1px solid var(--border);
+      border-radius: 14px; padding: 48px;
+    }
+    .pp-box h3 { font-family: var(--font-head); font-size: 1.4rem; font-weight: 700; color: var(--white); margin-bottom: 20px; }
+    .pp-box h4 { font-size: 0.875rem; font-weight: 700; color: var(--gray-1); margin: 24px 0 8px; text-transform: uppercase; letter-spacing: 0.06em; font-size: 0.8125rem; }
+    .pp-box p { font-size: 0.9rem; color: var(--gray-2); line-height: 1.8; }
+    .pp-box ul { margin: 8px 0 14px 20px; list-style: disc; }
+    .pp-box ul li { font-size: 0.9rem; color: var(--gray-2); line-height: 1.75; }
+    .pp-updated { font-size: 0.8125rem; color: var(--gray-3); margin-top: 32px; padding-top: 20px; border-top: 1px solid var(--border); }
+
+    @media (max-width: 900px) {
+      .svc-block { grid-template-columns: 1fr; gap: 32px; }
+      .svc-block.flip .svc-info { order: 1; }
+      .svc-block.flip .svc-visual { order: 2; }
+      .feature-grid { grid-template-columns: 1fr; }
+      .pp-box { padding: 28px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <nav class="nav">
+      <a href="../index.html" class="nav-logo">SEj<span>AI</span></a>
+      <ul class="nav-links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html" class="nav-cta">Contact</a></li>
+      </ul>
+      <button class="hamburger" aria-label="メニュー"><span></span><span></span><span></span></button>
+    </nav>
+  </div>
+</header>
+
+<div class="page-hero">
+  <div class="container">
+    <span class="label fade-up">Services</span>
+    <h1 class="section-title fade-up">SEjAI の<em>3つのプロダクト</em></h1>
+    <p class="section-lead fade-up" style="margin:16px auto 0; text-align:center;">
+      資産・習慣・食——あなたの日常をAIで進化させます。
+    </p>
+  </div>
+</div>
+
+<section class="services-section">
+  <div class="container">
+
+    <!-- Assetry -->
+    <div class="svc-block" id="assetry">
+      <div class="svc-info fade-up">
+        <div class="svc-num">01</div>
+        <span class="svc-badge assetry">💹 Digital Asset Marketplace</span>
+        <h2>Assetry</h2>
+        <p>デジタル資産の取引・管理をワンプラットフォームで。AIが市場トレンドをリアルタイム分析し、ユーザーに最適な意思決定のサポートを提供します。</p>
+        <p>クリエイターから投資家まで、あらゆる立場のユーザーが安心・安全に取引できる環境を整備しています。</p>
+        <div class="feature-grid">
+          <div class="feature-chip"><span class="feature-chip-icon">⚡</span>リアルタイム市場分析</div>
+          <div class="feature-chip"><span class="feature-chip-icon">🔐</span>安全な取引環境</div>
+          <div class="feature-chip"><span class="feature-chip-icon">📊</span>ポートフォリオ管理</div>
+          <div class="feature-chip"><span class="feature-chip-icon">🤖</span>AI価格予測アシスト</div>
+        </div>
+        <div class="svc-cta-row">
+          <a href="contact.html" class="btn btn-assetry">Assetryを試す →</a>
+          <a href="contact.html" class="btn btn-ghost">詳細を聞く</a>
+        </div>
+      </div>
+      <div class="svc-visual assetry fade-up">
+        <div class="svc-visual-inner" style="color:var(--assetry)">💹</div>
+      </div>
+    </div>
+
+    <!-- Habee -->
+    <div class="svc-block flip" id="habee">
+      <div class="svc-visual habee fade-up">
+        <div class="svc-visual-inner" style="color:var(--habee)">🌿</div>
+      </div>
+      <div class="svc-info fade-up">
+        <div class="svc-num">02</div>
+        <span class="svc-badge habee">🌿 Habit Tracking App</span>
+        <h2>Habee</h2>
+        <p>習慣化を科学するモバイルアプリ。AIがあなたの行動パターンを継続的に学習し、ベストなタイミングでリマインドと改善提案を届けます。</p>
+        <p>フリーミアムモデルで手軽に始められ、プレミアムプランでAIコーチング機能を解放。毎日のルーティンをゲーミフィケーションで楽しく続けられます。</p>
+        <div class="feature-grid">
+          <div class="feature-chip"><span class="feature-chip-icon">📱</span>iOS / Android 対応</div>
+          <div class="feature-chip"><span class="feature-chip-icon">🧠</span>AI行動パターン学習</div>
+          <div class="feature-chip"><span class="feature-chip-icon">🎮</span>ゲーミフィケーション</div>
+          <div class="feature-chip"><span class="feature-chip-icon">📈</span>詳細な進捗分析</div>
+        </div>
+        <div class="svc-cta-row">
+          <a href="contact.html" class="btn btn-habee">Habeeを試す →</a>
+          <a href="contact.html" class="btn btn-ghost">詳細を聞く</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- FridgeChef -->
+    <div class="svc-block" id="fridgechef">
+      <div class="svc-info fade-up">
+        <div class="svc-num">03</div>
+        <span class="svc-badge fridge">🍳 AI Recipe Assistant</span>
+        <h2>FridgeChef</h2>
+        <p>冷蔵庫にある食材を入力するだけで、AIが今夜の夕食レシピを提案。賞味期限が近い食材を優先活用し、食品ロスを大幅に削減します。</p>
+        <p>栄養バランス・調理時間・アレルギー対応など細かな条件にも柔軟に対応。毎日の「今日何作ろう」を解決します。</p>
+        <div class="feature-grid">
+          <div class="feature-chip"><span class="feature-chip-icon">🥦</span>食材入力→即レシピ提案</div>
+          <div class="feature-chip"><span class="feature-chip-icon">♻️</span>食品ロス削減サポート</div>
+          <div class="feature-chip"><span class="feature-chip-icon">🥗</span>栄養バランス計算</div>
+          <div class="feature-chip"><span class="feature-chip-icon">⚠️</span>アレルギー対応フィルター</div>
+        </div>
+        <div class="svc-cta-row">
+          <a href="contact.html" class="btn btn-fridge">FridgeChefを試す →</a>
+          <a href="contact.html" class="btn btn-ghost">詳細を聞く</a>
+        </div>
+      </div>
+      <div class="svc-visual fridge fade-up">
+        <div class="svc-visual-inner" style="color:var(--fridge)">🍳</div>
+      </div>
+    </div>
+
+    <!--
+    =====================================================
+    ★ 新しいサービスを追加する場合はここに貼り付け ★
+    =====================================================
+    <div class="svc-block flip" id="new-service">
+      <div class="svc-visual fade-up" style="--glow-color:rgba(255,255,255,0.05)">
+        <div class="svc-visual-inner">🎯</div>
+      </div>
+      <div class="svc-info fade-up">
+        <div class="svc-num">04</div>
+        <span class="svc-badge" style="color:#aaa; border-color:rgba(255,255,255,0.2)">🎯 Service Type</span>
+        <h2>ServiceName</h2>
+        <p>説明文</p>
+        <div class="feature-grid">
+          <div class="feature-chip">特徴1</div>
+        </div>
+      </div>
+    </div>
+    + 下の Privacy セクションにもタブと内容を追加してください。
+    =====================================================
+    -->
+
+  </div>
+</section>
+
+<!-- ── Privacy Policy ── -->
+<section class="privacy-section" id="privacy">
+  <div class="container">
+    <span class="label fade-up">Privacy Policy</span>
+    <h2 class="section-title fade-up">各サービスの<br><em>プライバシーポリシー</em></h2>
+    <div class="pp-tabs fade-up">
+      <button class="pp-tab active assetry" data-tab="pp-assetry">💹 Assetry</button>
+      <button class="pp-tab" data-tab="pp-habee">🌿 Habee</button>
+      <button class="pp-tab" data-tab="pp-fridge">🍳 FridgeChef</button>
+      <!-- ★ 新サービス追加時にタブをここに追加 -->
+    </div>
+
+    <div id="pp-assetry" class="pp-content active fade-up">
+      <div class="pp-box">
+        <h3>Assetry プライバシーポリシー</h3>
+        <p>SEjAI Inc.（以下「当社」）は、デジタル資産マーケットプレイス「Assetry」の提供にあたり、以下の方針でユーザーの個人情報を取り扱います。</p>
+        <h4>1. 収集する情報</h4>
+        <ul>
+          <li>氏名・メールアドレス・連絡先（登録時）</li>
+          <li>取引履歴・ウォレットアドレス（取引時）</li>
+          <li>本人確認書類（KYC対応のため）</li>
+          <li>デバイス情報・IPアドレス・利用ログ</li>
+        </ul>
+        <h4>2. 利用目的</h4>
+        <p>収集した情報はサービス提供・本人確認・不正防止・カスタマーサポート・サービス改善のために利用します。マーケティング目的の第三者提供は行いません。</p>
+        <h4>3. セキュリティ</h4>
+        <p>金融グレードの暗号化（AES-256）とゼロトラストアーキテクチャを採用。取引データは暗号化された上でセキュアなデータセンターに保存されます。</p>
+        <h4>4. データ保持</h4>
+        <p>取引記録は法令に基づき7年間保持します。退会後の個人情報は30日以内に削除（法令上の保持義務分を除く）します。</p>
+        <h4>5. お問い合わせ</h4>
+        <p>個人情報に関するご要望は <a href="contact.html" style="color:var(--assetry)">お問い合わせフォーム</a> へ。</p>
+        <p class="pp-updated">最終更新：2025年1月1日</p>
+      </div>
+    </div>
+
+    <div id="pp-habee" class="pp-content fade-up">
+      <div class="pp-box">
+        <h3>Habee プライバシーポリシー</h3>
+        <p>当社は、習慣トラッキングアプリ「Habee」において、ユーザーのプライバシーを最優先に設計しています。</p>
+        <h4>1. データの保存方針</h4>
+        <p>Habee は原則として習慣データをデバイス内（ローカルストレージ）にのみ保存します。クラウド同期はユーザーが明示的にオプトインした場合のみ有効となります。</p>
+        <h4>2. 収集する情報</h4>
+        <ul>
+          <li>習慣名・実施記録・ストリークデータ（ローカル保存）</li>
+          <li>メールアドレス（アカウント作成・クラウド同期利用時）</li>
+          <li>匿名化されたアプリ利用統計（クラッシュレポート含む）</li>
+        </ul>
+        <h4>3. AI学習への利用</h4>
+        <p>AIパーソナライゼーション機能は端末内で処理します（On-Device AI）。ユーザーの行動データをサーバーに送信してモデル学習に使用することはありません。</p>
+        <h4>4. SNSシェア機能</h4>
+        <p>SNSへのシェアは常にユーザーの明示的な操作によってのみ行われます。自動投稿・サイレント送信は一切行いません。</p>
+        <h4>5. お問い合わせ</h4>
+        <p><a href="contact.html" style="color:var(--habee)">こちら</a>からご連絡ください。</p>
+        <p class="pp-updated">最終更新：2025年1月1日</p>
+      </div>
+    </div>
+
+    <div id="pp-fridge" class="pp-content fade-up">
+      <div class="pp-box">
+        <h3>FridgeChef プライバシーポリシー</h3>
+        <p>当社は、AIレシピアシスタント「FridgeChef」において収集する食材・料理に関するデータを以下の方針で取り扱います。</p>
+        <h4>1. 収集する情報</h4>
+        <ul>
+          <li>入力された食材・冷蔵庫の内容（レシピ生成のため）</li>
+          <li>アレルギー情報・食事制限（ユーザー設定時）</li>
+          <li>お気に入りレシピ・調理履歴</li>
+          <li>メールアドレス（アカウント登録時）</li>
+        </ul>
+        <h4>2. データの利用目的</h4>
+        <p>収集データはレシピ提案・栄養計算・サービス個人化のためにのみ使用します。食材データは匿名化・集約化の上でAIモデルの精度向上に活用することがあります（個人を特定できる形では使用しません）。</p>
+        <h4>3. 機微情報の取り扱い</h4>
+        <p>アレルギー情報等の機微な健康情報は、暗号化して保存し、第三者への提供は行いません。</p>
+        <h4>4. データ削除</h4>
+        <p>アカウント削除を申請いただいた場合、30日以内にすべての個人データを削除します。</p>
+        <h4>5. お問い合わせ</h4>
+        <p><a href="contact.html" style="color:var(--fridge)">お問い合わせフォーム</a>よりご連絡ください。</p>
+        <p class="pp-updated">最終更新：2025年1月1日</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="../index.html" class="nav-logo">SEj<span style="color:var(--a)">AI</span></a>
+        <p class="footer-tagline">AI-Powered Software for Real Life.<br>資産・習慣・食をアップデートする。</p>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <a href="services.html#assetry">Assetry</a>
+        <a href="services.html#habee">Habee</a>
+        <a href="services.html#fridgechef">FridgeChef</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="about.html">About SEjAI</a>
+        <a href="about.html#team">Team</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a href="contact.html">お問い合わせ</a>
+        <a href="mailto:hello@sejai.co.jp">hello@sejai.co.jp</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 SEjAI Inc. All rights reserved.</span>
+      <div class="footer-bottom-links">
+        <a href="services.html#privacy">Privacy Policy</a>
+        <a href="#">Terms</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+<script>
+  const tabs = document.querySelectorAll('.pp-tab');
+  const colorMap = { 'pp-assetry': 'assetry', 'pp-habee': 'habee', 'pp-fridge': 'fridge' };
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => { t.classList.remove('active', 'assetry', 'habee', 'fridge'); });
+      document.querySelectorAll('.pp-content').forEach(c => c.classList.remove('active'));
+      const id = tab.dataset.tab;
+      tab.classList.add('active', colorMap[id] || '');
+      document.getElementById(id)?.classList.add('active');
+    });
+  });
+</script>
+</body>
+</html>

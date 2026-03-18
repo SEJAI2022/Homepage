@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SEjAI — AI-Powered Software for Real Life</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* ── Hero ── */
+    .hero {
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      padding-top: var(--header-h);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0; pointer-events: none;
+    }
+    .hero-bg-glow {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(120px);
+      opacity: 0.15;
+    }
+    .hero-bg-glow.g1 {
+      width: 700px; height: 700px;
+      background: var(--a);
+      top: -200px; right: -200px;
+    }
+    .hero-bg-glow.g2 {
+      width: 400px; height: 400px;
+      background: #7c3aed;
+      bottom: -100px; left: -100px;
+    }
+    /* grid lines */
+    .hero-bg::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+      background-size: 64px 64px;
+    }
+
+    .hero-content { position: relative; z-index: 1; max-width: 820px; padding: 100px 0; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      border: 1px solid var(--border-h);
+      background: var(--bg-2);
+      padding: 6px 16px; border-radius: 100px;
+      font-size: 0.8125rem; font-weight: 500; color: var(--gray-2);
+      margin-bottom: 32px;
+    }
+    .hero-badge-dot { width: 6px; height: 6px; background: var(--habee); border-radius: 50%; animation: pulse 2s ease-in-out infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+    .hero-title {
+      font-family: var(--font-head);
+      font-size: clamp(3rem, 7vw, 6rem);
+      font-weight: 800; line-height: 1.0; letter-spacing: -0.03em;
+      color: var(--white); margin-bottom: 28px;
+    }
+    .hero-title .highlight {
+      background: linear-gradient(135deg, var(--a) 0%, #a78bfa 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-desc {
+      font-size: 1.125rem; color: var(--gray-2);
+      max-width: 52ch; margin-bottom: 44px; line-height: 1.8;
+    }
+    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+
+    .hero-services {
+      position: relative; z-index: 1;
+      display: flex; gap: 12px; flex-wrap: wrap;
+      margin-top: 80px; padding-top: 48px;
+      border-top: 1px solid var(--border);
+    }
+    .hero-service-pill {
+      display: flex; align-items: center; gap: 10px;
+      background: var(--bg-2); border: 1px solid var(--border);
+      border-radius: 100px; padding: 8px 18px;
+      font-size: 0.875rem; font-weight: 500; color: var(--gray-1);
+      transition: border-color 0.2s;
+    }
+    .hero-service-pill:hover { border-color: var(--border-h); }
+    .pill-dot { width: 8px; height: 8px; border-radius: 50%; }
+
+    /* ── Stats ── */
+    .stats-section { padding: 80px 0; background: var(--bg-1); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); }
+    .stat-item { padding: 0 40px; border-right: 1px solid var(--border); text-align: center; }
+    .stat-item:first-child { padding-left: 0; }
+    .stat-item:last-child { border-right: none; padding-right: 0; }
+    .stat-num { font-family: var(--font-head); font-size: 2.8rem; font-weight: 800; color: var(--white); line-height: 1; }
+    .stat-num span { color: var(--a); }
+    .stat-lbl { font-size: 0.875rem; color: var(--gray-2); margin-top: 8px; }
+
+    /* ── Mission ── */
+    .mission-section { padding: 120px 0; }
+    .mission-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .mission-visual {
+      position: relative; aspect-ratio: 1;
+      background: var(--bg-2); border: 1px solid var(--border); border-radius: 20px;
+      display: flex; align-items: center; justify-content: center; overflow: hidden;
+    }
+    .mission-visual::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: conic-gradient(from 0deg at 50% 50%, transparent 0%, rgba(79,140,255,0.06) 25%, transparent 50%, rgba(124,58,237,0.06) 75%, transparent 100%);
+      animation: spin 12s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .mission-logo-big {
+      font-family: var(--font-head); font-size: 5rem; font-weight: 800;
+      color: var(--white); letter-spacing: -0.05em; position: relative; z-index: 1;
+    }
+    .mission-logo-big span { color: var(--a); }
+    .mission-corner {
+      position: absolute; padding: 12px 16px;
+      background: var(--bg-3); border: 1px solid var(--border); border-radius: 10px;
+      font-size: 0.8125rem; font-weight: 500;
+    }
+    .mission-corner.tl { top: 20px; left: 20px; color: var(--assetry); }
+    .mission-corner.tr { top: 20px; right: 20px; color: var(--habee); }
+    .mission-corner.bl { bottom: 20px; left: 20px; color: var(--fridge); }
+
+    /* ── Services preview ── */
+    .services-section { padding: 120px 0; background: var(--bg-1); }
+    .services-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 56px; }
+    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+
+    .svc-card {
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 36px;
+      position: relative; overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+      cursor: pointer;
+    }
+    .svc-card::before {
+      content: ''; position: absolute;
+      top: 0; left: 0; right: 0; height: 2px;
+      opacity: 0; transition: opacity 0.3s;
+    }
+    .svc-card:hover { transform: translateY(-6px); box-shadow: 0 24px 60px rgba(0,0,0,0.4); border-color: var(--border-h); }
+    .svc-card:hover::before { opacity: 1; }
+
+    .svc-card[data-svc="assetry"]::before { background: var(--assetry); }
+    .svc-card[data-svc="habee"]::before   { background: var(--habee); }
+    .svc-card[data-svc="fridge"]::before  { background: var(--fridge); }
+
+    .svc-icon {
+      width: 52px; height: 52px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem; margin-bottom: 24px;
+    }
+    .svc-card[data-svc="assetry"] .svc-icon { background: rgba(79,140,255,0.1); }
+    .svc-card[data-svc="habee"]   .svc-icon { background: rgba(52,211,153,0.1); }
+    .svc-card[data-svc="fridge"]  .svc-icon { background: rgba(249,115,22,0.1); }
+
+    .svc-name { font-family: var(--font-head); font-size: 1.4rem; font-weight: 700; color: var(--white); margin-bottom: 10px; }
+    .svc-tag  { display: inline-block; font-size: 0.7rem; font-weight: 600; padding: 3px 10px; border-radius: 100px; margin-bottom: 14px; }
+
+    .svc-card[data-svc="assetry"] .svc-tag { background: rgba(79,140,255,0.12); color: var(--assetry); }
+    .svc-card[data-svc="habee"]   .svc-tag { background: rgba(52,211,153,0.12); color: var(--habee); }
+    .svc-card[data-svc="fridge"]  .svc-tag { background: rgba(249,115,22,0.12); color: var(--fridge); }
+
+    .svc-desc { font-size: 0.9375rem; color: var(--gray-2); line-height: 1.7; }
+    .svc-arrow { margin-top: 28px; font-size: 0.875rem; font-weight: 600; display: flex; align-items: center; gap: 6px; transition: gap 0.2s; }
+    .svc-card[data-svc="assetry"] .svc-arrow { color: var(--assetry); }
+    .svc-card[data-svc="habee"]   .svc-arrow { color: var(--habee); }
+    .svc-card[data-svc="fridge"]  .svc-arrow { color: var(--fridge); }
+    .svc-card:hover .svc-arrow { gap: 12px; }
+
+    /* ── CTA ── */
+    .cta-section {
+      padding: 120px 0; text-align: center; position: relative; overflow: hidden;
+    }
+    .cta-section::before {
+      content: ''; position: absolute;
+      top: 50%; left: 50%; transform: translate(-50%, -50%);
+      width: 800px; height: 400px;
+      background: radial-gradient(ellipse, rgba(79,140,255,0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .cta-section .label, .cta-section .section-title { position: relative; }
+    .cta-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-top: 40px; }
+
+    @media (max-width: 900px) {
+      .hero-title { font-size: clamp(2.4rem, 10vw, 4rem); }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+      .stat-item { border-right: none; border-bottom: 1px solid var(--border); padding: 20px 0; text-align: left; }
+      .mission-grid { grid-template-columns: 1fr; gap: 40px; }
+      .mission-visual { display: none; }
+      .services-grid { grid-template-columns: 1fr; }
+      .services-header { flex-direction: column; align-items: flex-start; gap: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <nav class="nav">
+      <a href="index.html" class="nav-logo">SEj<span>AI</span></a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="pages/services.html">Services</a></li>
+        <li><a href="pages/about.html">About</a></li>
+        <li><a href="pages/contact.html" class="nav-cta">Contact</a></li>
+      </ul>
+      <button class="hamburger" aria-label="メニュー"><span></span><span></span><span></span></button>
+    </nav>
+  </div>
+</header>
+
+<!-- ── Hero ── -->
+<section class="hero">
+  <div class="hero-bg">
+    <div class="hero-bg-glow g1"></div>
+    <div class="hero-bg-glow g2"></div>
+  </div>
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-badge fade-up">
+        <span class="hero-badge-dot"></span>
+        AI-Powered Software for Real Life
+      </div>
+      <h1 class="hero-title fade-up">
+        Build Smarter.<br>
+        Live <span class="highlight">Better.</span>
+      </h1>
+      <p class="hero-desc fade-up">
+        SEjAI は、AIを軸にした3つのプロダクトで人々の「資産・習慣・食」を
+        アップデートするソフトウェアカンパニーです。
+      </p>
+      <div class="hero-actions fade-up">
+        <a href="pages/services.html" class="btn btn-primary">サービスを見る →</a>
+        <a href="pages/about.html" class="btn btn-ghost">About SEjAI</a>
+      </div>
+
+      <div class="hero-services fade-up">
+        <div class="hero-service-pill">
+          <span class="pill-dot" style="background:var(--assetry)"></span>Assetry
+        </div>
+        <div class="hero-service-pill">
+          <span class="pill-dot" style="background:var(--habee)"></span>Habee
+        </div>
+        <div class="hero-service-pill">
+          <span class="pill-dot" style="background:var(--fridge)"></span>FridgeChef
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Stats ── -->
+<div class="stats-section">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item fade-up">
+        <div class="stat-num">3<span>+</span></div>
+        <div class="stat-lbl">プロダクト展開中</div>
+      </div>
+      <div class="stat-item fade-up">
+        <div class="stat-num">10<span>K+</span></div>
+        <div class="stat-lbl">月間アクティブユーザー</div>
+      </div>
+      <div class="stat-item fade-up">
+        <div class="stat-num">99<span>%</span></div>
+        <div class="stat-lbl">サービス稼働率</div>
+      </div>
+      <div class="stat-item fade-up">
+        <div class="stat-num">24<span>/7</span></div>
+        <div class="stat-lbl">AIが常時稼働</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── Mission ── -->
+<section class="mission-section">
+  <div class="container">
+    <div class="mission-grid">
+      <div class="mission-visual fade-up">
+        <div class="mission-logo-big">SEj<span>AI</span></div>
+        <div class="mission-corner tl">Assetry 💹</div>
+        <div class="mission-corner tr">Habee 🌿</div>
+        <div class="mission-corner bl">FridgeChef 🍳</div>
+      </div>
+      <div class="fade-up">
+        <span class="label">Our Mission</span>
+        <h2 class="section-title">AIで日常を、<br><em>もっと賢く。</em></h2>
+        <p class="section-lead" style="margin-top:20px;">
+          テクノロジーは難しくあるべきではありません。SEjAI は日常のあらゆる場面に
+          AIをさりげなく組み込み、誰もが恩恵を受けられるプロダクトを作り続けます。
+        </p>
+        <p style="font-size:0.9375rem; color:var(--gray-2); margin-top:16px; line-height:1.8;">
+          「資産を増やしたい」「良い習慣を身につけたい」「食材を無駄にしたくない」——
+          そんなシンプルな願いに、最先端のAIで応えます。
+        </p>
+        <a href="pages/about.html" class="btn btn-ghost" style="margin-top:32px;">SEjAI を知る →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Services ── -->
+<section class="services-section">
+  <div class="container">
+    <div class="services-header">
+      <div>
+        <span class="label fade-up">Services</span>
+        <h2 class="section-title fade-up">3つの<em>プロダクト</em></h2>
+      </div>
+      <a href="pages/services.html" class="btn btn-ghost fade-up">すべて見る →</a>
+    </div>
+    <div class="services-grid">
+      <div class="svc-card fade-up" data-svc="assetry" onclick="location.href='pages/services.html#assetry'">
+        <div class="svc-icon">💹</div>
+        <div class="svc-name">Assetry</div>
+        <div class="svc-tag">Digital Asset Marketplace</div>
+        <p class="svc-desc">デジタル資産の売買・管理をシームレスに。AIが市場を分析し、最適なタイミングをアドバイスします。</p>
+        <div class="svc-arrow">詳しく見る →</div>
+      </div>
+      <div class="svc-card fade-up" data-svc="habee" onclick="location.href='pages/services.html#habee'">
+        <div class="svc-icon">🌿</div>
+        <div class="svc-name">Habee</div>
+        <div class="svc-tag">Habit Tracking App</div>
+        <p class="svc-desc">習慣化を科学する。AIが行動パターンを学習し、あなただけの最適なリマインドと改善提案を届けます。</p>
+        <div class="svc-arrow">詳しく見る →</div>
+      </div>
+      <div class="svc-card fade-up" data-svc="fridge" onclick="location.href='pages/services.html#fridgechef'">
+        <div class="svc-icon">🍳</div>
+        <div class="svc-name">FridgeChef</div>
+        <div class="svc-tag">AI Recipe Assistant</div>
+        <p class="svc-desc">冷蔵庫の食材を入力するだけで、AIが今夜のレシピを提案。食品ロスを減らし、毎日の料理を楽しくします。</p>
+        <div class="svc-arrow">詳しく見る →</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ── -->
+<section class="cta-section">
+  <div class="container">
+    <span class="label fade-up">Get Started</span>
+    <h2 class="section-title fade-up">まずは<em>触れてみてください。</em></h2>
+    <p class="section-lead fade-up" style="margin:16px auto 0; text-align:center; max-width:44ch;">
+      SEjAI のプロダクトはすべて無料プランからお試しいただけます。
+    </p>
+    <div class="cta-actions fade-up">
+      <a href="pages/services.html" class="btn btn-primary">サービス一覧を見る →</a>
+      <a href="pages/contact.html" class="btn btn-ghost">お問い合わせ</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── Footer ── -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo">SEj<span style="color:var(--a)">AI</span></a>
+        <p class="footer-tagline">AI-Powered Software for Real Life.<br>資産・習慣・食をアップデートする。</p>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <a href="pages/services.html#assetry">Assetry</a>
+        <a href="pages/services.html#habee">Habee</a>
+        <a href="pages/services.html#fridgechef">FridgeChef</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="pages/about.html">About SEjAI</a>
+        <a href="pages/about.html#team">Team</a>
+        <a href="pages/about.html#values">Values</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a href="pages/contact.html">お問い合わせ</a>
+        <a href="mailto:hello@sejai.co.jp">hello@sejai.co.jp</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 SEjAI Inc. All rights reserved.</span>
+      <div class="footer-bottom-links">
+        <a href="pages/services.html#privacy">Privacy Policy</a>
+        <a href="#">Terms</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

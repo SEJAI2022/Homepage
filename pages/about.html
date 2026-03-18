@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About — SEjAI</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    /* ── Mission ── */
+    .mission-section { padding: 80px 0 100px; }
+    .mission-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+
+    .big-quote {
+      font-family: var(--font-head); font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 700; color: var(--white); line-height: 1.3; letter-spacing: -0.02em;
+    }
+    .big-quote em { font-style: normal; color: var(--a); }
+
+    .mvv-cards { display: flex; flex-direction: column; gap: 16px; }
+    .mvv-card {
+      background: var(--bg-2); border: 1px solid var(--border);
+      border-radius: 12px; padding: 24px 28px;
+      border-left: 3px solid var(--a);
+      transition: border-color 0.2s;
+    }
+    .mvv-card:nth-child(2) { border-left-color: #7c3aed; }
+    .mvv-card:nth-child(3) { border-left-color: var(--habee); }
+    .mvv-card:hover { border-color: var(--border-h); }
+    .mvv-label { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--gray-3); margin-bottom: 8px; }
+    .mvv-text { font-size: 0.9375rem; color: var(--gray-1); line-height: 1.6; font-weight: 500; }
+
+    /* ── Values ── */
+    .values-section { padding: 100px 0; background: var(--bg-1); border-top: 1px solid var(--border); }
+    .values-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 56px; }
+    .value-card {
+      background: var(--bg-2); border: 1px solid var(--border);
+      border-radius: 14px; padding: 32px;
+      transition: all 0.3s; position: relative; overflow: hidden;
+    }
+    .value-card::after {
+      content: ''; position: absolute;
+      bottom: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--a), #7c3aed);
+      transform: scaleX(0); transform-origin: left;
+      transition: transform 0.3s;
+    }
+    .value-card:hover { border-color: var(--border-h); transform: translateY(-4px); box-shadow: 0 16px 48px rgba(0,0,0,0.3); }
+    .value-card:hover::after { transform: scaleX(1); }
+    .value-icon { font-size: 1.8rem; margin-bottom: 14px; }
+    .value-card h3 { font-family: var(--font-head); font-size: 1.1rem; font-weight: 700; color: var(--white); margin-bottom: 10px; }
+    .value-card p { font-size: 0.875rem; color: var(--gray-2); line-height: 1.75; }
+
+    /* ── Team ── */
+    .team-section { padding: 100px 0; }
+    .team-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 56px; }
+    .team-card {
+      background: var(--bg-2); border: 1px solid var(--border);
+      border-radius: 14px; padding: 28px 20px; text-align: center;
+      transition: all 0.3s;
+    }
+    .team-card:hover { border-color: var(--border-h); transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.3); }
+    .team-avatar {
+      width: 72px; height: 72px; border-radius: 50%;
+      background: var(--bg-3); border: 2px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.8rem; margin: 0 auto 16px;
+      transition: border-color 0.2s;
+    }
+    .team-card:hover .team-avatar { border-color: var(--a); }
+    .team-name { font-family: var(--font-head); font-size: 1rem; font-weight: 700; color: var(--white); margin-bottom: 4px; }
+    .team-role { font-size: 0.75rem; font-weight: 600; color: var(--a); margin-bottom: 10px; }
+    .team-bio { font-size: 0.8125rem; color: var(--gray-3); line-height: 1.6; }
+
+    /* ── History ── */
+    .history-section { padding: 100px 0; background: var(--bg-1); border-top: 1px solid var(--border); }
+    .timeline { position: relative; margin-top: 56px; padding-left: 32px; }
+    .timeline::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 1px; background: var(--border); }
+    .tl-item { position: relative; padding: 0 0 48px 40px; }
+    .tl-item:last-child { padding-bottom: 0; }
+    .tl-dot {
+      position: absolute; left: -6px; top: 5px;
+      width: 13px; height: 13px; border-radius: 50%;
+      background: var(--a); border: 2px solid var(--bg-1);
+      box-shadow: 0 0 0 3px rgba(79,140,255,0.25);
+    }
+    .tl-year { font-family: var(--font-head); font-size: 0.8rem; font-weight: 700; color: var(--a); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 6px; }
+    .tl-title { font-size: 1rem; font-weight: 700; color: var(--white); margin-bottom: 6px; }
+    .tl-desc { font-size: 0.875rem; color: var(--gray-2); line-height: 1.7; }
+
+    @media (max-width: 900px) {
+      .mission-grid { grid-template-columns: 1fr; gap: 40px; }
+      .values-grid { grid-template-columns: 1fr; }
+      .team-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <nav class="nav">
+      <a href="../index.html" class="nav-logo">SEj<span>AI</span></a>
+      <ul class="nav-links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html" class="nav-cta">Contact</a></li>
+      </ul>
+      <button class="hamburger" aria-label="メニュー"><span></span><span></span><span></span></button>
+    </nav>
+  </div>
+</header>
+
+<div class="page-hero">
+  <div class="container">
+    <span class="label fade-up">About SEjAI</span>
+    <h1 class="section-title fade-up">AIで<em>日常を変える</em><br>チームの話。</h1>
+    <p class="section-lead fade-up" style="margin:16px auto 0; text-align:center;">
+      私たちは「テクノロジーは誰のためにあるべきか」を問い続けるプロダクトチームです。
+    </p>
+  </div>
+</div>
+
+<!-- ── Mission ── -->
+<section class="mission-section">
+  <div class="container">
+    <div class="mission-grid">
+      <div class="fade-up">
+        <span class="label">Our Story</span>
+        <p class="big-quote" style="margin-top:14px;">
+          「AIを、<em>もっと身近に。</em><br>
+          もっと、<em>あなたのために。</em>」
+        </p>
+        <p style="font-size:0.9375rem; color:var(--gray-2); margin-top:28px; line-height:1.85;">
+          SEjAI は「AIは大企業のためだけのもの」という常識を覆したいと考えるエンジニアとデザイナーが集まり、
+          2022年に立ち上げたプロダクトスタジオです。
+        </p>
+        <p style="font-size:0.9375rem; color:var(--gray-2); margin-top:14px; line-height:1.85;">
+          資産運用・習慣形成・食事管理——誰もが悩む「日常の課題」にフォーカスし、
+          AIをさりげなく組み込んだシンプルで美しいプロダクトを作り続けています。
+        </p>
+      </div>
+      <div class="mvv-cards fade-up">
+        <div class="mvv-card">
+          <div class="mvv-label">Mission</div>
+          <div class="mvv-text">AIを、すべての人の日常に届ける。</div>
+        </div>
+        <div class="mvv-card">
+          <div class="mvv-label">Vision</div>
+          <div class="mvv-text">「テクノロジーに助けられた」と誰もが自然に言える世界。</div>
+        </div>
+        <div class="mvv-card">
+          <div class="mvv-label">Values</div>
+          <div class="mvv-text">シンプル・誠実・ユーザーファースト・継続的改善。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Values ── -->
+<section class="values-section" id="values">
+  <div class="container">
+    <span class="label fade-up">Values</span>
+    <h2 class="section-title fade-up">私たちが大切にする<em>6つのこと</em></h2>
+    <div class="values-grid">
+      <div class="value-card fade-up">
+        <div class="value-icon">🎯</div>
+        <h3>User First</h3>
+        <p>すべての意思決定の起点はユーザーの体験。機能を足す前に、「これは本当に必要か？」を問い続けます。</p>
+      </div>
+      <div class="value-card fade-up">
+        <div class="value-icon">⚡</div>
+        <h3>Move Fast</h3>
+        <p>完璧を待たずに動く。小さく始め、フィードバックを素早く取り込み、高速でイテレーションします。</p>
+      </div>
+      <div class="value-card fade-up">
+        <div class="value-icon">🔍</div>
+        <h3>Stay Curious</h3>
+        <p>技術も市場も常に変わる。「なぜ？」を繰り返し、学び続けることを全員のデフォルトにします。</p>
+      </div>
+      <div class="value-card fade-up">
+        <div class="value-icon">🤝</div>
+        <h3>Radical Honesty</h3>
+        <p>社内でも、ユーザーにも、耳が痛いことを正直に伝える。信頼は誠実さからしか生まれません。</p>
+      </div>
+      <div class="value-card fade-up">
+        <div class="value-icon">🔒</div>
+        <h3>Privacy by Design</h3>
+        <p>プライバシーは後付けではなく設計の出発点。ユーザーのデータを自分のものとして扱います。</p>
+      </div>
+      <div class="value-card fade-up">
+        <div class="value-icon">🌱</div>
+        <h3>Long-term Thinking</h3>
+        <p>短期の数字より長期の信頼を優先。持続可能な成長とユーザーとの関係を最大化します。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Team ── -->
+<section class="team-section" id="team">
+  <div class="container">
+    <span class="label fade-up">Team</span>
+    <h2 class="section-title fade-up">SEjAI を<em>作る人たち</em></h2>
+    <p class="section-lead fade-up">多様なバックグラウンドを持つメンバーが、同じ夢を持って集まっています。</p>
+    <div class="team-grid">
+      <div class="team-card fade-up">
+        <div class="team-avatar">🧑‍💻</div>
+        <div class="team-name">Kenji Tanaka</div>
+        <div class="team-role">CEO &amp; Co-Founder</div>
+        <p class="team-bio">元メガバンクエンジニア。FinTech × AIのプロダクト戦略を担う。</p>
+      </div>
+      <div class="team-card fade-up">
+        <div class="team-avatar">👩‍🔬</div>
+        <div class="team-name">Yuki Saito</div>
+        <div class="team-role">CTO &amp; Co-Founder</div>
+        <p class="team-bio">東大院AI専攻修了。On-Device AIとMLOpsの技術リード。</p>
+      </div>
+      <div class="team-card fade-up">
+        <div class="team-avatar">🎨</div>
+        <div class="team-name">Mio Nakamura</div>
+        <div class="team-role">Head of Design</div>
+        <p class="team-bio">Apple出身。プロダクトの「触れた瞬間の感動」を設計する。</p>
+      </div>
+      <div class="team-card fade-up">
+        <div class="team-avatar">📊</div>
+        <div class="team-name">Ryo Hashimoto</div>
+        <div class="team-role">Head of Growth</div>
+        <p class="team-bio">元スタートアップCMO。データドリブンなグロース戦略を牽引。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── History ── -->
+<section class="history-section">
+  <div class="container">
+    <span class="label fade-up">History</span>
+    <h2 class="section-title fade-up">SEjAI の<em>歩み</em></h2>
+    <div class="timeline">
+      <div class="tl-item fade-up">
+        <div class="tl-dot"></div>
+        <div class="tl-year">2022</div>
+        <div class="tl-title">SEjAI 創業</div>
+        <div class="tl-desc">「AIを日常に」というビジョンのもと、エンジニア2名でスタート。最初のプロダクト開発を開始。</div>
+      </div>
+      <div class="tl-item fade-up">
+        <div class="tl-dot"></div>
+        <div class="tl-year">2023 Q1</div>
+        <div class="tl-title">Assetry ベータ版リリース</div>
+        <div class="tl-desc">デジタル資産マーケットプレイス Assetry のベータ版を公開。初月で 500 ユーザーを獲得。</div>
+      </div>
+      <div class="tl-item fade-up">
+        <div class="tl-dot"></div>
+        <div class="tl-year">2023 Q4</div>
+        <div class="tl-title">Habee iOS リリース</div>
+        <div class="tl-desc">習慣トラッキングアプリ Habee を App Store にリリース。リリース週に App Store カテゴリ Top 10 入り。</div>
+      </div>
+      <div class="tl-item fade-up">
+        <div class="tl-dot"></div>
+        <div class="tl-year">2024</div>
+        <div class="tl-title">FridgeChef ローンチ・シリーズA調達</div>
+        <div class="tl-desc">AIレシピアシスタント FridgeChef をリリース。同年、シリーズA資金調達を完了しチームを拡大。</div>
+      </div>
+      <div class="tl-item fade-up">
+        <div class="tl-dot"></div>
+        <div class="tl-year">2025 〜</div>
+        <div class="tl-title">3サービス・グローバル展開へ</div>
+        <div class="tl-desc">国内ユーザー10,000人突破。海外展開・新サービス開発に向け、チームをさらに強化中。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ── -->
+<section style="padding:100px 0; text-align:center; position:relative; overflow:hidden;">
+  <div style="position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 50% 50%, rgba(79,140,255,0.07) 0%,transparent 70%);pointer-events:none;"></div>
+  <div class="container" style="position:relative;">
+    <span class="label fade-up">Join Us</span>
+    <h2 class="section-title fade-up">一緒に<em>作りませんか？</em></h2>
+    <p class="section-lead fade-up" style="margin:16px auto 40px; text-align:center;">
+      SEjAI のミッションに共感するエンジニア・デザイナーを募集中です。
+    </p>
+    <a href="contact.html" class="btn btn-primary fade-up">採用についてお問い合わせ →</a>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="../index.html" class="nav-logo">SEj<span style="color:var(--a)">AI</span></a>
+        <p class="footer-tagline">AI-Powered Software for Real Life.<br>資産・習慣・食をアップデートする。</p>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <a href="services.html#assetry">Assetry</a>
+        <a href="services.html#habee">Habee</a>
+        <a href="services.html#fridgechef">FridgeChef</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="about.html">About SEjAI</a>
+        <a href="about.html#team">Team</a>
+        <a href="about.html#values">Values</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a href="contact.html">お問い合わせ</a>
+        <a href="mailto:hello@sejai.co.jp">hello@sejai.co.jp</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 SEjAI Inc. All rights reserved.</span>
+      <div class="footer-bottom-links">
+        <a href="services.html#privacy">Privacy Policy</a>
+        <a href="#">Terms</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+</body>
+</html>
