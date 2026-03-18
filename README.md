@@ -1,5 +1,14 @@
 # SEjAI ホームページ
 
+## サイトマップ
+トップ (index.html)
+├── Services → pages/services.html
+│   ├── Assetry 詳細 → pages/services/assetry.html
+│   ├── Habee 詳細   → pages/services/habee.html
+│   └── FridgeChef   → pages/services/fridgechef.html
+├── About   → pages/about.html
+└── Contact → pages/contact.html
+
 ## ファイル構成
 ```
 sejai/

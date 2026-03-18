@@ -56,22 +56,41 @@
     .feature-item:last-child { border-bottom: none; }
     .feature-item::before { content: '—'; color: var(--a); font-size: 0.75rem; flex-shrink: 0; }
 
+    /* ── Visual (画像 or 絵文字フォールバック) ── */
     .svc-visual {
-      border-radius: 0; overflow: hidden; position: relative;
+      position: relative;
       aspect-ratio: 4/3;
-      background: var(--bg-2); border: 1px solid var(--border);
-      display: flex; align-items: center; justify-content: center;
+      border: 1px solid var(--border);
+      overflow: hidden;
+      background: var(--bg-2);
     }
-    .svc-visual-inner {
-      font-size: 5rem; position: relative; z-index: 1;
+    /* 実画像 */
+    .svc-visual img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      z-index: 1;
+      transition: transform 0.4s ease;
+    }
+    .svc-visual:hover img { transform: scale(1.03); }
+    /* 画像がない場合の絵文字フォールバック */
+    .svc-visual-fallback {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 5rem;
+      z-index: 0;
     }
     .svc-visual::before {
-      content: ''; position: absolute; inset: 0;
+      content: ''; position: absolute; inset: 0; z-index: 0;
       background: radial-gradient(ellipse 60% 60% at 50% 50%, var(--glow-color, rgba(79,140,255,0.06)) 0%, transparent 70%);
     }
     .svc-visual.assetry { --glow-color: rgba(79,140,255,0.07); }
     .svc-visual.habee   { --glow-color: rgba(52,211,153,0.07); }
     .svc-visual.fridge  { --glow-color: rgba(249,115,22,0.07); }
+
+    /* 画像があるときはフォールバックを隠す */
+    .svc-visual:has(img) .svc-visual-fallback { display: none; }
 
     .svc-cta-row { display: flex; gap: 12px; margin-top: 32px; flex-wrap: wrap; }
     .btn-assetry { background: var(--assetry); color: var(--black); border-radius: 0; }
@@ -80,6 +99,15 @@
     .btn-habee:hover   { opacity:0.85; transform:translateY(-1px); box-shadow: 0 6px 20px rgba(52,211,153,0.25); }
     .btn-fridge  { background: var(--fridge); color: var(--black); border-radius: 0; }
     .btn-fridge:hover  { opacity:0.85; transform:translateY(-1px); box-shadow: 0 6px 20px rgba(249,115,22,0.25); }
+    .btn-detail {
+      background: transparent; color: var(--gray-1);
+      border: 1px solid var(--border-h); border-radius: 0;
+      font-size: 0.875rem; font-weight: 600;
+      padding: 12px 22px;
+      display: inline-flex; align-items: center; gap: 6px;
+      transition: all 0.2s;
+    }
+    .btn-detail:hover { background: var(--bg-2); border-color: var(--a); color: var(--white); }
 
     /* ── Privacy ── */
     .privacy-section { padding: 100px 0; background: var(--bg-1); border-top: 1px solid var(--border); }
@@ -103,7 +131,7 @@
     .pp-box h4 { font-size: 0.7875rem; font-weight: 700; color: var(--gray-1); margin: 28px 0 10px; text-transform: uppercase; letter-spacing: 0.1em; }
     .pp-box p { font-size: 0.9rem; color: var(--gray-2); line-height: 1.85; }
     .pp-box ul { margin: 10px 0 16px 24px; list-style: none; }
-    .pp-box ul li { font-size: 0.9rem; color: var(--gray-2); line-height: 1.8; padding-left: 0; }
+    .pp-box ul li { font-size: 0.9rem; color: var(--gray-2); line-height: 1.8; }
     .pp-box ul li::before { content: '—  '; color: var(--a); }
     .pp-updated { font-size: 0.8rem; color: var(--gray-3); margin-top: 36px; padding-top: 20px; border-top: 1px solid var(--border); }
 
@@ -147,14 +175,13 @@
 <section class="services-section">
   <div class="container">
 
-    <!-- Assetry -->
+    <!-- ── Assetry ── -->
     <div class="svc-block" id="assetry">
       <div class="svc-info fade-up">
         <div class="svc-index">01</div>
         <span class="svc-badge assetry">Digital Asset Marketplace</span>
         <h2>Assetry</h2>
         <p>デジタル資産の取引・管理をワンプラットフォームで。クリエイターから投資家まで、あらゆる立場のユーザーが安心・安全に取引できる環境を提供します。</p>
-        <p>シンプルなUIと堅牢なセキュリティで、デジタル資産との新しい関係を。</p>
         <div class="feature-list">
           <div class="feature-item">リアルタイム市場分析</div>
           <div class="feature-item">安全・安心な取引環境</div>
@@ -162,26 +189,28 @@
           <div class="feature-item">KYC対応・不正検知</div>
         </div>
         <div class="svc-cta-row">
-          <a href="contact.html" class="btn btn-assetry">Assetryを試す →</a>
-          <a href="contact.html" class="btn btn-ghost">詳細を聞く</a>
+          <a href="services/assetry.html" class="btn-detail">詳細を見る →</a>
+          <a href="contact.html" class="btn btn-assetry">試してみる →</a>
         </div>
       </div>
-      <div class="svc-visual assetry fade-in">
-        <div class="svc-visual-inner">💹</div>
-      </div>
+      <a href="services/assetry.html" class="svc-visual assetry fade-in">
+        <!-- ★ 画像を用意したら src を変更 -->
+        <img src="img/services/assetry-01.png" alt="Assetry">
+        <div class="svc-visual-fallback">💹</div>
+      </a>
     </div>
 
-    <!-- Habee -->
+    <!-- ── Habee ── -->
     <div class="svc-block flip" id="habee">
-      <div class="svc-visual habee fade-in">
-        <div class="svc-visual-inner">🌿</div>
-      </div>
+      <a href="services/habee.html" class="svc-visual habee fade-in">
+        <!-- ★ 画像を用意したら src を変更: img/services/habee-01.png -->
+        <div class="svc-visual-fallback">🌿</div>
+      </a>
       <div class="svc-info fade-up">
         <div class="svc-index">02</div>
         <span class="svc-badge habee">Habit Tracking App</span>
         <h2>Habee</h2>
         <p>習慣化を科学するモバイルアプリ。行動パターンを学習し、あなたに最適なタイミングでリマインドと改善提案を届けます。</p>
-        <p>フリーミアムで手軽に始められ、毎日のルーティンをゲーミフィケーションで楽しく続けられます。</p>
         <div class="feature-list">
           <div class="feature-item">iOS / Android 対応</div>
           <div class="feature-item">行動パターン学習</div>
@@ -189,20 +218,19 @@
           <div class="feature-item">詳細な進捗分析</div>
         </div>
         <div class="svc-cta-row">
-          <a href="contact.html" class="btn btn-habee">Habeeを試す →</a>
-          <a href="contact.html" class="btn btn-ghost">詳細を聞く</a>
+          <a href="services/habee.html" class="btn-detail">詳細を見る →</a>
+          <a href="contact.html" class="btn btn-habee">試してみる →</a>
         </div>
       </div>
     </div>
 
-    <!-- FridgeChef -->
+    <!-- ── FridgeChef ── -->
     <div class="svc-block" id="fridgechef">
       <div class="svc-info fade-up">
         <div class="svc-index">03</div>
         <span class="svc-badge fridge">Recipe Assistant</span>
         <h2>FridgeChef</h2>
         <p>冷蔵庫にある食材を入力するだけで、今夜のレシピを提案。賞味期限が近い食材を優先活用し、食品ロスを大幅に削減します。</p>
-        <p>栄養バランス・調理時間・アレルギー対応など、細かな条件にも柔軟に対応。毎日の「今日何作ろう」を解決します。</p>
         <div class="feature-list">
           <div class="feature-item">食材入力 → 即レシピ提案</div>
           <div class="feature-item">食品ロス削減サポート</div>
@@ -210,13 +238,14 @@
           <div class="feature-item">アレルギー対応フィルター</div>
         </div>
         <div class="svc-cta-row">
-          <a href="contact.html" class="btn btn-fridge">FridgeChefを試す →</a>
-          <a href="contact.html" class="btn btn-ghost">詳細を聞く</a>
+          <a href="services/fridgechef.html" class="btn-detail">詳細を見る →</a>
+          <a href="contact.html" class="btn btn-fridge">試してみる →</a>
         </div>
       </div>
-      <div class="svc-visual fridge fade-in">
-        <div class="svc-visual-inner">🍳</div>
-      </div>
+      <a href="services/fridgechef.html" class="svc-visual fridge fade-in">
+        <!-- ★ 画像を用意したら src を変更: img/services/fridgechef-01.png -->
+        <div class="svc-visual-fallback">🍳</div>
+      </a>
     </div>
 
   </div>
@@ -341,7 +370,7 @@
   const colorMap = { 'pp-assetry': 'assetry', 'pp-habee': 'habee', 'pp-fridge': 'fridge' };
   tabs.forEach(tab => {
     tab.addEventListener('click', () => {
-      tabs.forEach(t => { t.classList.remove('active', 'assetry', 'habee', 'fridge'); });
+      tabs.forEach(t => t.classList.remove('active', 'assetry', 'habee', 'fridge'));
       document.querySelectorAll('.pp-content').forEach(c => c.classList.remove('active'));
       const id = tab.dataset.tab;
       tab.classList.add('active', colorMap[id] || '');
