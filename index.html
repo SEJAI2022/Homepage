@@ -31,7 +31,7 @@
     }
     .hero-bg-glow.g2 {
       width: 400px; height: 400px;
-      background: #7c3aed;
+      background: #7a3a10;
       bottom: -100px; left: -100px;
     }
     /* grid lines */
@@ -63,7 +63,7 @@
       color: var(--white); margin-bottom: 28px;
     }
     .hero-title .highlight {
-      background: linear-gradient(135deg, var(--a) 0%, #a78bfa 100%);
+      background: linear-gradient(135deg, var(--a) 0%, #ffb347 100%);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent;
       background-clip: text;
     }
@@ -110,13 +110,13 @@
     .mission-visual::before {
       content: '';
       position: absolute; inset: 0;
-      background: conic-gradient(from 0deg at 50% 50%, transparent 0%, rgba(79,140,255,0.06) 25%, transparent 50%, rgba(124,58,237,0.06) 75%, transparent 100%);
+      background: conic-gradient(from 0deg at 50% 50%, transparent 0%, rgba(232,131,58,0.08) 25%, transparent 50%, rgba(192,98,26,0.06) 75%, transparent 100%);
       animation: spin 12s linear infinite;
     }
     @keyframes spin { to { transform: rotate(360deg); } }
     .mission-logo-big {
       font-family: var(--font-head); font-size: 5rem; font-weight: 800;
-      color: var(--white); letter-spacing: -0.05em; position: relative; z-index: 1;
+      color: var(--a); letter-spacing: -0.05em; position: relative; z-index: 1;
     }
     .mission-logo-big span { color: var(--a); }
     .mission-corner {
@@ -159,14 +159,14 @@
       display: flex; align-items: center; justify-content: center;
       font-size: 1.5rem; margin-bottom: 24px;
     }
-    .svc-card[data-svc="assetry"] .svc-icon { background: rgba(79,140,255,0.1); }
+    .svc-card[data-svc="assetry"] .svc-icon { background: rgba(232,131,58,0.1); }
     .svc-card[data-svc="habee"]   .svc-icon { background: rgba(52,211,153,0.1); }
     .svc-card[data-svc="fridge"]  .svc-icon { background: rgba(249,115,22,0.1); }
 
     .svc-name { font-family: var(--font-head); font-size: 1.4rem; font-weight: 700; color: var(--white); margin-bottom: 10px; }
     .svc-tag  { display: inline-block; font-size: 0.7rem; font-weight: 600; padding: 3px 10px; border-radius: 100px; margin-bottom: 14px; }
 
-    .svc-card[data-svc="assetry"] .svc-tag { background: rgba(79,140,255,0.12); color: var(--assetry); }
+    .svc-card[data-svc="assetry"] .svc-tag { background: rgba(232,131,58,0.12); color: var(--assetry); }
     .svc-card[data-svc="habee"]   .svc-tag { background: rgba(52,211,153,0.12); color: var(--habee); }
     .svc-card[data-svc="fridge"]  .svc-tag { background: rgba(249,115,22,0.12); color: var(--fridge); }
 
@@ -185,7 +185,7 @@
       content: ''; position: absolute;
       top: 50%; left: 50%; transform: translate(-50%, -50%);
       width: 800px; height: 400px;
-      background: radial-gradient(ellipse, rgba(79,140,255,0.1) 0%, transparent 70%);
+      background: radial-gradient(ellipse, rgba(232,131,58,0.1) 0%, transparent 70%);
       pointer-events: none;
     }
     .cta-section .label, .cta-section .section-title { position: relative; }
@@ -207,7 +207,7 @@
 <header class="site-header">
   <div class="container">
     <nav class="nav">
-      <a href="index.html" class="nav-logo">SEj<span>AI</span></a>
+      <a href="index.html" class="nav-logo"><span>SEjAI</span></a>
       <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
         <li><a href="pages/services/index.html">Services</a></li>
@@ -236,7 +236,7 @@
         Live <span class="highlight">Better.</span>
       </h1>
       <p class="hero-desc fade-up">
-        SEjAI は、AIを軸にした3つのプロダクトで人々の「資産・習慣・食」を
+        SEjAI は、ITを起点に様々なプロダクトで人々の「生活」を
         アップデートするソフトウェアカンパニーです。
       </p>
       <div class="hero-actions fade-up">
@@ -267,18 +267,18 @@
         <div class="stat-num">3<span>+</span></div>
         <div class="stat-lbl">プロダクト展開中</div>
       </div>
-      <div class="stat-item fade-up">
+      <!-- <div class="stat-item fade-up">
         <div class="stat-num">10<span>K+</span></div>
         <div class="stat-lbl">月間アクティブユーザー</div>
-      </div>
+      </div> -->
       <div class="stat-item fade-up">
         <div class="stat-num">99<span>%</span></div>
         <div class="stat-lbl">サービス稼働率</div>
       </div>
-      <div class="stat-item fade-up">
+      <!-- <div class="stat-item fade-up">
         <div class="stat-num">24<span>/7</span></div>
         <div class="stat-lbl">AIが常時稼働</div>
-      </div>
+      </div> -->
     </div>
   </div>
 </div>
@@ -288,7 +288,7 @@
   <div class="container">
     <div class="mission-grid">
       <div class="mission-visual fade-up">
-        <div class="mission-logo-big">SEj<span>AI</span></div>
+        <div class="mission-logo-big">SEjAI</div>
         <div class="mission-corner tl">Assetry 💹</div>
         <div class="mission-corner tr">Habee 🌿</div>
         <div class="mission-corner bl">FridgeChef 🍳</div>
@@ -366,7 +366,7 @@
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <a href="index.html" class="nav-logo">SEj<span style="color:var(--a)">AI</span></a>
+        <a href="index.html" class="nav-logo"><span>SEjAI</span></a>
         <p class="footer-tagline">AI-Powered Software for Real Life.<br>資産・習慣・食をアップデートする。</p>
       </div>
       <div class="footer-col">

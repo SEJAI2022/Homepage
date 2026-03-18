@@ -3,24 +3,25 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --bg:        #080b10;
-  --bg-1:      #0d1117;
-  --bg-2:      #111620;
-  --bg-3:      #161c2a;
-  --surface:   #1a2235;
+  /* ── Black base — ロゴの黒に合わせた背景階調 ── */
+  --bg:        #0a0a0a;
+  --bg-1:      #0f0f0f;
+  --bg-2:      #161616;
+  --bg-3:      #1c1c1c;
+  --surface:   #222222;
   --border:    rgba(255,255,255,0.07);
   --border-h:  rgba(255,255,255,0.14);
   --white:     #ffffff;
-  --gray-1:    #e8eaf0;
-  --gray-2:    #9aa0b4;
-  --gray-3:    #4a5168;
+  --gray-1:    #f0ede8;
+  --gray-2:    #a09890;
+  --gray-3:    #504840;
 
-  /* accent: electric blue-violet */
-  --a:         #4f8cff;
-  --a-dim:     rgba(79,140,255,0.12);
-  --a-glow:    rgba(79,140,255,0.35);
+  /* ── Orange accent — ロゴの #e8833a 系オレンジ ── */
+  --a:         #e8833a;
+  --a-dim:     rgba(232,131,58,0.12);
+  --a-glow:    rgba(232,131,58,0.35);
 
-  /* service colors */
+  /* service colors — 各サービスはそのまま維持 */
   --assetry:   #4f8cff;
   --habee:     #34d399;
   --fridge:    #f97316;
@@ -68,7 +69,7 @@ body::before {
   height: var(--header-h);
   display: flex;
   align-items: center;
-  background: rgba(8,11,16,0.7);
+  background: rgba(10,10,10,0.8);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--border);
@@ -83,7 +84,7 @@ body::before {
   font-size: 1.35rem;
   font-weight: 800;
   letter-spacing: -0.02em;
-  color: var(--white);
+  color: var(--a);
 }
 .nav-logo span { color: var(--a); }
 
@@ -165,7 +166,7 @@ body::before {
   position: absolute;
   top: 0; left: 50%; transform: translateX(-50%);
   width: 600px; height: 600px;
-  background: radial-gradient(circle, rgba(79,140,255,0.1) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(232,131,58,0.08) 0%, transparent 70%);
   pointer-events: none;
 }
 
@@ -185,7 +186,7 @@ body::before {
   padding: 4px 14px; border-radius: 100px;
   font-size: 0.75rem; font-weight: 600;
   background: var(--a-dim); color: var(--a);
-  border: 1px solid rgba(79,140,255,0.2);
+  border: 1px solid rgba(232,131,58,0.2);
 }
 
 /* ── Fade animations ── */
