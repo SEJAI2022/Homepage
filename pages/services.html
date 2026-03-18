@@ -12,104 +12,105 @@
     .svc-block {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 72px;
+      gap: 80px;
       align-items: center;
       padding: 80px 0;
       border-bottom: 1px solid var(--border);
     }
     .svc-block:last-of-type { border-bottom: none; }
-    .svc-block.flip { }
     .svc-block.flip .svc-info { order: 2; }
     .svc-block.flip .svc-visual { order: 1; }
 
-    .svc-num {
-      font-family: var(--font-head); font-size: 5rem; font-weight: 800;
-      line-height: 1; margin-bottom: 4px; opacity: 0.06; color: var(--white);
+    .svc-index {
+      font-family: var(--font-head);
+      font-size: 5rem; font-weight: 600;
+      line-height: 1; margin-bottom: 8px;
+      opacity: 0.05; color: var(--white);
     }
     .svc-badge {
       display: inline-flex; align-items: center; gap: 8px;
       padding: 5px 14px; border-radius: 100px;
-      font-size: 0.75rem; font-weight: 600;
-      border: 1px solid; margin-bottom: 18px;
+      font-size: 0.7rem; font-weight: 600;
+      border: 1px solid; margin-bottom: 20px;
+      letter-spacing: 0.08em;
     }
-    .svc-badge.assetry { color: var(--assetry); border-color: rgba(79,140,255,0.3); background: rgba(79,140,255,0.07); }
-    .svc-badge.habee   { color: var(--habee);   border-color: rgba(52,211,153,0.3); background: rgba(52,211,153,0.07); }
-    .svc-badge.fridge  { color: var(--fridge);  border-color: rgba(249,115,22,0.3); background: rgba(249,115,22,0.07); }
+    .svc-badge.assetry { color: var(--assetry); border-color: rgba(79,140,255,0.3); background: rgba(79,140,255,0.06); }
+    .svc-badge.habee   { color: var(--habee);   border-color: rgba(52,211,153,0.3); background: rgba(52,211,153,0.06); }
+    .svc-badge.fridge  { color: var(--fridge);  border-color: rgba(249,115,22,0.3); background: rgba(249,115,22,0.06); }
 
     .svc-block h2 {
-      font-family: var(--font-head); font-size: clamp(2rem, 4vw, 2.8rem);
-      font-weight: 800; letter-spacing: -0.03em; color: var(--white);
-      margin-bottom: 18px;
+      font-family: var(--font-head);
+      font-size: clamp(2.2rem, 4vw, 3rem);
+      font-weight: 600; letter-spacing: -0.01em; color: var(--white);
+      margin-bottom: 20px;
     }
-    .svc-block p { font-size: 0.9375rem; color: var(--gray-2); line-height: 1.8; margin-bottom: 14px; }
+    .svc-block p { font-size: 0.9375rem; color: var(--gray-2); line-height: 1.85; margin-bottom: 14px; }
 
-    .feature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 28px; }
-    .feature-chip {
-      display: flex; align-items: flex-start; gap: 10px;
-      background: var(--bg-2); border: 1px solid var(--border);
-      border-radius: 10px; padding: 12px 14px;
-      font-size: 0.8125rem; color: var(--gray-2); line-height: 1.4;
+    .feature-list { display: flex; flex-direction: column; gap: 0; margin-top: 28px; border: 1px solid var(--border); }
+    .feature-item {
+      display: flex; align-items: center; gap: 14px;
+      padding: 13px 18px;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.875rem; color: var(--gray-2);
     }
-    .feature-chip-icon { flex-shrink: 0; font-size: 0.9rem; margin-top: 1px; }
+    .feature-item:last-child { border-bottom: none; }
+    .feature-item::before { content: '—'; color: var(--a); font-size: 0.75rem; flex-shrink: 0; }
 
-    /* visual box */
     .svc-visual {
-      border-radius: 20px; overflow: hidden; position: relative;
-      aspect-ratio: 5/4;
+      border-radius: 0; overflow: hidden; position: relative;
+      aspect-ratio: 4/3;
       background: var(--bg-2); border: 1px solid var(--border);
       display: flex; align-items: center; justify-content: center;
     }
     .svc-visual-inner {
-      font-size: 6rem; position: relative; z-index: 1;
-      filter: drop-shadow(0 0 40px currentColor);
+      font-size: 5rem; position: relative; z-index: 1;
     }
     .svc-visual::before {
       content: ''; position: absolute; inset: 0;
-      background: radial-gradient(ellipse 70% 70% at 50% 50%, var(--glow-color, rgba(79,140,255,0.08)) 0%, transparent 70%);
+      background: radial-gradient(ellipse 60% 60% at 50% 50%, var(--glow-color, rgba(79,140,255,0.06)) 0%, transparent 70%);
     }
-    .svc-visual.assetry { --glow-color: rgba(79,140,255,0.08); }
-    .svc-visual.habee   { --glow-color: rgba(52,211,153,0.08); }
-    .svc-visual.fridge  { --glow-color: rgba(249,115,22,0.08); }
+    .svc-visual.assetry { --glow-color: rgba(79,140,255,0.07); }
+    .svc-visual.habee   { --glow-color: rgba(52,211,153,0.07); }
+    .svc-visual.fridge  { --glow-color: rgba(249,115,22,0.07); }
 
-    .svc-cta-row { display: flex; gap: 12px; margin-top: 28px; flex-wrap: wrap; }
-    .btn-assetry { background: var(--assetry); color: var(--bg); }
-    .btn-assetry:hover { opacity: 0.85; transform: translateY(-1px); box-shadow: 0 8px 24px rgba(79,140,255,0.3); }
-    .btn-habee   { background: var(--habee); color: var(--bg); }
-    .btn-habee:hover   { opacity: 0.85; transform: translateY(-1px); box-shadow: 0 8px 24px rgba(52,211,153,0.3); }
-    .btn-fridge  { background: var(--fridge); color: var(--bg); }
-    .btn-fridge:hover  { opacity: 0.85; transform: translateY(-1px); box-shadow: 0 8px 24px rgba(249,115,22,0.3); }
+    .svc-cta-row { display: flex; gap: 12px; margin-top: 32px; flex-wrap: wrap; }
+    .btn-assetry { background: var(--assetry); color: var(--black); border-radius: 0; }
+    .btn-assetry:hover { opacity:0.85; transform:translateY(-1px); box-shadow: 0 6px 20px rgba(79,140,255,0.25); }
+    .btn-habee   { background: var(--habee); color: var(--black); border-radius: 0; }
+    .btn-habee:hover   { opacity:0.85; transform:translateY(-1px); box-shadow: 0 6px 20px rgba(52,211,153,0.25); }
+    .btn-fridge  { background: var(--fridge); color: var(--black); border-radius: 0; }
+    .btn-fridge:hover  { opacity:0.85; transform:translateY(-1px); box-shadow: 0 6px 20px rgba(249,115,22,0.25); }
 
-    /* ── Privacy Policy ── */
+    /* ── Privacy ── */
     .privacy-section { padding: 100px 0; background: var(--bg-1); border-top: 1px solid var(--border); }
-    .pp-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin: 40px 0 32px; }
+    .pp-tabs { display: flex; gap: 0; flex-wrap: wrap; margin: 48px 0 32px; border: 1px solid var(--border); }
     .pp-tab {
-      padding: 8px 20px; border-radius: 8px; font-size: 0.875rem; font-weight: 600;
-      cursor: pointer; border: 1px solid var(--border); background: var(--bg-2); color: var(--gray-2);
-      transition: all 0.2s;
+      padding: 12px 28px; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.06em;
+      cursor: pointer; border: none; border-right: 1px solid var(--border);
+      background: var(--bg-1); color: var(--gray-3); transition: all 0.2s;
+      text-transform: uppercase;
     }
-    .pp-tab:hover { border-color: var(--border-h); color: var(--white); }
-    .pp-tab.active.assetry { background: rgba(79,140,255,0.12); border-color: rgba(79,140,255,0.4); color: var(--assetry); }
-    .pp-tab.active.habee   { background: rgba(52,211,153,0.12); border-color: rgba(52,211,153,0.4); color: var(--habee); }
-    .pp-tab.active.fridge  { background: rgba(249,115,22,0.12); border-color: rgba(249,115,22,0.4); color: var(--fridge); }
+    .pp-tab:last-child { border-right: none; }
+    .pp-tab:hover { color: var(--white); background: var(--bg-2); }
+    .pp-tab.active.assetry { background: rgba(79,140,255,0.08); color: var(--assetry); }
+    .pp-tab.active.habee   { background: rgba(52,211,153,0.08); color: var(--habee); }
+    .pp-tab.active.fridge  { background: rgba(249,115,22,0.08); color: var(--fridge); }
 
     .pp-content { display: none; }
     .pp-content.active { display: block; }
-    .pp-box {
-      background: var(--bg-2); border: 1px solid var(--border);
-      border-radius: 14px; padding: 48px;
-    }
-    .pp-box h3 { font-family: var(--font-head); font-size: 1.4rem; font-weight: 700; color: var(--white); margin-bottom: 20px; }
-    .pp-box h4 { font-size: 0.875rem; font-weight: 700; color: var(--gray-1); margin: 24px 0 8px; text-transform: uppercase; letter-spacing: 0.06em; font-size: 0.8125rem; }
-    .pp-box p { font-size: 0.9rem; color: var(--gray-2); line-height: 1.8; }
-    .pp-box ul { margin: 8px 0 14px 20px; list-style: disc; }
-    .pp-box ul li { font-size: 0.9rem; color: var(--gray-2); line-height: 1.75; }
-    .pp-updated { font-size: 0.8125rem; color: var(--gray-3); margin-top: 32px; padding-top: 20px; border-top: 1px solid var(--border); }
+    .pp-box { background: var(--bg-2); border: 1px solid var(--border); padding: 48px; }
+    .pp-box h3 { font-family: var(--font-head); font-size: 1.5rem; font-weight: 600; color: var(--white); margin-bottom: 20px; }
+    .pp-box h4 { font-size: 0.7875rem; font-weight: 700; color: var(--gray-1); margin: 28px 0 10px; text-transform: uppercase; letter-spacing: 0.1em; }
+    .pp-box p { font-size: 0.9rem; color: var(--gray-2); line-height: 1.85; }
+    .pp-box ul { margin: 10px 0 16px 24px; list-style: none; }
+    .pp-box ul li { font-size: 0.9rem; color: var(--gray-2); line-height: 1.8; padding-left: 0; }
+    .pp-box ul li::before { content: '—  '; color: var(--a); }
+    .pp-updated { font-size: 0.8rem; color: var(--gray-3); margin-top: 36px; padding-top: 20px; border-top: 1px solid var(--border); }
 
     @media (max-width: 900px) {
-      .svc-block { grid-template-columns: 1fr; gap: 32px; }
+      .svc-block { grid-template-columns: 1fr; gap: 40px; }
       .svc-block.flip .svc-info { order: 1; }
       .svc-block.flip .svc-visual { order: 2; }
-      .feature-grid { grid-template-columns: 1fr; }
       .pp-box { padding: 28px 20px; }
     }
   </style>
@@ -119,7 +120,9 @@
 <header class="site-header">
   <div class="container">
     <nav class="nav">
-      <a href="../index.html" class="nav-logo">SEj<span>AI</span></a>
+      <a href="../index.html" class="nav-logo">
+        <img src="../logo.png" alt="SEjAI" class="nav-logo-img">
+      </a>
       <ul class="nav-links">
         <li><a href="../index.html">Home</a></li>
         <li><a href="services.html">Services</a></li>
@@ -135,8 +138,8 @@
   <div class="container">
     <span class="label fade-up">Services</span>
     <h1 class="section-title fade-up">SEjAI の<em>3つのプロダクト</em></h1>
-    <p class="section-lead fade-up" style="margin:16px auto 0; text-align:center;">
-      資産・習慣・食——あなたの日常をAIで進化させます。
+    <p class="section-lead fade-up" style="margin:20px auto 0; text-align:center;">
+      資産・習慣・食——日常に根ざした課題に、ITで答える。
     </p>
   </div>
 </div>
@@ -147,43 +150,43 @@
     <!-- Assetry -->
     <div class="svc-block" id="assetry">
       <div class="svc-info fade-up">
-        <div class="svc-num">01</div>
-        <span class="svc-badge assetry">💹 Digital Asset Marketplace</span>
+        <div class="svc-index">01</div>
+        <span class="svc-badge assetry">Digital Asset Marketplace</span>
         <h2>Assetry</h2>
-        <p>デジタル資産の取引・管理をワンプラットフォームで。AIが市場トレンドをリアルタイム分析し、ユーザーに最適な意思決定のサポートを提供します。</p>
-        <p>クリエイターから投資家まで、あらゆる立場のユーザーが安心・安全に取引できる環境を整備しています。</p>
-        <div class="feature-grid">
-          <div class="feature-chip"><span class="feature-chip-icon">⚡</span>リアルタイム市場分析</div>
-          <div class="feature-chip"><span class="feature-chip-icon">🔐</span>安全な取引環境</div>
-          <div class="feature-chip"><span class="feature-chip-icon">📊</span>ポートフォリオ管理</div>
-          <div class="feature-chip"><span class="feature-chip-icon">🤖</span>AI価格予測アシスト</div>
+        <p>デジタル資産の取引・管理をワンプラットフォームで。クリエイターから投資家まで、あらゆる立場のユーザーが安心・安全に取引できる環境を提供します。</p>
+        <p>シンプルなUIと堅牢なセキュリティで、デジタル資産との新しい関係を。</p>
+        <div class="feature-list">
+          <div class="feature-item">リアルタイム市場分析</div>
+          <div class="feature-item">安全・安心な取引環境</div>
+          <div class="feature-item">ポートフォリオ管理</div>
+          <div class="feature-item">KYC対応・不正検知</div>
         </div>
         <div class="svc-cta-row">
           <a href="contact.html" class="btn btn-assetry">Assetryを試す →</a>
           <a href="contact.html" class="btn btn-ghost">詳細を聞く</a>
         </div>
       </div>
-      <div class="svc-visual assetry fade-up">
-        <div class="svc-visual-inner" style="color:var(--assetry)">💹</div>
+      <div class="svc-visual assetry fade-in">
+        <div class="svc-visual-inner">💹</div>
       </div>
     </div>
 
     <!-- Habee -->
     <div class="svc-block flip" id="habee">
-      <div class="svc-visual habee fade-up">
-        <div class="svc-visual-inner" style="color:var(--habee)">🌿</div>
+      <div class="svc-visual habee fade-in">
+        <div class="svc-visual-inner">🌿</div>
       </div>
       <div class="svc-info fade-up">
-        <div class="svc-num">02</div>
-        <span class="svc-badge habee">🌿 Habit Tracking App</span>
+        <div class="svc-index">02</div>
+        <span class="svc-badge habee">Habit Tracking App</span>
         <h2>Habee</h2>
-        <p>習慣化を科学するモバイルアプリ。AIがあなたの行動パターンを継続的に学習し、ベストなタイミングでリマインドと改善提案を届けます。</p>
-        <p>フリーミアムモデルで手軽に始められ、プレミアムプランでAIコーチング機能を解放。毎日のルーティンをゲーミフィケーションで楽しく続けられます。</p>
-        <div class="feature-grid">
-          <div class="feature-chip"><span class="feature-chip-icon">📱</span>iOS / Android 対応</div>
-          <div class="feature-chip"><span class="feature-chip-icon">🧠</span>AI行動パターン学習</div>
-          <div class="feature-chip"><span class="feature-chip-icon">🎮</span>ゲーミフィケーション</div>
-          <div class="feature-chip"><span class="feature-chip-icon">📈</span>詳細な進捗分析</div>
+        <p>習慣化を科学するモバイルアプリ。行動パターンを学習し、あなたに最適なタイミングでリマインドと改善提案を届けます。</p>
+        <p>フリーミアムで手軽に始められ、毎日のルーティンをゲーミフィケーションで楽しく続けられます。</p>
+        <div class="feature-list">
+          <div class="feature-item">iOS / Android 対応</div>
+          <div class="feature-item">行動パターン学習</div>
+          <div class="feature-item">ゲーミフィケーション</div>
+          <div class="feature-item">詳細な進捗分析</div>
         </div>
         <div class="svc-cta-row">
           <a href="contact.html" class="btn btn-habee">Habeeを試す →</a>
@@ -195,62 +198,39 @@
     <!-- FridgeChef -->
     <div class="svc-block" id="fridgechef">
       <div class="svc-info fade-up">
-        <div class="svc-num">03</div>
-        <span class="svc-badge fridge">🍳 AI Recipe Assistant</span>
+        <div class="svc-index">03</div>
+        <span class="svc-badge fridge">Recipe Assistant</span>
         <h2>FridgeChef</h2>
-        <p>冷蔵庫にある食材を入力するだけで、AIが今夜の夕食レシピを提案。賞味期限が近い食材を優先活用し、食品ロスを大幅に削減します。</p>
-        <p>栄養バランス・調理時間・アレルギー対応など細かな条件にも柔軟に対応。毎日の「今日何作ろう」を解決します。</p>
-        <div class="feature-grid">
-          <div class="feature-chip"><span class="feature-chip-icon">🥦</span>食材入力→即レシピ提案</div>
-          <div class="feature-chip"><span class="feature-chip-icon">♻️</span>食品ロス削減サポート</div>
-          <div class="feature-chip"><span class="feature-chip-icon">🥗</span>栄養バランス計算</div>
-          <div class="feature-chip"><span class="feature-chip-icon">⚠️</span>アレルギー対応フィルター</div>
+        <p>冷蔵庫にある食材を入力するだけで、今夜のレシピを提案。賞味期限が近い食材を優先活用し、食品ロスを大幅に削減します。</p>
+        <p>栄養バランス・調理時間・アレルギー対応など、細かな条件にも柔軟に対応。毎日の「今日何作ろう」を解決します。</p>
+        <div class="feature-list">
+          <div class="feature-item">食材入力 → 即レシピ提案</div>
+          <div class="feature-item">食品ロス削減サポート</div>
+          <div class="feature-item">栄養バランス計算</div>
+          <div class="feature-item">アレルギー対応フィルター</div>
         </div>
         <div class="svc-cta-row">
           <a href="contact.html" class="btn btn-fridge">FridgeChefを試す →</a>
           <a href="contact.html" class="btn btn-ghost">詳細を聞く</a>
         </div>
       </div>
-      <div class="svc-visual fridge fade-up">
-        <div class="svc-visual-inner" style="color:var(--fridge)">🍳</div>
+      <div class="svc-visual fridge fade-in">
+        <div class="svc-visual-inner">🍳</div>
       </div>
     </div>
-
-    <!--
-    =====================================================
-    ★ 新しいサービスを追加する場合はここに貼り付け ★
-    =====================================================
-    <div class="svc-block flip" id="new-service">
-      <div class="svc-visual fade-up" style="--glow-color:rgba(255,255,255,0.05)">
-        <div class="svc-visual-inner">🎯</div>
-      </div>
-      <div class="svc-info fade-up">
-        <div class="svc-num">04</div>
-        <span class="svc-badge" style="color:#aaa; border-color:rgba(255,255,255,0.2)">🎯 Service Type</span>
-        <h2>ServiceName</h2>
-        <p>説明文</p>
-        <div class="feature-grid">
-          <div class="feature-chip">特徴1</div>
-        </div>
-      </div>
-    </div>
-    + 下の Privacy セクションにもタブと内容を追加してください。
-    =====================================================
-    -->
 
   </div>
 </section>
 
-<!-- ── Privacy Policy ── -->
+<!-- ── Privacy ── -->
 <section class="privacy-section" id="privacy">
   <div class="container">
     <span class="label fade-up">Privacy Policy</span>
     <h2 class="section-title fade-up">各サービスの<br><em>プライバシーポリシー</em></h2>
     <div class="pp-tabs fade-up">
-      <button class="pp-tab active assetry" data-tab="pp-assetry">💹 Assetry</button>
-      <button class="pp-tab" data-tab="pp-habee">🌿 Habee</button>
-      <button class="pp-tab" data-tab="pp-fridge">🍳 FridgeChef</button>
-      <!-- ★ 新サービス追加時にタブをここに追加 -->
+      <button class="pp-tab active assetry" data-tab="pp-assetry">Assetry</button>
+      <button class="pp-tab" data-tab="pp-habee">Habee</button>
+      <button class="pp-tab" data-tab="pp-fridge">FridgeChef</button>
     </div>
 
     <div id="pp-assetry" class="pp-content active fade-up">
@@ -288,11 +268,9 @@
           <li>メールアドレス（アカウント作成・クラウド同期利用時）</li>
           <li>匿名化されたアプリ利用統計（クラッシュレポート含む）</li>
         </ul>
-        <h4>3. AI学習への利用</h4>
-        <p>AIパーソナライゼーション機能は端末内で処理します（On-Device AI）。ユーザーの行動データをサーバーに送信してモデル学習に使用することはありません。</p>
-        <h4>4. SNSシェア機能</h4>
+        <h4>3. SNSシェア機能</h4>
         <p>SNSへのシェアは常にユーザーの明示的な操作によってのみ行われます。自動投稿・サイレント送信は一切行いません。</p>
-        <h4>5. お問い合わせ</h4>
+        <h4>4. お問い合わせ</h4>
         <p><a href="contact.html" style="color:var(--habee)">こちら</a>からご連絡ください。</p>
         <p class="pp-updated">最終更新：2025年1月1日</p>
       </div>
@@ -301,7 +279,7 @@
     <div id="pp-fridge" class="pp-content fade-up">
       <div class="pp-box">
         <h3>FridgeChef プライバシーポリシー</h3>
-        <p>当社は、AIレシピアシスタント「FridgeChef」において収集する食材・料理に関するデータを以下の方針で取り扱います。</p>
+        <p>当社は、レシピアシスタント「FridgeChef」において収集する食材・料理に関するデータを以下の方針で取り扱います。</p>
         <h4>1. 収集する情報</h4>
         <ul>
           <li>入力された食材・冷蔵庫の内容（レシピ生成のため）</li>
@@ -310,17 +288,14 @@
           <li>メールアドレス（アカウント登録時）</li>
         </ul>
         <h4>2. データの利用目的</h4>
-        <p>収集データはレシピ提案・栄養計算・サービス個人化のためにのみ使用します。食材データは匿名化・集約化の上でAIモデルの精度向上に活用することがあります（個人を特定できる形では使用しません）。</p>
-        <h4>3. 機微情報の取り扱い</h4>
-        <p>アレルギー情報等の機微な健康情報は、暗号化して保存し、第三者への提供は行いません。</p>
-        <h4>4. データ削除</h4>
+        <p>収集データはレシピ提案・栄養計算・サービス個人化のためにのみ使用します。食材データは匿名化・集約化の上でサービス精度向上に活用することがあります（個人を特定できる形では使用しません）。</p>
+        <h4>3. データ削除</h4>
         <p>アカウント削除を申請いただいた場合、30日以内にすべての個人データを削除します。</p>
-        <h4>5. お問い合わせ</h4>
+        <h4>4. お問い合わせ</h4>
         <p><a href="contact.html" style="color:var(--fridge)">お問い合わせフォーム</a>よりご連絡ください。</p>
         <p class="pp-updated">最終更新：2025年1月1日</p>
       </div>
     </div>
-
   </div>
 </section>
 
@@ -328,8 +303,10 @@
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <a href="../index.html" class="nav-logo">SEj<span style="color:var(--a)">AI</span></a>
-        <p class="footer-tagline">AI-Powered Software for Real Life.<br>資産・習慣・食をアップデートする。</p>
+        <a href="../index.html" class="nav-logo">
+          <img src="../logo.png" alt="SEjAI" class="nav-logo-img">
+        </a>
+        <p class="footer-tagline">人と世界を繋げる。<br>ITを起点に、生活をアップデートする。</p>
       </div>
       <div class="footer-col">
         <h4>Services</h4>
@@ -345,7 +322,7 @@
       <div class="footer-col">
         <h4>Contact</h4>
         <a href="contact.html">お問い合わせ</a>
-        <a href="mailto:hello@sejai.co.jp">hello@sejai.co.jp</a>
+        <a href="mailto:sejaiapps2022@gmail.com">sejaiapps2022@gmail.com</a>
       </div>
     </div>
     <div class="footer-bottom">

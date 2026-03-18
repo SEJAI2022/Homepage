@@ -3,202 +3,455 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SEjAI — AI-Powered Software for Real Life</title>
+  <title>SEjAI — 人と世界を繋げる</title>
   <link rel="stylesheet" href="css/style.css">
   <style>
     /* ── Hero ── */
     .hero {
       min-height: 100svh;
-      display: flex;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
       align-items: center;
       padding-top: var(--header-h);
       position: relative;
       overflow: hidden;
     }
-    .hero-bg {
-      position: absolute; inset: 0; pointer-events: none;
+    .hero-left {
+      padding: 100px 0 100px;
+      position: relative; z-index: 1;
     }
-    .hero-bg-glow {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(120px);
-      opacity: 0.15;
-    }
-    .hero-bg-glow.g1 {
-      width: 700px; height: 700px;
-      background: var(--a);
-      top: -200px; right: -200px;
-    }
-    .hero-bg-glow.g2 {
-      width: 400px; height: 400px;
-      background: #7a3a10;
-      bottom: -100px; left: -100px;
-    }
-    /* grid lines */
-    .hero-bg::before {
-      content: '';
-      position: absolute; inset: 0;
-      background-image:
-        linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
-      background-size: 64px 64px;
+    .hero-right {
+      position: relative;
+      height: 100%;
+      min-height: 560px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    .hero-content { position: relative; z-index: 1; max-width: 820px; padding: 100px 0; }
-    .hero-badge {
-      display: inline-flex; align-items: center; gap: 8px;
-      border: 1px solid var(--border-h);
-      background: var(--bg-2);
-      padding: 6px 16px; border-radius: 100px;
-      font-size: 0.8125rem; font-weight: 500; color: var(--gray-2);
-      margin-bottom: 32px;
+    /* Vertical line accent */
+    .hero-line {
+      position: absolute;
+      left: 0;
+      top: var(--header-h);
+      bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, transparent 0%, var(--border-h) 20%, var(--border-h) 80%, transparent 100%);
     }
-    .hero-badge-dot { width: 6px; height: 6px; background: var(--habee); border-radius: 50%; animation: pulse 2s ease-in-out infinite; }
-    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.20em;
+      text-transform: uppercase;
+      color: var(--a);
+      margin-bottom: 28px;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 20px; height: 1px;
+      background: var(--a);
+    }
 
     .hero-title {
       font-family: var(--font-head);
-      font-size: clamp(3rem, 7vw, 6rem);
-      font-weight: 800; line-height: 1.0; letter-spacing: -0.03em;
-      color: var(--white); margin-bottom: 28px;
+      font-size: clamp(3.2rem, 6vw, 5.4rem);
+      font-weight: 600;
+      line-height: 1.08;
+      color: var(--white);
+      margin-bottom: 32px;
+      letter-spacing: -0.01em;
     }
-    .hero-title .highlight {
-      background: linear-gradient(135deg, var(--a) 0%, #ffb347 100%);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-      background-clip: text;
+    .hero-title em {
+      font-style: italic;
+      color: var(--a);
+      display: block;
     }
+    .hero-title span.sub {
+      font-family: var(--font-body);
+      font-size: 0.45em;
+      font-weight: 300;
+      font-style: normal;
+      color: var(--gray-2);
+      letter-spacing: 0.01em;
+      display: block;
+      margin-top: 12px;
+      line-height: 1.6;
+    }
+
     .hero-desc {
-      font-size: 1.125rem; color: var(--gray-2);
-      max-width: 52ch; margin-bottom: 44px; line-height: 1.8;
+      font-size: 0.9375rem;
+      color: var(--gray-2);
+      max-width: 44ch;
+      margin-bottom: 40px;
+      line-height: 1.85;
     }
     .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
 
-    .hero-services {
-      position: relative; z-index: 1;
-      display: flex; gap: 12px; flex-wrap: wrap;
-      margin-top: 80px; padding-top: 48px;
-      border-top: 1px solid var(--border);
+    /* Right side — connection visual */
+    .hero-visual {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
-    .hero-service-pill {
-      display: flex; align-items: center; gap: 10px;
-      background: var(--bg-2); border: 1px solid var(--border);
-      border-radius: 100px; padding: 8px 18px;
-      font-size: 0.875rem; font-weight: 500; color: var(--gray-1);
-      transition: border-color 0.2s;
+    .hero-visual-bg {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(242,140,56,0.03) 0%, transparent 60%);
     }
-    .hero-service-pill:hover { border-color: var(--border-h); }
-    .pill-dot { width: 8px; height: 8px; border-radius: 50%; }
+    /* Geometric connecting lines */
+    .hero-canvas {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+    .hero-canvas svg {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      inset: 0;
+    }
 
-    /* ── Stats ── */
-    .stats-section { padding: 80px 0; background: var(--bg-1); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-    .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); }
-    .stat-item { padding: 0 40px; border-right: 1px solid var(--border); text-align: center; }
-    .stat-item:first-child { padding-left: 0; }
-    .stat-item:last-child { border-right: none; padding-right: 0; }
-    .stat-num { font-family: var(--font-head); font-size: 2.8rem; font-weight: 800; color: var(--white); line-height: 1; }
-    .stat-num span { color: var(--a); }
-    .stat-lbl { font-size: 0.875rem; color: var(--gray-2); margin-top: 8px; }
+    .hero-nodes {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 20px;
+      padding: 60px 48px;
+      width: 100%;
+    }
+    .hero-node {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+    .hero-node-circle {
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      border: 1px solid var(--border-h);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      color: var(--gray-2);
+      background: var(--bg-2);
+      transition: all 0.3s;
+    }
+    .hero-node:hover .hero-node-circle {
+      border-color: var(--a);
+      color: var(--a);
+      background: var(--a-dim);
+    }
+    .hero-node-label {
+      font-size: 0.625rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--gray-3);
+      text-align: center;
+    }
+
+    /* Center node — SEjAI */
+    .hero-center {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 3;
+    }
+    .hero-center-ring {
+      width: 100px; height: 100px;
+      border-radius: 50%;
+      border: 1px solid var(--a);
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(242,140,56,0.06);
+      position: relative;
+    }
+    .hero-center-ring::before {
+      content: '';
+      position: absolute;
+      inset: -8px;
+      border-radius: 50%;
+      border: 1px solid rgba(242,140,56,0.15);
+    }
+    .hero-center-logo {
+      height: 36px;
+      width: auto;
+    }
+
+    /* ── Marquee ── */
+    .marquee-section {
+      padding: 32px 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      overflow: hidden;
+      background: var(--bg-1);
+    }
+    .marquee-track {
+      display: flex;
+      gap: 0;
+      animation: marquee 28s linear infinite;
+      white-space: nowrap;
+    }
+    .marquee-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 20px;
+      padding: 0 48px;
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gray-3);
+      border-right: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+    .marquee-item-accent { color: var(--a); }
+    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
     /* ── Mission ── */
-    .mission-section { padding: 120px 0; }
-    .mission-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
-    .mission-visual {
-      position: relative; aspect-ratio: 1;
-      background: var(--bg-2); border: 1px solid var(--border); border-radius: 20px;
-      display: flex; align-items: center; justify-content: center; overflow: hidden;
+    .mission-section {
+      padding: 140px 0;
+      border-bottom: 1px solid var(--border);
     }
-    .mission-visual::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: conic-gradient(from 0deg at 50% 50%, transparent 0%, rgba(232,131,58,0.08) 25%, transparent 50%, rgba(192,98,26,0.06) 75%, transparent 100%);
-      animation: spin 12s linear infinite;
+    .mission-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 100px;
+      align-items: center;
     }
-    @keyframes spin { to { transform: rotate(360deg); } }
-    .mission-logo-big {
-      font-family: var(--font-head); font-size: 5rem; font-weight: 800;
-      color: var(--a); letter-spacing: -0.05em; position: relative; z-index: 1;
+    .mission-quote {
+      font-family: var(--font-head);
+      font-size: clamp(2.8rem, 5vw, 4.2rem);
+      font-weight: 600;
+      line-height: 1.1;
+      color: var(--white);
     }
-    .mission-logo-big span { color: var(--a); }
-    .mission-corner {
-      position: absolute; padding: 12px 16px;
-      background: var(--bg-3); border: 1px solid var(--border); border-radius: 10px;
-      font-size: 0.8125rem; font-weight: 500;
+    .mission-quote em {
+      font-style: italic;
+      color: var(--a);
     }
-    .mission-corner.tl { top: 20px; left: 20px; color: var(--assetry); }
-    .mission-corner.tr { top: 20px; right: 20px; color: var(--habee); }
-    .mission-corner.bl { bottom: 20px; left: 20px; color: var(--fridge); }
+    .mission-divider {
+      width: 40px; height: 1px;
+      background: var(--a);
+      margin: 36px 0;
+    }
+    .mission-body {
+      font-size: 0.9375rem;
+      color: var(--gray-2);
+      line-height: 1.9;
+      max-width: 48ch;
+    }
+    .mission-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 28px;
+    }
+    .mission-tag {
+      padding: 5px 14px;
+      border: 1px solid var(--border-h);
+      border-radius: 100px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--gray-2);
+      letter-spacing: 0.04em;
+    }
+    .mission-tag:first-child { border-color: rgba(242,140,56,0.35); color: var(--a); }
 
-    /* ── Services preview ── */
-    .services-section { padding: 120px 0; background: var(--bg-1); }
-    .services-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 56px; }
-    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    /* Right stats */
+    .mission-stats { display: flex; flex-direction: column; gap: 0; }
+    .mission-stat {
+      padding: 36px 0;
+      border-bottom: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 28px;
+      align-items: center;
+    }
+    .mission-stat:first-child { border-top: 1px solid var(--border); }
+    .mission-stat-num {
+      font-family: var(--font-head);
+      font-size: 3rem;
+      font-weight: 600;
+      color: var(--white);
+      line-height: 1;
+      min-width: 80px;
+    }
+    .mission-stat-num span { color: var(--a); font-size: 1.8rem; }
+    .mission-stat-label {
+      font-size: 0.875rem;
+      color: var(--gray-2);
+      line-height: 1.6;
+    }
+    .mission-stat-label strong {
+      display: block;
+      color: var(--gray-1);
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
 
-    .svc-card {
-      background: var(--bg-2);
+    /* ── Services ── */
+    .services-section {
+      padding: 140px 0;
+      background: var(--bg-1);
+      border-bottom: 1px solid var(--border);
+    }
+    .services-head {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: end;
+      margin-bottom: 72px;
+    }
+    .services-head-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      justify-content: flex-end;
+      gap: 16px;
+    }
+    .services-head-desc {
+      font-size: 0.9375rem;
+      color: var(--gray-2);
+      line-height: 1.8;
+      text-align: right;
+      max-width: 38ch;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
       border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 36px;
-      position: relative; overflow: hidden;
-      transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+    }
+    .svc-card {
+      background: var(--bg-1);
+      padding: 48px 36px;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.3s;
       cursor: pointer;
     }
-    .svc-card::before {
-      content: ''; position: absolute;
-      top: 0; left: 0; right: 0; height: 2px;
-      opacity: 0; transition: opacity 0.3s;
+    .svc-card:hover { background: var(--bg-2); }
+
+    .svc-card-num {
+      font-family: var(--font-head);
+      font-size: 4.5rem;
+      font-weight: 600;
+      line-height: 1;
+      opacity: 0.05;
+      color: var(--white);
+      position: absolute;
+      top: 32px; right: 32px;
+      pointer-events: none;
     }
-    .svc-card:hover { transform: translateY(-6px); box-shadow: 0 24px 60px rgba(0,0,0,0.4); border-color: var(--border-h); }
-    .svc-card:hover::before { opacity: 1; }
-
-    .svc-card[data-svc="assetry"]::before { background: var(--assetry); }
-    .svc-card[data-svc="habee"]::before   { background: var(--habee); }
-    .svc-card[data-svc="fridge"]::before  { background: var(--fridge); }
-
-    .svc-icon {
-      width: 52px; height: 52px; border-radius: 12px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.5rem; margin-bottom: 24px;
+    .svc-tag-line {
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
     }
-    .svc-card[data-svc="assetry"] .svc-icon { background: rgba(232,131,58,0.1); }
-    .svc-card[data-svc="habee"]   .svc-icon { background: rgba(52,211,153,0.1); }
-    .svc-card[data-svc="fridge"]  .svc-icon { background: rgba(249,115,22,0.1); }
+    .svc-card[data-svc="assetry"] .svc-tag-line { color: var(--assetry); }
+    .svc-card[data-svc="habee"]   .svc-tag-line { color: var(--habee); }
+    .svc-card[data-svc="fridge"]  .svc-tag-line { color: var(--fridge); }
 
-    .svc-name { font-family: var(--font-head); font-size: 1.4rem; font-weight: 700; color: var(--white); margin-bottom: 10px; }
-    .svc-tag  { display: inline-block; font-size: 0.7rem; font-weight: 600; padding: 3px 10px; border-radius: 100px; margin-bottom: 14px; }
-
-    .svc-card[data-svc="assetry"] .svc-tag { background: rgba(232,131,58,0.12); color: var(--assetry); }
-    .svc-card[data-svc="habee"]   .svc-tag { background: rgba(52,211,153,0.12); color: var(--habee); }
-    .svc-card[data-svc="fridge"]  .svc-tag { background: rgba(249,115,22,0.12); color: var(--fridge); }
-
-    .svc-desc { font-size: 0.9375rem; color: var(--gray-2); line-height: 1.7; }
-    .svc-arrow { margin-top: 28px; font-size: 0.875rem; font-weight: 600; display: flex; align-items: center; gap: 6px; transition: gap 0.2s; }
+    .svc-name {
+      font-family: var(--font-head);
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 16px;
+      letter-spacing: -0.01em;
+    }
+    .svc-desc {
+      font-size: 0.875rem;
+      color: var(--gray-2);
+      line-height: 1.8;
+      margin-bottom: 32px;
+    }
+    .svc-arrow {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: gap 0.2s;
+    }
     .svc-card[data-svc="assetry"] .svc-arrow { color: var(--assetry); }
     .svc-card[data-svc="habee"]   .svc-arrow { color: var(--habee); }
     .svc-card[data-svc="fridge"]  .svc-arrow { color: var(--fridge); }
-    .svc-card:hover .svc-arrow { gap: 12px; }
+    .svc-card:hover .svc-arrow { gap: 14px; }
+
+    /* Bottom accent bar */
+    .svc-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 1px;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+    .svc-card[data-svc="assetry"]::after { background: var(--assetry); }
+    .svc-card[data-svc="habee"]::after   { background: var(--habee); }
+    .svc-card[data-svc="fridge"]::after  { background: var(--fridge); }
+    .svc-card:hover::after { transform: scaleX(1); }
 
     /* ── CTA ── */
     .cta-section {
-      padding: 120px 0; text-align: center; position: relative; overflow: hidden;
+      padding: 140px 0;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid var(--border);
     }
+    .cta-inner {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 80px;
+      align-items: center;
+    }
+    .cta-title {
+      font-family: var(--font-head);
+      font-size: clamp(2.4rem, 4vw, 3.4rem);
+      font-weight: 600;
+      color: var(--white);
+      line-height: 1.12;
+    }
+    .cta-title em { font-style: italic; color: var(--a); }
+    .cta-actions { display: flex; flex-direction: column; gap: 12px; align-items: flex-end; }
+
+    /* Background texture */
     .cta-section::before {
-      content: ''; position: absolute;
-      top: 50%; left: 50%; transform: translate(-50%, -50%);
-      width: 800px; height: 400px;
-      background: radial-gradient(ellipse, rgba(232,131,58,0.1) 0%, transparent 70%);
+      content: '';
+      position: absolute;
+      right: 0; top: 0; bottom: 0;
+      width: 50%;
+      background: linear-gradient(to left, rgba(242,140,56,0.02), transparent);
       pointer-events: none;
     }
-    .cta-section .label, .cta-section .section-title { position: relative; }
-    .cta-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-top: 40px; }
 
     @media (max-width: 900px) {
-      .hero-title { font-size: clamp(2.4rem, 10vw, 4rem); }
-      .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
-      .stat-item { border-right: none; border-bottom: 1px solid var(--border); padding: 20px 0; text-align: left; }
-      .mission-grid { grid-template-columns: 1fr; gap: 40px; }
-      .mission-visual { display: none; }
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-right { display: none; }
+      .hero-left { padding: 80px 0 60px; }
+      .mission-inner { grid-template-columns: 1fr; gap: 60px; }
+      .services-head { grid-template-columns: 1fr; gap: 24px; }
+      .services-head-right { align-items: flex-start; }
+      .services-head-desc { text-align: left; }
       .services-grid { grid-template-columns: 1fr; }
-      .services-header { flex-direction: column; align-items: flex-start; gap: 20px; }
+      .cta-inner { grid-template-columns: 1fr; gap: 36px; }
+      .cta-actions { align-items: flex-start; flex-direction: row; flex-wrap: wrap; }
     }
   </style>
 </head>
@@ -207,10 +460,12 @@
 <header class="site-header">
   <div class="container">
     <nav class="nav">
-      <a href="index.html" class="nav-logo"><span>SEjAI</span></a>
+      <a href="index.html" class="nav-logo">
+        <img src="logo.png" alt="SEjAI" class="nav-logo-img">
+      </a>
       <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
-        <li><a href="pages/services/index.html">Services</a></li>
+        <li><a href="pages/services.html">Services</a></li>
         <li><a href="pages/about.html">About</a></li>
         <li><a href="pages/contact.html" class="nav-cta">Contact</a></li>
       </ul>
@@ -221,90 +476,154 @@
 
 <!-- ── Hero ── -->
 <section class="hero">
-  <div class="hero-bg">
-    <div class="hero-bg-glow g1"></div>
-    <div class="hero-bg-glow g2"></div>
-  </div>
-  <div class="container">
-    <div class="hero-content">
-      <div class="hero-badge fade-up">
-        <span class="hero-badge-dot"></span>
-        AI-Powered Software for Real Life
-      </div>
+  <div class="hero-line"></div>
+  <div class="container" style="grid-column:1/-1; display:grid; grid-template-columns:1fr 1fr; gap:0; height:100%;">
+    <div class="hero-left">
+      <div class="hero-eyebrow fade-up">IT × プロダクト × ライフスタイル</div>
       <h1 class="hero-title fade-up">
-        Build Smarter.<br>
-        Live <span class="highlight">Better.</span>
+        人と世界を<br>
+        <em>繋げる。</em>
+        <span class="sub">ITを起点に、人々の「生活」をアップデートする<br>プロダクトスタジオ</span>
       </h1>
-      <p class="hero-desc fade-up">
-        SEjAI は、ITを起点に様々なプロダクトで人々の「生活」を
-        アップデートするソフトウェアカンパニーです。
-      </p>
       <div class="hero-actions fade-up">
-        <a href="pages/services/index.html" class="btn btn-primary">サービスを見る →</a>
-        <a href="pages/about.html" class="btn btn-ghost">About SEjAI</a>
+        <a href="pages/services.html" class="btn btn-primary">サービスを見る →</a>
+        <a href="pages/about.html" class="btn btn-ghost">SEjAI について</a>
       </div>
+    </div>
+    <div class="hero-right fade-in">
+      <div class="hero-visual">
+        <div class="hero-visual-bg"></div>
 
-      <div class="hero-services fade-up">
-        <div class="hero-service-pill">
-          <span class="pill-dot" style="background:var(--assetry)"></span>Assetry
+        <!-- SVG connection lines -->
+        <div class="hero-canvas">
+          <svg viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+            <!-- Lines from center to nodes -->
+            <line x1="250" y1="250" x2="80" y2="120" stroke="rgba(242,140,56,0.12)" stroke-width="1"/>
+            <line x1="250" y1="250" x2="250" y2="80" stroke="rgba(242,140,56,0.12)" stroke-width="1"/>
+            <line x1="250" y1="250" x2="420" y2="120" stroke="rgba(242,140,56,0.12)" stroke-width="1"/>
+            <line x1="250" y1="250" x2="80" y2="380" stroke="rgba(242,140,56,0.12)" stroke-width="1"/>
+            <line x1="250" y1="250" x2="250" y2="420" stroke="rgba(242,140,56,0.12)" stroke-width="1"/>
+            <line x1="250" y1="250" x2="420" y2="380" stroke="rgba(242,140,56,0.12)" stroke-width="1"/>
+            <!-- Node circles -->
+            <circle cx="80" cy="120" r="18" stroke="rgba(255,255,255,0.07)" stroke-width="1" fill="rgba(255,255,255,0.02)"/>
+            <circle cx="250" cy="80" r="18" stroke="rgba(255,255,255,0.07)" stroke-width="1" fill="rgba(255,255,255,0.02)"/>
+            <circle cx="420" cy="120" r="18" stroke="rgba(255,255,255,0.07)" stroke-width="1" fill="rgba(255,255,255,0.02)"/>
+            <circle cx="80" cy="380" r="18" stroke="rgba(255,255,255,0.07)" stroke-width="1" fill="rgba(255,255,255,0.02)"/>
+            <circle cx="250" cy="420" r="18" stroke="rgba(255,255,255,0.07)" stroke-width="1" fill="rgba(255,255,255,0.02)"/>
+            <circle cx="420" cy="380" r="18" stroke="rgba(255,255,255,0.07)" stroke-width="1" fill="rgba(255,255,255,0.02)"/>
+            <!-- Center ring -->
+            <circle cx="250" cy="250" r="56" stroke="rgba(242,140,56,0.25)" stroke-width="1" fill="rgba(242,140,56,0.04)"/>
+            <circle cx="250" cy="250" r="72" stroke="rgba(242,140,56,0.08)" stroke-width="1" fill="none"/>
+            <!-- Animated dot along one line -->
+            <circle r="3" fill="rgba(242,140,56,0.7)">
+              <animateMotion dur="4s" repeatCount="indefinite" calcMode="linear">
+                <mpath href="#path1"/>
+              </animateMotion>
+            </circle>
+            <path id="path1" d="M250,250 L80,120" style="display:none"/>
+            <circle r="3" fill="rgba(242,140,56,0.5)">
+              <animateMotion dur="6s" repeatCount="indefinite" calcMode="linear" begin="2s">
+                <mpath href="#path2"/>
+              </animateMotion>
+            </circle>
+            <path id="path2" d="M250,250 L420,380" style="display:none"/>
+          </svg>
         </div>
-        <div class="hero-service-pill">
-          <span class="pill-dot" style="background:var(--habee)"></span>Habee
+
+        <!-- Center logo -->
+        <div class="hero-center">
+          <div class="hero-center-ring">
+            <img src="logo.png" alt="SEjAI" class="hero-center-logo">
+          </div>
         </div>
-        <div class="hero-service-pill">
-          <span class="pill-dot" style="background:var(--fridge)"></span>FridgeChef
+
+        <!-- Outer node labels -->
+        <div style="position:absolute; top:13%; left:8%; text-align:center;">
+          <div style="font-size:0.625rem; text-transform:uppercase; letter-spacing:0.12em; color:var(--gray-3);">Japan</div>
+        </div>
+        <div style="position:absolute; top:8%; left:50%; transform:translateX(-50%); text-align:center;">
+          <div style="font-size:0.625rem; text-transform:uppercase; letter-spacing:0.12em; color:var(--gray-3);">Life</div>
+        </div>
+        <div style="position:absolute; top:13%; right:8%; text-align:center;">
+          <div style="font-size:0.625rem; text-transform:uppercase; letter-spacing:0.12em; color:var(--gray-3);">India</div>
+        </div>
+        <div style="position:absolute; bottom:13%; left:8%; text-align:center;">
+          <div style="font-size:0.625rem; text-transform:uppercase; letter-spacing:0.12em; color:var(--gray-3);">Tech</div>
+        </div>
+        <div style="position:absolute; bottom:8%; left:50%; transform:translateX(-50%); text-align:center;">
+          <div style="font-size:0.625rem; text-transform:uppercase; letter-spacing:0.12em; color:var(--gray-3);">People</div>
+        </div>
+        <div style="position:absolute; bottom:13%; right:8%; text-align:center;">
+          <div style="font-size:0.625rem; text-transform:uppercase; letter-spacing:0.12em; color:var(--gray-3);">World</div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ── Stats ── -->
-<div class="stats-section">
-  <div class="container">
-    <div class="stats-grid">
-      <div class="stat-item fade-up">
-        <div class="stat-num">3<span>+</span></div>
-        <div class="stat-lbl">プロダクト展開中</div>
-      </div>
-      <!-- <div class="stat-item fade-up">
-        <div class="stat-num">10<span>K+</span></div>
-        <div class="stat-lbl">月間アクティブユーザー</div>
-      </div> -->
-      <div class="stat-item fade-up">
-        <div class="stat-num">99<span>%</span></div>
-        <div class="stat-lbl">サービス稼働率</div>
-      </div>
-      <!-- <div class="stat-item fade-up">
-        <div class="stat-num">24<span>/7</span></div>
-        <div class="stat-lbl">AIが常時稼働</div>
-      </div> -->
-    </div>
+<!-- ── Marquee ── -->
+<div class="marquee-section">
+  <div class="marquee-track">
+    <div class="marquee-item"><span class="marquee-item-accent">SEjAI</span> Assetry</div>
+    <div class="marquee-item">人と世界を繋げる</div>
+    <div class="marquee-item"><span class="marquee-item-accent">SEjAI</span> Habee</div>
+    <div class="marquee-item">IT × Life Update</div>
+    <div class="marquee-item"><span class="marquee-item-accent">SEjAI</span> FridgeChef</div>
+    <div class="marquee-item">Connecting People & World</div>
+    <div class="marquee-item"><span class="marquee-item-accent">SEjAI</span> Assetry</div>
+    <div class="marquee-item">人と世界を繋げる</div>
+    <div class="marquee-item"><span class="marquee-item-accent">SEjAI</span> Habee</div>
+    <div class="marquee-item">IT × Life Update</div>
+    <div class="marquee-item"><span class="marquee-item-accent">SEjAI</span> FridgeChef</div>
+    <div class="marquee-item">Connecting People & World</div>
   </div>
 </div>
 
 <!-- ── Mission ── -->
 <section class="mission-section">
   <div class="container">
-    <div class="mission-grid">
-      <div class="mission-visual fade-up">
-        <div class="mission-logo-big">SEjAI</div>
-        <div class="mission-corner tl">Assetry 💹</div>
-        <div class="mission-corner tr">Habee 🌿</div>
-        <div class="mission-corner bl">FridgeChef 🍳</div>
-      </div>
+    <div class="mission-inner">
       <div class="fade-up">
         <span class="label">Our Mission</span>
-        <h2 class="section-title">AIで日常を、<br><em>もっと賢く。</em></h2>
-        <p class="section-lead" style="margin-top:20px;">
-          テクノロジーは難しくあるべきではありません。SEjAI は日常のあらゆる場面に
-          AIをさりげなく組み込み、誰もが恩恵を受けられるプロダクトを作り続けます。
+        <p class="mission-quote">
+          ITを起点に、<br>
+          様々なプロダクトで<br>人々の<em>「生活」</em>を<br>アップデートする。
         </p>
-        <p style="font-size:0.9375rem; color:var(--gray-2); margin-top:16px; line-height:1.8;">
-          「資産を増やしたい」「良い習慣を身につけたい」「食材を無駄にしたくない」——
-          そんなシンプルな願いに、最先端のAIで応えます。
+        <div class="mission-divider"></div>
+        <p class="mission-body">
+          テクノロジーは、人を孤立させるためではなく、
+          人と人、人と世界を繋げるためにある。
+          SEjAIはその信念のもと、日常のあらゆる場面に
+          溶け込むプロダクトを作り続けます。
         </p>
-        <a href="pages/about.html" class="btn btn-ghost" style="margin-top:32px;">SEjAI を知る →</a>
+        <div class="mission-tags">
+          <span class="mission-tag">人と世界を繋げる</span>
+          <span class="mission-tag">シンプルに、本質的に</span>
+          <span class="mission-tag">生活をアップデート</span>
+        </div>
+      </div>
+      <div class="mission-stats fade-up">
+        <div class="mission-stat">
+          <div class="mission-stat-num">3<span>+</span></div>
+          <div class="mission-stat-label">
+            <strong>プロダクト展開中</strong>
+            資産・習慣・食をテーマにした<br>3つのプロダクト
+          </div>
+        </div>
+        <div class="mission-stat">
+          <div class="mission-stat-num">99<span>%</span></div>
+          <div class="mission-stat-label">
+            <strong>サービス稼働率</strong>
+            安定した基盤で、<br>毎日の生活を支える
+          </div>
+        </div>
+        <div class="mission-stat">
+          <div class="mission-stat-num">2<span>ヶ国</span></div>
+          <div class="mission-stat-label">
+            <strong>展開マーケット</strong>
+            日本・インドを起点に<br>世界へつながる
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -313,33 +632,36 @@
 <!-- ── Services ── -->
 <section class="services-section">
   <div class="container">
-    <div class="services-header">
-      <div>
-        <span class="label fade-up">Services</span>
-        <h2 class="section-title fade-up">3つの<em>プロダクト</em></h2>
+    <div class="services-head">
+      <div class="fade-up">
+        <span class="label">Services</span>
+        <h2 class="section-title">3つの<em>プロダクト</em></h2>
       </div>
-      <a href="pages/services/index.html" class="btn btn-ghost fade-up">すべて見る →</a>
+      <div class="services-head-right fade-up">
+        <p class="services-head-desc">資産・習慣・食——日常に根ざした課題に、ITで答える。</p>
+        <a href="pages/services.html" class="btn btn-ghost">すべて見る →</a>
+      </div>
     </div>
     <div class="services-grid">
       <div class="svc-card fade-up" data-svc="assetry" onclick="location.href='pages/services.html#assetry'">
-        <div class="svc-icon">💹</div>
+        <div class="svc-card-num">01</div>
+        <div class="svc-tag-line">Digital Asset Marketplace</div>
         <div class="svc-name">Assetry</div>
-        <div class="svc-tag">Digital Asset Marketplace</div>
-        <p class="svc-desc">デジタル資産の売買・管理をシームレスに。AIが市場を分析し、最適なタイミングをアドバイスします。</p>
+        <p class="svc-desc">デジタル資産の売買・管理をシームレスに。クリエイターから投資家まで、安心・安全に取引できるマーケットプレイス。</p>
         <div class="svc-arrow">詳しく見る →</div>
       </div>
       <div class="svc-card fade-up" data-svc="habee" onclick="location.href='pages/services.html#habee'">
-        <div class="svc-icon">🌿</div>
+        <div class="svc-card-num">02</div>
+        <div class="svc-tag-line">Habit Tracking App</div>
         <div class="svc-name">Habee</div>
-        <div class="svc-tag">Habit Tracking App</div>
-        <p class="svc-desc">習慣化を科学する。AIが行動パターンを学習し、あなただけの最適なリマインドと改善提案を届けます。</p>
+        <p class="svc-desc">習慣化を科学するモバイルアプリ。毎日の小さな積み重ねが、人生を変える大きな変化につながります。</p>
         <div class="svc-arrow">詳しく見る →</div>
       </div>
       <div class="svc-card fade-up" data-svc="fridge" onclick="location.href='pages/services.html#fridgechef'">
-        <div class="svc-icon">🍳</div>
+        <div class="svc-card-num">03</div>
+        <div class="svc-tag-line">Recipe Assistant</div>
         <div class="svc-name">FridgeChef</div>
-        <div class="svc-tag">AI Recipe Assistant</div>
-        <p class="svc-desc">冷蔵庫の食材を入力するだけで、AIが今夜のレシピを提案。食品ロスを減らし、毎日の料理を楽しくします。</p>
+        <p class="svc-desc">冷蔵庫の食材から、今夜のレシピを提案。食品ロスを減らし、毎日の料理を楽しくする食生活サポートアプリ。</p>
         <div class="svc-arrow">詳しく見る →</div>
       </div>
     </div>
@@ -349,14 +671,18 @@
 <!-- ── CTA ── -->
 <section class="cta-section">
   <div class="container">
-    <span class="label fade-up">Get Started</span>
-    <h2 class="section-title fade-up">まずは<em>触れてみてください。</em></h2>
-    <p class="section-lead fade-up" style="margin:16px auto 0; text-align:center; max-width:44ch;">
-      SEjAI のプロダクトはすべて無料プランからお試しいただけます。
-    </p>
-    <div class="cta-actions fade-up">
-      <a href="pages/services/index.html" class="btn btn-primary">サービス一覧を見る →</a>
-      <a href="pages/contact.html" class="btn btn-ghost">お問い合わせ</a>
+    <div class="cta-inner fade-up">
+      <div>
+        <span class="label">Get Started</span>
+        <h2 class="cta-title">まずは<em>触れてみて</em><br>ください。</h2>
+        <p class="section-lead" style="margin-top:16px;">
+          SEjAIのプロダクトはすべて、<br>無料プランからお試しいただけます。
+        </p>
+      </div>
+      <div class="cta-actions fade-up">
+        <a href="pages/services.html" class="btn btn-primary">サービス一覧 →</a>
+        <a href="pages/contact.html" class="btn btn-ghost">お問い合わせ</a>
+      </div>
     </div>
   </div>
 </section>
@@ -366,14 +692,16 @@
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <a href="index.html" class="nav-logo"><span>SEjAI</span></a>
-        <p class="footer-tagline">AI-Powered Software for Real Life.<br>資産・習慣・食をアップデートする。</p>
+        <a href="index.html" class="nav-logo">
+          <img src="logo.png" alt="SEjAI" class="nav-logo-img">
+        </a>
+        <p class="footer-tagline">人と世界を繋げる。<br>ITを起点に、生活をアップデートする。</p>
       </div>
       <div class="footer-col">
         <h4>Services</h4>
-        <a href="pages/services/assetry.html">Assetry</a>
-        <a href="pages/services/habee.html">Habee</a>
-        <a href="pages/services/fridgechef.html">FridgeChef</a>
+        <a href="pages/services.html#assetry">Assetry</a>
+        <a href="pages/services.html#habee">Habee</a>
+        <a href="pages/services.html#fridgechef">FridgeChef</a>
       </div>
       <div class="footer-col">
         <h4>Company</h4>
@@ -384,7 +712,7 @@
       <div class="footer-col">
         <h4>Contact</h4>
         <a href="pages/contact.html">お問い合わせ</a>
-        <a href="mailto:hello@sejai.co.jp">hello@sejai.co.jp</a>
+        <a href="mailto:sejaiapps2022@gmail.com">sejaiapps2022@gmail.com</a>
       </div>
     </div>
     <div class="footer-bottom">

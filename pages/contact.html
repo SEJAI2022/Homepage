@@ -7,70 +7,79 @@
   <link rel="stylesheet" href="../css/style.css">
   <style>
     .contact-section { padding: 80px 0 120px; }
-    .contact-grid { display: grid; grid-template-columns: 1fr 1.6fr; gap: 60px; align-items: start; }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 72px; align-items: start; }
 
-    /* ── Info ── */
-    .contact-info { position: sticky; top: 96px; }
-    .contact-info-card {
-      background: var(--bg-2); border: 1px solid var(--border);
-      border-radius: 16px; padding: 36px; margin-bottom: 20px;
+    /* Info */
+    .contact-info { position: sticky; top: 88px; }
+    .contact-lead {
+      font-size: 0.9375rem;
+      color: var(--gray-2);
+      line-height: 1.85;
+      margin-bottom: 40px;
     }
-    .info-row { display: flex; gap: 14px; align-items: flex-start; padding: 16px 0; border-bottom: 1px solid var(--border); }
-    .info-row:last-child { border-bottom: none; padding-bottom: 0; }
+    .info-list { display: flex; flex-direction: column; gap: 0; border: 1px solid var(--border); }
+    .info-row {
+      display: flex; gap: 18px; align-items: flex-start;
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--border);
+    }
+    .info-row:last-child { border-bottom: none; }
     .info-icon {
-      width: 38px; height: 38px; border-radius: 8px;
-      background: var(--bg-3); border: 1px solid var(--border);
-      display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0;
+      width: 36px; height: 36px;
+      border: 1px solid var(--border-h);
+      border-radius: var(--radius);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.875rem; flex-shrink: 0;
+      color: var(--a);
     }
-    .info-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gray-3); font-weight: 600; margin-bottom: 4px; }
+    .info-label { font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.14em; color: var(--gray-3); font-weight: 600; margin-bottom: 4px; }
     .info-val { font-size: 0.9rem; color: var(--gray-1); line-height: 1.5; }
 
-    .service-links { display: flex; flex-direction: column; gap: 10px; }
-    .service-link-pill {
-      display: flex; align-items: center; gap: 10px;
-      background: var(--bg-2); border: 1px solid var(--border);
-      border-radius: 10px; padding: 12px 16px;
+    .service-links { display: flex; flex-direction: column; gap: 8px; margin-top: 28px; }
+    .service-link {
+      display: flex; align-items: center; gap: 12px;
+      padding: 12px 18px;
+      border: 1px solid var(--border);
       font-size: 0.875rem; font-weight: 500; color: var(--gray-2);
       transition: all 0.2s; cursor: pointer;
     }
-    .service-link-pill:hover { border-color: var(--border-h); color: var(--white); }
-    .slp-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+    .service-link:hover { border-color: var(--border-h); color: var(--white); background: var(--bg-2); }
+    .slp-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+    .service-links-label { font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.16em; color: var(--gray-3); font-weight: 600; margin-bottom: 10px; }
 
-    /* ── Form ── */
-    .form-card {
-      background: var(--bg-2); border: 1px solid var(--border);
-      border-radius: 16px; padding: 48px;
+    /* Form */
+    .form-wrap { border: 1px solid var(--border); padding: 48px; }
+    .form-wrap h2 {
+      font-family: var(--font-head);
+      font-size: 1.8rem; font-weight: 600;
+      color: var(--white); margin-bottom: 6px;
     }
-    .form-card h2 { font-family: var(--font-head); font-size: 1.4rem; font-weight: 700; color: var(--white); margin-bottom: 6px; }
-    .form-subtitle { font-size: 0.875rem; color: var(--gray-3); margin-bottom: 36px; }
+    .form-subtitle { font-size: 0.8125rem; color: var(--gray-3); margin-bottom: 36px; }
     .form-subtitle span { color: var(--a); }
 
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
     .form-group { margin-bottom: 20px; }
-    .form-group label { display: block; font-size: 0.8125rem; font-weight: 600; color: var(--gray-2); margin-bottom: 8px; letter-spacing: 0.02em; }
-    .form-group label .req { color: var(--a); margin-left: 3px; }
+    .form-group label { display: block; font-size: 0.8rem; font-weight: 600; color: var(--gray-2); margin-bottom: 8px; letter-spacing: 0.04em; }
+    .form-group label .req { color: var(--a); margin-left: 2px; }
 
     .form-group input,
     .form-group select,
     .form-group textarea {
       width: 100%; padding: 11px 16px;
-      border: 1px solid var(--border); border-radius: var(--radius);
+      border: 1px solid var(--border); border-radius: 0;
       font-family: var(--font-body); font-size: 0.9375rem; color: var(--gray-1);
-      background: var(--bg-3); outline: none;
-      transition: border-color 0.2s, box-shadow 0.2s;
+      background: var(--bg-1); outline: none;
+      transition: border-color 0.2s;
       appearance: none;
     }
     .form-group input:focus,
     .form-group select:focus,
-    .form-group textarea:focus {
-      border-color: var(--a);
-      box-shadow: 0 0 0 3px rgba(79,140,255,0.15);
-    }
+    .form-group textarea:focus { border-color: var(--a); }
     .form-group input::placeholder,
     .form-group textarea::placeholder { color: var(--gray-3); }
-    .form-group textarea { resize: vertical; min-height: 130px; }
+    .form-group textarea { resize: vertical; min-height: 140px; }
     .form-group select {
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%234a5168' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23504a42' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
       background-repeat: no-repeat; background-position: right 14px center; padding-right: 38px;
     }
 
@@ -79,19 +88,19 @@
     .privacy-row label { font-size: 0.8125rem; color: var(--gray-3); line-height: 1.65; }
     .privacy-row a { color: var(--a); }
 
-    .submit-btn { width: 100%; padding: 15px; font-size: 1rem; letter-spacing: 0.02em; }
+    .submit-btn { width: 100%; padding: 15px; font-size: 0.9375rem; letter-spacing: 0.04em; border-radius: 0; }
 
-    .form-success { display: none; text-align: center; padding: 48px 20px; }
+    .form-success { display: none; text-align: center; padding: 60px 20px; }
     .form-success.show { display: block; }
-    .success-icon { font-size: 3rem; margin-bottom: 18px; }
-    .success-title { font-family: var(--font-head); font-size: 1.6rem; font-weight: 700; color: var(--white); margin-bottom: 12px; }
+    .success-icon { font-size: 2.4rem; margin-bottom: 20px; }
+    .success-title { font-family: var(--font-head); font-size: 2rem; font-weight: 600; color: var(--white); margin-bottom: 12px; }
     .success-text { font-size: 0.9375rem; color: var(--gray-2); line-height: 1.75; }
 
     @media (max-width: 900px) {
-      .contact-grid { grid-template-columns: 1fr; gap: 32px; }
+      .contact-grid { grid-template-columns: 1fr; gap: 40px; }
       .contact-info { position: static; }
-      .form-card { padding: 28px 20px; }
-      .form-row { grid-template-columns: 1fr; gap: 0; }
+      .form-wrap { padding: 28px 20px; }
+      .form-row { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -100,10 +109,12 @@
 <header class="site-header">
   <div class="container">
     <nav class="nav">
-      <a href="../index.html" class="nav-logo">SEj<span>AI</span></a>
+      <a href="../index.html" class="nav-logo">
+        <img src="../logo.png" alt="SEjAI" class="nav-logo-img">
+      </a>
       <ul class="nav-links">
         <li><a href="../index.html">Home</a></li>
-        <li><a href="services/index.html">Services</a></li>
+        <li><a href="services.html">Services</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="contact.html" class="nav-cta">Contact</a></li>
       </ul>
@@ -116,9 +127,9 @@
   <div class="container">
     <span class="label fade-up">Contact</span>
     <h1 class="section-title fade-up"><em>連絡して</em>ください。</h1>
-    <p class="section-lead fade-up" style="margin:16px auto 0; text-align:center;">
+    <p class="section-lead fade-up" style="margin:20px auto 0; text-align:center;">
       プロダクトの質問・導入相談・採用・取材など、どんなことでもお気軽に。<br>
-      24時間以内に返信します（土日祝除く）。
+      3営業日以内にご返信いたします。
     </p>
   </div>
 </div>
@@ -128,9 +139,14 @@
     <div class="contact-grid">
 
       <div class="contact-info fade-up">
-        <div class="contact-info-card">
+        <p class="contact-lead">
+          SEjAI に関するご質問、プロダクトのご相談、
+          採用に関するお問い合わせなど、
+          何でもお気軽にご連絡ください。
+        </p>
+        <div class="info-list">
           <div class="info-row">
-            <div class="info-icon">✉️</div>
+            <div class="info-icon">✉</div>
             <div>
               <div class="info-label">Email</div>
               <div class="info-val">sejaiapps2022@gmail.com</div>
@@ -140,9 +156,7 @@
             <div class="info-icon">📍</div>
             <div>
               <div class="info-label">Location</div>
-              <div class="info-val">
-                <!-- 〒150-0001<br -->
-                神奈川県横浜市</div>
+              <div class="info-val">神奈川県横浜市</div>
             </div>
           </div>
           <div class="info-row">
@@ -154,22 +168,24 @@
           </div>
         </div>
 
-        <p style="font-size:0.75rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--gray-3); font-weight:600; margin-bottom:12px;">サービスについて</p>
-        <div class="service-links">
-          <div class="service-link-pill" onclick="document.getElementById('category').value='Assetry について'">
-            <span class="slp-dot" style="background:var(--assetry)"></span>💹 Assetry について相談
-          </div>
-          <div class="service-link-pill" onclick="document.getElementById('category').value='Habee について'">
-            <span class="slp-dot" style="background:var(--habee)"></span>🌿 Habee について相談
-          </div>
-          <div class="service-link-pill" onclick="document.getElementById('category').value='FridgeChef について'">
-            <span class="slp-dot" style="background:var(--fridge)"></span>🍳 FridgeChef について相談
+        <div style="margin-top:36px;">
+          <p class="service-links-label">サービスについて相談する</p>
+          <div class="service-links">
+            <div class="service-link" onclick="document.getElementById('category').value='Assetry について'">
+              <span class="slp-dot" style="background:var(--assetry)"></span>Assetry について
+            </div>
+            <div class="service-link" onclick="document.getElementById('category').value='Habee について'">
+              <span class="slp-dot" style="background:var(--habee)"></span>Habee について
+            </div>
+            <div class="service-link" onclick="document.getElementById('category').value='FridgeChef について'">
+              <span class="slp-dot" style="background:var(--fridge)"></span>FridgeChef について
+            </div>
           </div>
         </div>
       </div>
 
       <div class="fade-up">
-        <div class="form-card">
+        <div class="form-wrap">
           <h2>お問い合わせ</h2>
           <p class="form-subtitle"><span>*</span> は必須項目です</p>
 
@@ -207,17 +223,17 @@
             </div>
             <div class="privacy-row">
               <input type="checkbox" id="pp">
-              <label for="pp"><a href="services/assetry.html#privacy" target="_blank">プライバシーポリシー</a>に同意の上、送信します。</label>
+              <label for="pp"><a href="services.html#privacy" target="_blank">プライバシーポリシー</a>に同意の上、送信します。</label>
             </div>
             <button class="btn btn-primary submit-btn" onclick="handleSubmit()">送信する →</button>
           </div>
 
           <div class="form-success" id="formSuccess">
-            <div class="success-icon">✅</div>
-            <div class="success-title">送信完了！</div>
+            <div class="success-icon">✓</div>
+            <div class="success-title">送信完了</div>
             <p class="success-text">
               お問い合わせありがとうございます。<br>
-              24時間以内（平日）にご返信いたします。
+              3営業日以内にご返信いたします。
             </p>
           </div>
         </div>
@@ -230,14 +246,16 @@
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <a href="../index.html" class="nav-logo">SEj<span style="color:var(--a)">AI</span></a>
-        <p class="footer-tagline">AI-Powered Software for Real Life.<br>資産・習慣・食をアップデートする。</p>
+        <a href="../index.html" class="nav-logo">
+          <img src="../logo.png" alt="SEjAI" class="nav-logo-img">
+        </a>
+        <p class="footer-tagline">人と世界を繋げる。<br>ITを起点に、生活をアップデートする。</p>
       </div>
       <div class="footer-col">
         <h4>Services</h4>
-        <a href="services/assetry.html">Assetry</a>
-        <a href="services/habee.html">Habee</a>
-        <a href="services/fridgechef.html">FridgeChef</a>
+        <a href="services.html#assetry">Assetry</a>
+        <a href="services.html#habee">Habee</a>
+        <a href="services.html#fridgechef">FridgeChef</a>
       </div>
       <div class="footer-col">
         <h4>Company</h4>
@@ -247,13 +265,13 @@
       <div class="footer-col">
         <h4>Contact</h4>
         <a href="contact.html">お問い合わせ</a>
-        <a href="mailto:hello@sejai.co.jp">hello@sejai.co.jp</a>
+        <a href="mailto:sejaiapps2022@gmail.com">sejaiapps2022@gmail.com</a>
       </div>
     </div>
     <div class="footer-bottom">
       <span>© 2025 SEjAI Inc. All rights reserved.</span>
       <div class="footer-bottom-links">
-        <a href="services/assetry.html#privacy">Privacy Policy</a>
+        <a href="services.html#privacy">Privacy Policy</a>
         <a href="#">Terms</a>
       </div>
     </div>
@@ -270,7 +288,6 @@
     const pp = document.getElementById('pp').checked;
     if (!name || !email || !cat || !msg) { alert('必須項目をすべてご入力ください。'); return; }
     if (!pp) { alert('プライバシーポリシーへの同意が必要です。'); return; }
-    // ★ バックエンド送信処理をここに実装（Formspree / 独自API等）
     document.getElementById('contactForm').style.display = 'none';
     document.getElementById('formSuccess').classList.add('show');
   }
