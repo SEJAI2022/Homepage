@@ -229,7 +229,7 @@
     }
     .mission-quote {
       font-family: var(--font-head);
-      font-size: clamp(2.8rem, 5vw, 4.2rem);
+      font-size: clamp(2.5rem, 5vw, 4.1rem);
       font-weight: 600;
       line-height: 1.1;
       color: var(--white);
@@ -444,7 +444,15 @@
     @media (max-width: 900px) {
       .hero { grid-template-columns: 1fr; min-height: auto; }
       .hero-right { display: none; }
-      .hero-left { padding: 80px 0 60px; }
+      .hero-left { padding: 72px 0 60px; }
+      .hero-title {
+        font-size: clamp(2.4rem, 10vw, 3.6rem);
+      }
+      .hero-title span.sub {
+        font-size: 0.9rem;
+        max-width: 32ch;
+        letter-spacing: 0.01em;
+      }
       .mission-inner { grid-template-columns: 1fr; gap: 60px; }
       .services-head { grid-template-columns: 1fr; gap: 24px; }
       .services-head-right { align-items: flex-start; }
@@ -452,6 +460,9 @@
       .services-grid { grid-template-columns: 1fr; }
       .cta-inner { grid-template-columns: 1fr; gap: 36px; }
       .cta-actions { align-items: flex-start; flex-direction: row; flex-wrap: wrap; }
+      .hero .container[style] {
+        grid-template-columns: 1fr !important;
+      }
     }
   </style>
 </head>
@@ -481,9 +492,8 @@
     <div class="hero-left">
       <div class="hero-eyebrow fade-up">IT × プロダクト × ライフスタイル</div>
       <h1 class="hero-title fade-up">
-        人と世界を<br>
-        <em>繋げる。</em>
-        <span class="sub">ITを起点に、人々の「生活」をアップデートする<br>プロダクトスタジオ</span>
+        人と世界を<em>繋げる。</em>
+        <span class="sub">人々の「生活」をアップデートする<br>プロダクトスタジオ</span>
       </h1>
       <div class="hero-actions fade-up">
         <a href="pages/services.html" class="btn btn-primary">サービスを見る →</a>
@@ -587,7 +597,7 @@
         <span class="label">Our Mission</span>
         <p class="mission-quote">
           ITを起点に、<br>
-          様々なプロダクトで<br>人々の<em>「生活」</em>を<br>アップデートする。
+          人々の<em>「生活」</em>を<br>アップデートする。
         </p>
         <div class="mission-divider"></div>
         <p class="mission-body">
@@ -607,7 +617,7 @@
           <div class="mission-stat-num">3<span>+</span></div>
           <div class="mission-stat-label">
             <strong>プロダクト展開中</strong>
-            資産・習慣・食をテーマにした<br>3つのプロダクト
+            生活をテーマにした<br>3つのプロダクト
           </div>
         </div>
         <div class="mission-stat">

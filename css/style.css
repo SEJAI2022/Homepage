@@ -71,7 +71,7 @@ ul { list-style: none; }
   align-items: center;
   gap: 10px;
 }
-.nav-logo-img { height: 28px; width: auto; }
+.nav-logo-img { height: 28px; width: auto; margin: 20px;}
 .nav-logo-text {
   font-family: var(--font-body);
   font-size: 1rem;
