@@ -34,9 +34,9 @@
       border: 1px solid; margin-bottom: 20px;
       letter-spacing: 0.08em;
     }
-    .svc-badge.assetry { color: var(--assetry); border-color: rgba(79,140,255,0.3); background: rgba(79,140,255,0.06); }
+    .svc-badge.assetry { color: var(--assetry); border-color: rgba(249,115,22,0.3); background: rgba(249,115,22,0.06); }
     .svc-badge.habee   { color: var(--habee);   border-color: rgba(52,211,153,0.3); background: rgba(52,211,153,0.06); }
-    .svc-badge.fridge  { color: var(--fridge);  border-color: rgba(249,115,22,0.3); background: rgba(249,115,22,0.06); }
+    .svc-badge.fridge  { color: var(--fridge);  border-color: rgba(79,140,255,0.3); background: rgba(79,140,255,0.06); }
 
     .svc-block h2 {
       font-family: var(--font-head);
@@ -85,20 +85,20 @@
       content: ''; position: absolute; inset: 0; z-index: 0;
       background: radial-gradient(ellipse 60% 60% at 50% 50%, var(--glow-color, rgba(79,140,255,0.06)) 0%, transparent 70%);
     }
-    .svc-visual.assetry { --glow-color: rgba(79,140,255,0.07); }
+    .svc-visual.assetry { --glow-color: rgba(249,115,22,0.07); }
     .svc-visual.habee   { --glow-color: rgba(52,211,153,0.07); }
-    .svc-visual.fridge  { --glow-color: rgba(249,115,22,0.07); }
+    .svc-visual.fridge  { --glow-color: rgba(79,140,255,0.07); }
 
     /* 画像があるときはフォールバックを隠す */
     .svc-visual:has(img) .svc-visual-fallback { display: none; }
 
     .svc-cta-row { display: flex; gap: 12px; margin-top: 32px; flex-wrap: wrap; }
     .btn-assetry { background: var(--assetry); color: var(--black); border-radius: 0; }
-    .btn-assetry:hover { opacity:0.85; transform:translateY(-1px); box-shadow: 0 6px 20px rgba(79,140,255,0.25); }
+    .btn-assetry:hover { opacity:0.85; transform:translateY(-1px); box-shadow: 0 6px 20px rgba(249,115,22,0.25); }
     .btn-habee   { background: var(--habee); color: var(--black); border-radius: 0; }
     .btn-habee:hover   { opacity:0.85; transform:translateY(-1px); box-shadow: 0 6px 20px rgba(52,211,153,0.25); }
     .btn-fridge  { background: var(--fridge); color: var(--black); border-radius: 0; }
-    .btn-fridge:hover  { opacity:0.85; transform:translateY(-1px); box-shadow: 0 6px 20px rgba(249,115,22,0.25); }
+    .btn-fridge:hover  { opacity:0.85; transform:translateY(-1px); box-shadow: 0 6px 20px rgba(79,140,255,0.25); }
     .btn-detail {
       background: transparent; color: var(--gray-1);
       border: 1px solid var(--border-h); border-radius: 0;
@@ -120,9 +120,9 @@
     }
     .pp-tab:last-child { border-right: none; }
     .pp-tab:hover { color: var(--white); background: var(--bg-2); }
-    .pp-tab.active.assetry { background: rgba(79,140,255,0.08); color: var(--assetry); }
+    .pp-tab.active.assetry { background: rgba(249,115,22,0.08); color: var(--assetry); }
     .pp-tab.active.habee   { background: rgba(52,211,153,0.08); color: var(--habee); }
-    .pp-tab.active.fridge  { background: rgba(249,115,22,0.08); color: var(--fridge); }
+    .pp-tab.active.fridge  { background: rgba(79,140,255,0.08); color: var(--fridge); }
 
     .pp-content { display: none; }
     .pp-content.active { display: block; }
@@ -203,7 +203,7 @@
     <!-- ── Habee ── -->
     <div class="svc-block flip" id="habee">
       <a href="services/habee.html" class="svc-visual habee fade-in">
-        <!-- ★ 画像を用意したら src を変更: img/services/habee-01.png -->
+        <img src="img/services/habee-01.png" alt="Habee">
         <div class="svc-visual-fallback">🌿</div>
       </a>
       <div class="svc-info fade-up">
@@ -243,7 +243,7 @@
         </div>
       </div>
       <a href="services/fridgechef.html" class="svc-visual fridge fade-in">
-        <!-- ★ 画像を用意したら src を変更: img/services/fridgechef-01.png -->
+        <img src="img/services/fridgechef-01.png" alt="FridgeChef">
         <div class="svc-visual-fallback">🍳</div>
       </a>
     </div>
