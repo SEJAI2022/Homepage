@@ -29,7 +29,7 @@
   <style>
     /*
       ★ このサービスのカラーテーマを設定
-      例: Assetry → #4f8cff  Habee → #34d399  FridgeChef → #f97316
+      例: Assetry → #ffc74f  Habee → #34d399  FridgeChef → #f97316
     */
     :root {
       --svc-color:        #4f8cff;
@@ -48,7 +48,9 @@
 <header class="site-header">
   <div class="container">
     <nav class="nav">
-      <a href="../../index.html" class="nav-logo">SEj<span>AI</span></a>
+      <a href="../../index.html" class="nav-logo">
+        <img src="../../logo.png" alt="SEjAI" class="nav-logo-img">
+      </a>
       <ul class="nav-links">
         <li><a href="../../index.html">Home</a></li>
         <li><a href="index.html">Services</a></li>
@@ -90,7 +92,7 @@
       </div>
       <div class="svc-hero-img-wrap fade-up">
         <!--
-          ★ 画像がある場合: <img> タグのコメントを解除して src を設定
+          ★ 画像がある場合: コメントを外して src を設定し、placeholder を削除
              <img src="../../img/services/servicename-hero.jpg" alt="ServiceName">
           ★ 画像がない場合: placeholder のまま
         -->
@@ -120,15 +122,15 @@
       <div class="fade-up">
         <!-- 補足情報・数値・カード等 -->
         <div style="display:flex; flex-direction:column; gap:16px;">
-          <div style="background:var(--bg-2); border:1px solid var(--border); border-radius:12px; padding:24px 28px;">
+          <div style="background:var(--bg-2); border:1px solid var(--border); border-left:3px solid var(--svc-color); border-radius:12px; padding:24px 28px;">
             <div style="font-size:0.75rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:var(--gray-3); margin-bottom:8px;">ポイント 1</div>
             <div style="font-size:0.9375rem; color:var(--gray-1); font-weight:500; line-height:1.5;">ここにサービスの強みや特徴を記載</div>
           </div>
-          <div style="background:var(--bg-2); border:1px solid var(--border); border-radius:12px; padding:24px 28px;">
+          <div style="background:var(--bg-2); border:1px solid var(--border); border-left:3px solid var(--svc-color); border-radius:12px; padding:24px 28px;">
             <div style="font-size:0.75rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:var(--gray-3); margin-bottom:8px;">ポイント 2</div>
             <div style="font-size:0.9375rem; color:var(--gray-1); font-weight:500; line-height:1.5;">ここにサービスの強みや特徴を記載</div>
           </div>
-          <div style="background:var(--bg-2); border:1px solid var(--border); border-radius:12px; padding:24px 28px;">
+          <div style="background:var(--bg-2); border:1px solid var(--border); border-left:3px solid var(--svc-color); border-radius:12px; padding:24px 28px;">
             <div style="font-size:0.75rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:var(--gray-3); margin-bottom:8px;">ポイント 3</div>
             <div style="font-size:0.9375rem; color:var(--gray-1); font-weight:500; line-height:1.5;">ここにサービスの強みや特徴を記載</div>
           </div>
@@ -190,7 +192,7 @@
     <div class="gallery-3 fade-up">
       <div class="gallery-img">
         <!--
-          ★ 画像差し替え: コメントを外して src を設定
+          ★ 画像差し替え: コメントを外して src を設定し、placeholder を削除
           <img src="../../img/services/servicename-01.jpg" alt="ServiceName スクリーンショット 1">
         -->
         <div class="gallery-img-placeholder"><span>🖼</span><p>Screenshot 01</p></div>
@@ -262,8 +264,10 @@
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <a href="../../index.html" class="nav-logo">SEj<span style="color:var(--a)">AI</span></a>
-        <p class="footer-tagline">AI-Powered Software for Real Life.<br>資産・習慣・食をアップデートする。</p>
+        <a href="../../index.html" class="nav-logo">
+          <img src="../../logo.png" alt="SEjAI" class="nav-logo-img">
+        </a>
+        <p class="footer-tagline">人と世界を繋げる。<br>ITを起点に、生活をアップデートする。</p>
       </div>
       <div class="footer-col">
         <h4>Services</h4>
@@ -280,7 +284,7 @@
       <div class="footer-col">
         <h4>Contact</h4>
         <a href="../contact.html">お問い合わせ</a>
-        <a href="mailto:hello@sejai.co.jp">hello@sejai.co.jp</a>
+        <a href="mailto:sejaiapps2022@gmail.com">sejaiapps2022@gmail.com</a>
       </div>
     </div>
     <div class="footer-bottom">
