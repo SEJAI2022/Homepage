@@ -13,24 +13,78 @@
     /* ── Hero ── */
     .hero {
       min-height: 100svh;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
+      display: flex;
       align-items: center;
       padding-top: var(--header-h);
       position: relative;
       overflow: hidden;
     }
-    .hero-left {
-      padding: 100px 0 100px;
-      position: relative; z-index: 1;
+
+    /* SVGビジュアルを背景レイヤーとして全体に敷く */
+    .hero-bg-visual {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
     }
-    .hero-right {
+    .hero-bg-visual svg {
+      position: absolute;
+      /* 右側に寄せて大きく表示 */
+      right: -5%;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 60%;
+      height: auto;
+      opacity: 0.6;
+    }
+
+    /* 左側にグラデーションマスクをかけてテキストと馴染ませる */
+    .hero-bg-visual::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to right,
+        var(--bg) 25%,
+        rgba(14,13,11,0.6) 55%,
+        rgba(14,13,11,0.1) 100%
+      );
+    }
+
+    /* Center ring label */
+    .hero-center-label {
+      position: absolute;
+      right: calc(50% - 50px);
+      top: 50%;
+      transform: translate(50%, -50%);
+      z-index: 1;
+      pointer-events: none;
+    }
+    .hero-center-ring-el {
+      width: 96px; height: 96px;
+      border-radius: 50%;
+      border: 1px solid rgba(242,140,56,0.35);
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(242,140,56,0.05);
       position: relative;
-      height: 100%;
-      min-height: 560px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    }
+    .hero-center-ring-el::before {
+      content: '';
+      position: absolute;
+      inset: -10px;
+      border-radius: 50%;
+      border: 1px solid rgba(242,140,56,0.12);
+    }
+    .hero-center-logo-img {
+      height: 32px; width: auto;
+    }
+
+    .hero-left {
+      position: relative;
+      z-index: 1;
+      padding: 100px 0;
+      max-width: 580px;
     }
 
     /* Vertical line accent */
@@ -41,6 +95,7 @@
       bottom: 0;
       width: 1px;
       background: linear-gradient(to bottom, transparent 0%, var(--border-h) 20%, var(--border-h) 80%, transparent 100%);
+      z-index: 0;
     }
 
     .hero-eyebrow {
@@ -96,100 +151,6 @@
     }
     .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
 
-    /* Right side — connection visual */
-    .hero-visual {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .hero-visual-bg {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, rgba(242,140,56,0.03) 0%, transparent 60%);
-    }
-    /* Geometric connecting lines */
-    .hero-canvas {
-      position: absolute;
-      inset: 0;
-      overflow: hidden;
-    }
-    .hero-canvas svg {
-      width: 100%;
-      height: 100%;
-      position: absolute;
-      inset: 0;
-    }
-
-    .hero-nodes {
-      position: relative;
-      z-index: 2;
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 20px;
-      padding: 60px 48px;
-      width: 100%;
-    }
-    .hero-node {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
-    }
-    .hero-node-circle {
-      width: 48px; height: 48px;
-      border-radius: 50%;
-      border: 1px solid var(--border-h);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 0.7rem;
-      font-weight: 600;
-      letter-spacing: 0.06em;
-      color: var(--gray-2);
-      background: var(--bg-2);
-      transition: all 0.3s;
-    }
-    .hero-node:hover .hero-node-circle {
-      border-color: var(--a);
-      color: var(--a);
-      background: var(--a-dim);
-    }
-    .hero-node-label {
-      font-size: 0.625rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--gray-3);
-      text-align: center;
-    }
-
-    /* Center node — SEjAI */
-    .hero-center {
-      position: absolute;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 3;
-    }
-    .hero-center-ring {
-      width: 100px; height: 100px;
-      border-radius: 50%;
-      border: 1px solid var(--a);
-      display: flex; align-items: center; justify-content: center;
-      background: rgba(242,140,56,0.06);
-      position: relative;
-    }
-    .hero-center-ring::before {
-      content: '';
-      position: absolute;
-      inset: -8px;
-      border-radius: 50%;
-      border: 1px solid rgba(242,140,56,0.15);
-    }
-    .hero-center-logo {
-      height: 36px;
-      width: auto;
-    }
-
     /* ── Marquee ── */
     .marquee-section {
       padding: 32px 0;
@@ -222,7 +183,7 @@
 
     /* ── Mission ── */
     .mission-section {
-      padding: 140px 0;
+      padding: 70px 0;
       border-bottom: 1px solid var(--border);
     }
     .mission-inner {
@@ -270,7 +231,6 @@
     }
     .mission-tag:first-child { border-color: rgba(242,140,56,0.35); color: var(--a); }
 
-    /* Right stats */
     .mission-stats { display: flex; flex-direction: column; gap: 0; }
     .mission-stat {
       padding: 36px 0;
@@ -304,7 +264,7 @@
 
     /* ── Services ── */
     .services-section {
-      padding: 140px 0;
+      padding: 70px 0;
       background: var(--bg-1);
       border-bottom: 1px solid var(--border);
     }
@@ -397,7 +357,6 @@
     .svc-card[data-svc="fridge"]  .svc-arrow { color: var(--fridge); }
     .svc-card:hover .svc-arrow { gap: 14px; }
 
-    /* Bottom accent bar */
     .svc-card::after {
       content: '';
       position: absolute;
@@ -414,7 +373,7 @@
 
     /* ── CTA ── */
     .cta-section {
-      padding: 140px 0;
+      padding: 70px 0;
       position: relative;
       overflow: hidden;
       border-bottom: 1px solid var(--border);
@@ -435,7 +394,6 @@
     .cta-title em { font-style: italic; color: var(--a); }
     .cta-actions { display: flex; flex-direction: column; gap: 12px; align-items: flex-end; }
 
-    /* Background texture */
     .cta-section::before {
       content: '';
       position: absolute;
@@ -446,28 +404,37 @@
     }
 
     @media (max-width: 900px) {
-      .hero { grid-template-columns: 1fr; min-height: auto; }
-      .hero-right { display: none; }
-      .hero-left { padding: 72px 0 60px; }
-      .hero-title {
-        font-size: clamp(2.4rem, 10vw, 3.6rem);
-      }
-      .hero-title span.sub {
-        font-size: 0.9rem;
-        max-width: 32ch;
-        letter-spacing: 0.01em;
-      }
-      .mission-inner { grid-template-columns: 1fr; gap: 60px; }
-      .services-head { grid-template-columns: 1fr; gap: 24px; }
-      .services-head-right { align-items: flex-start; }
-      .services-head-desc { text-align: left; }
-      .services-grid { grid-template-columns: 1fr; }
-      .cta-inner { grid-template-columns: 1fr; gap: 36px; }
-      .cta-actions { align-items: flex-start; flex-direction: row; flex-wrap: wrap; }
-      .hero .container[style] {
-        grid-template-columns: 1fr !important;
-      }
+    .hero { min-height: auto; }
+    .hero-left { padding: 72px 0 60px; max-width: 100%; }
+    .hero-title { font-size: clamp(2.4rem, 10vw, 3.6rem); }
+    .hero-title span.sub { font-size: 0.9rem; max-width: 32ch; }
+
+    /* モバイル: 中央に配置してフル背景として表示 */
+    .hero-bg-visual svg {
+      width: 100%;
+      right: 50%;
+      top: 50%;
+      transform: translate(50%, -50%);
+      opacity: 0.35;
     }
+    /* グラデーションを全方向からかけてテキストを読みやすく */
+    .hero-bg-visual::after {
+      background: radial-gradient(
+        ellipse 80% 70% at 50% 50%,
+        rgba(14,13,11,0.0) 20%,
+        rgba(14,13,11,0.7) 65%,
+        var(--bg) 100%
+      );
+    }
+
+    .mission-inner { grid-template-columns: 1fr; gap: 60px; }
+    .services-head { grid-template-columns: 1fr; gap: 24px; }
+    .services-head-right { align-items: flex-start; }
+    .services-head-desc { text-align: left; }
+    .services-grid { grid-template-columns: 1fr; }
+    .cta-inner { grid-template-columns: 1fr; gap: 36px; }
+    .cta-actions { align-items: flex-start; flex-direction: row; flex-wrap: wrap; }
+  }
   </style>
 </head>
 <body>
@@ -492,7 +459,83 @@
 <!-- ── Hero ── -->
 <section class="hero">
   <div class="hero-line"></div>
-  <div class="container" style="grid-column:1/-1; display:grid; grid-template-columns:1fr 1fr; gap:0; height:100%;">
+
+  <!-- 背景ビジュアル（テキストの後ろ） -->
+  <div class="hero-bg-visual fade-in">
+    <svg viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+      <!-- Lines -->
+      <line x1="250" y1="250" x2="80"  y2="120" stroke="rgba(242,140,56,0.18)" stroke-width="1"/>
+      <line x1="250" y1="250" x2="250" y2="60"  stroke="rgba(242,140,56,0.18)" stroke-width="1"/>
+      <line x1="250" y1="250" x2="420" y2="120" stroke="rgba(242,140,56,0.18)" stroke-width="1"/>
+      <line x1="250" y1="250" x2="80"  y2="380" stroke="rgba(242,140,56,0.18)" stroke-width="1"/>
+      <line x1="250" y1="250" x2="250" y2="440" stroke="rgba(242,140,56,0.18)" stroke-width="1"/>
+      <line x1="250" y1="250" x2="420" y2="380" stroke="rgba(242,140,56,0.18)" stroke-width="1"/>
+
+      <!-- Node circles -->
+      <circle cx="80"  cy="120" r="22" stroke="rgba(255,255,255,0.08)" stroke-width="1" fill="rgba(255,255,255,0.02)"/>
+      <circle cx="250" cy="60"  r="22" stroke="rgba(255,255,255,0.08)" stroke-width="1" fill="rgba(255,255,255,0.02)"/>
+      <circle cx="420" cy="120" r="22" stroke="rgba(255,255,255,0.08)" stroke-width="1" fill="rgba(255,255,255,0.02)"/>
+      <circle cx="80"  cy="380" r="22" stroke="rgba(255,255,255,0.08)" stroke-width="1" fill="rgba(255,255,255,0.02)"/>
+      <circle cx="250" cy="440" r="22" stroke="rgba(255,255,255,0.08)" stroke-width="1" fill="rgba(255,255,255,0.02)"/>
+      <circle cx="420" cy="380" r="22" stroke="rgba(255,255,255,0.08)" stroke-width="1" fill="rgba(255,255,255,0.02)"/>
+
+      <!-- Node labels -->
+      <text x="80"  y="116" text-anchor="middle" font-size="8" fill="rgba(255,255,255,0.3)" font-family="sans-serif" letter-spacing="1">JAPAN</text>
+      <text x="250" y="56"  text-anchor="middle" font-size="8" fill="rgba(255,255,255,0.3)" font-family="sans-serif" letter-spacing="1">LIFE</text>
+      <text x="420" y="116" text-anchor="middle" font-size="8" fill="rgba(255,255,255,0.3)" font-family="sans-serif" letter-spacing="1">INDIA</text>
+      <text x="80"  y="376" text-anchor="middle" font-size="8" fill="rgba(255,255,255,0.3)" font-family="sans-serif" letter-spacing="1">TECH</text>
+      <text x="250" y="436" text-anchor="middle" font-size="8" fill="rgba(255,255,255,0.3)" font-family="sans-serif" letter-spacing="1">PEOPLE</text>
+      <text x="420" y="376" text-anchor="middle" font-size="8" fill="rgba(255,255,255,0.3)" font-family="sans-serif" letter-spacing="1">WORLD</text>
+
+      <!-- Center rings -->
+      <circle cx="250" cy="250" r="60"  stroke="rgba(242,140,56,0.30)" stroke-width="1" fill="rgba(242,140,56,0.04)"/>
+      <circle cx="250" cy="250" r="78"  stroke="rgba(242,140,56,0.10)" stroke-width="1" fill="none"/>
+      <circle cx="250" cy="250" r="100" stroke="rgba(242,140,56,0.05)" stroke-width="1" fill="none"/>
+
+      <!-- Paths (hidden) -->
+      <path id="apath1" d="M250,250 L80,120"  style="display:none"/>
+      <path id="apath2" d="M250,250 L250,60"  style="display:none"/>
+      <path id="apath3" d="M250,250 L420,120" style="display:none"/>
+      <path id="apath4" d="M250,250 L80,380"  style="display:none"/>
+      <path id="apath5" d="M250,250 L250,440" style="display:none"/>
+      <path id="apath6" d="M250,250 L420,380" style="display:none"/>
+
+      <!-- Animated dots — 6本すべて、タイミングをずらして -->
+      <circle r="3" fill="rgba(242,140,56,0.8)">
+        <animateMotion dur="4s" repeatCount="indefinite" calcMode="linear" begin="0s">
+          <mpath href="#apath1"/>
+        </animateMotion>
+      </circle>
+      <circle r="2.5" fill="rgba(242,140,56,0.6)">
+        <animateMotion dur="5s" repeatCount="indefinite" calcMode="linear" begin="0.8s">
+          <mpath href="#apath2"/>
+        </animateMotion>
+      </circle>
+      <circle r="3" fill="rgba(242,140,56,0.7)">
+        <animateMotion dur="4.5s" repeatCount="indefinite" calcMode="linear" begin="1.6s">
+          <mpath href="#apath3"/>
+        </animateMotion>
+      </circle>
+      <circle r="2.5" fill="rgba(242,140,56,0.6)">
+        <animateMotion dur="5.5s" repeatCount="indefinite" calcMode="linear" begin="2.4s">
+          <mpath href="#apath4"/>
+        </animateMotion>
+      </circle>
+      <circle r="3" fill="rgba(242,140,56,0.5)">
+        <animateMotion dur="4.8s" repeatCount="indefinite" calcMode="linear" begin="3.2s">
+          <mpath href="#apath5"/>
+        </animateMotion>
+      </circle>
+      <circle r="2.5" fill="rgba(242,140,56,0.7)">
+        <animateMotion dur="6s" repeatCount="indefinite" calcMode="linear" begin="4s">
+          <mpath href="#apath6"/>
+        </animateMotion>
+      </circle>
+    </svg>
+  </div>
+
+  <!-- テキストコンテンツ（前面） -->
+  <div class="container" style="position:relative; z-index:1; width:100%;">
     <div class="hero-left">
       <div class="hero-eyebrow fade-up">IT × プロダクト × ライフスタイル</div>
       <h1 class="hero-title fade-up">
@@ -502,74 +545,6 @@
       <div class="hero-actions fade-up">
         <a href="pages/services.html" class="btn btn-primary">サービスを見る →</a>
         <a href="pages/about.html" class="btn btn-ghost">SEjAI について</a>
-      </div>
-    </div>
-    <div class="hero-right fade-in">
-      <div class="hero-visual">
-        <div class="hero-visual-bg"></div>
-
-        <!-- SVG connection lines -->
-        <div class="hero-canvas">
-          <svg viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-            <!-- Lines from center to nodes -->
-            <line x1="250" y1="250" x2="80" y2="120" stroke="rgba(242,140,56,0.12)" stroke-width="1"/>
-            <line x1="250" y1="250" x2="250" y2="80" stroke="rgba(242,140,56,0.12)" stroke-width="1"/>
-            <line x1="250" y1="250" x2="420" y2="120" stroke="rgba(242,140,56,0.12)" stroke-width="1"/>
-            <line x1="250" y1="250" x2="80" y2="380" stroke="rgba(242,140,56,0.12)" stroke-width="1"/>
-            <line x1="250" y1="250" x2="250" y2="420" stroke="rgba(242,140,56,0.12)" stroke-width="1"/>
-            <line x1="250" y1="250" x2="420" y2="380" stroke="rgba(242,140,56,0.12)" stroke-width="1"/>
-            <!-- Node circles -->
-            <circle cx="80" cy="120" r="18" stroke="rgba(255,255,255,0.07)" stroke-width="1" fill="rgba(255,255,255,0.02)"/>
-            <circle cx="250" cy="80" r="18" stroke="rgba(255,255,255,0.07)" stroke-width="1" fill="rgba(255,255,255,0.02)"/>
-            <circle cx="420" cy="120" r="18" stroke="rgba(255,255,255,0.07)" stroke-width="1" fill="rgba(255,255,255,0.02)"/>
-            <circle cx="80" cy="380" r="18" stroke="rgba(255,255,255,0.07)" stroke-width="1" fill="rgba(255,255,255,0.02)"/>
-            <circle cx="250" cy="420" r="18" stroke="rgba(255,255,255,0.07)" stroke-width="1" fill="rgba(255,255,255,0.02)"/>
-            <circle cx="420" cy="380" r="18" stroke="rgba(255,255,255,0.07)" stroke-width="1" fill="rgba(255,255,255,0.02)"/>
-            <!-- Center ring -->
-            <circle cx="250" cy="250" r="56" stroke="rgba(242,140,56,0.25)" stroke-width="1" fill="rgba(242,140,56,0.04)"/>
-            <circle cx="250" cy="250" r="72" stroke="rgba(242,140,56,0.08)" stroke-width="1" fill="none"/>
-            <!-- Animated dot along one line -->
-            <circle r="3" fill="rgba(242,140,56,0.7)">
-              <animateMotion dur="4s" repeatCount="indefinite" calcMode="linear">
-                <mpath href="#path1"/>
-              </animateMotion>
-            </circle>
-            <path id="path1" d="M250,250 L80,120" style="display:none"/>
-            <circle r="3" fill="rgba(242,140,56,0.5)">
-              <animateMotion dur="6s" repeatCount="indefinite" calcMode="linear" begin="2s">
-                <mpath href="#path2"/>
-              </animateMotion>
-            </circle>
-            <path id="path2" d="M250,250 L420,380" style="display:none"/>
-          </svg>
-        </div>
-
-        <!-- Center logo -->
-        <div class="hero-center">
-          <div class="hero-center-ring">
-            <img src="logo.png" alt="SEjAI" class="hero-center-logo">
-          </div>
-        </div>
-
-        <!-- Outer node labels -->
-        <div style="position:absolute; top:13%; left:8%; text-align:center;">
-          <div style="font-size:0.625rem; text-transform:uppercase; letter-spacing:0.12em; color:var(--gray-3);">Japan</div>
-        </div>
-        <div style="position:absolute; top:8%; left:50%; transform:translateX(-50%); text-align:center;">
-          <div style="font-size:0.625rem; text-transform:uppercase; letter-spacing:0.12em; color:var(--gray-3);">Life</div>
-        </div>
-        <div style="position:absolute; top:13%; right:8%; text-align:center;">
-          <div style="font-size:0.625rem; text-transform:uppercase; letter-spacing:0.12em; color:var(--gray-3);">India</div>
-        </div>
-        <div style="position:absolute; bottom:13%; left:8%; text-align:center;">
-          <div style="font-size:0.625rem; text-transform:uppercase; letter-spacing:0.12em; color:var(--gray-3);">Tech</div>
-        </div>
-        <div style="position:absolute; bottom:8%; left:50%; transform:translateX(-50%); text-align:center;">
-          <div style="font-size:0.625rem; text-transform:uppercase; letter-spacing:0.12em; color:var(--gray-3);">People</div>
-        </div>
-        <div style="position:absolute; bottom:13%; right:8%; text-align:center;">
-          <div style="font-size:0.625rem; text-transform:uppercase; letter-spacing:0.12em; color:var(--gray-3);">World</div>
-        </div>
       </div>
     </div>
   </div>
