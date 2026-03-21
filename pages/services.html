@@ -6,7 +6,8 @@
   <title>Services — SEjAI</title>
   <link rel="stylesheet" href="../css/style.css">
   <style>
-    .services-section { padding: 80px 0 120px; }
+    .page-hero { padding-bottom: 48px; }
+    .services-section { padding: 10px 0 10px; }
 
     /* ── Service Block ── */
     .svc-block {
@@ -56,14 +57,31 @@
     .feature-item:last-child { border-bottom: none; }
     .feature-item::before { content: '—'; color: var(--a); font-size: 0.75rem; flex-shrink: 0; }
 
-    /* ── Visual (画像 or 絵文字フォールバック) ── */
+    /* ── Visual (フローティングカード) ── */
     .svc-visual {
       position: relative;
-      aspect-ratio: 4/3;
-      border: 1px solid var(--border);
+      aspect-ratio: 16/9;
       overflow: hidden;
       background: var(--bg-2);
+      display: block;
+      border: none;
+      border-radius: 0;
+      box-shadow:
+        0 2px 4px rgba(0,0,0,0.3),
+        0 8px 24px rgba(0,0,0,0.4),
+        0 24px 64px rgba(0,0,0,0.35);
+      transform: translateY(0);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
     }
+
+    .svc-visual:hover {
+      transform: translateY(-6px);
+      box-shadow:
+        0 4px 8px rgba(0,0,0,0.3),
+        0 16px 40px rgba(0,0,0,0.45),
+        0 40px 80px rgba(0,0,0,0.35);
+    }
+
     /* 実画像 */
     .svc-visual img {
       position: absolute; inset: 0;
@@ -71,9 +89,43 @@
       object-fit: cover;
       display: block;
       z-index: 1;
-      transition: transform 0.4s ease;
+      transition: transform 0.5s ease;
     }
-    .svc-visual:hover img { transform: scale(1.03); }
+    .svc-visual:hover img { transform: scale(1.04); }
+
+    /* グラデーションオーバーレイ */
+    .svc-visual::after {
+      content: '';
+      position: absolute; inset: 0;
+      z-index: 2;
+      background: linear-gradient(
+        135deg,
+        rgba(0,0,0,0.0) 40%,
+        var(--overlay-color, rgba(0,0,0,0.55)) 100%
+      );
+      transition: opacity 0.4s ease;
+    }
+    .svc-visual:hover::after { opacity: 0.7; }
+
+    /* radial glow */
+    .svc-visual::before {
+      content: ''; position: absolute; inset: 0; z-index: 0;
+      background: radial-gradient(ellipse 70% 70% at 50% 50%, var(--glow-color, rgba(79,140,255,0.08)) 0%, transparent 70%);
+    }
+
+    .svc-visual.assetry {
+      --glow-color: rgba(249,115,22,0.12);
+      --overlay-color: rgba(249,115,22,0.4);
+    }
+    .svc-visual.habee {
+      --glow-color: rgba(52,211,153,0.10);
+      --overlay-color: rgba(52,211,153,0.35);
+    }
+    .svc-visual.fridge {
+      --glow-color: rgba(79,140,255,0.10);
+      --overlay-color: rgba(79,140,255,0.35);
+    }
+
     /* 画像がない場合の絵文字フォールバック */
     .svc-visual-fallback {
       position: absolute; inset: 0;
@@ -81,15 +133,6 @@
       font-size: 5rem;
       z-index: 0;
     }
-    .svc-visual::before {
-      content: ''; position: absolute; inset: 0; z-index: 0;
-      background: radial-gradient(ellipse 60% 60% at 50% 50%, var(--glow-color, rgba(79,140,255,0.06)) 0%, transparent 70%);
-    }
-    .svc-visual.assetry { --glow-color: rgba(249,115,22,0.07); }
-    .svc-visual.habee   { --glow-color: rgba(52,211,153,0.07); }
-    .svc-visual.fridge  { --glow-color: rgba(79,140,255,0.07); }
-
-    /* 画像があるときはフォールバックを隠す */
     .svc-visual:has(img) .svc-visual-fallback { display: none; }
 
     .svc-cta-row { display: flex; gap: 12px; margin-top: 32px; flex-wrap: wrap; }
@@ -194,8 +237,7 @@
         </div>
       </div>
       <a href="services/assetry.html" class="svc-visual assetry fade-in">
-        <!-- ★ 画像を用意したら src を変更 -->
-        <img src="img/services/assetry-01.png" alt="Assetry">
+        <img src="./img/services/assetry-01.png" alt="Assetry">
         <div class="svc-visual-fallback">💹</div>
       </a>
     </div>

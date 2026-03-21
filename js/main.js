@@ -26,3 +26,4 @@ const obs = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.1 });
 document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
