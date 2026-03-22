@@ -5,160 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>About — SEjAI</title>
   <link rel="stylesheet" href="../css/style.css">
-  <style>
-    /* ── Story ── */
-    .story-section { padding: 80px 0 120px; }
-    .story-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 100px; align-items: start; }
-    .story-sticky { position: sticky; top: 96px; }
-    .story-headline {
-      font-family: var(--font-head);
-      font-size: clamp(2rem, 3.5vw, 2.8rem);
-      font-weight: 600;
-      color: var(--white);
-      line-height: 1.2;
-      letter-spacing: -0.01em;
-    }
-    .story-headline em { font-style: italic; color: var(--a); }
-    .story-divider { width: 40px; height: 1px; background: var(--a); margin: 32px 0; }
-    .story-body { font-size: 0.9375rem; color: var(--gray-2); line-height: 1.9; }
-    .story-body p + p { margin-top: 18px; }
-
-    /* MVV */
-    .mvv-stack { display: flex; flex-direction: column; gap: 1px; background: var(--border); }
-    .mvv-item {
-      background: var(--bg-2);
-      padding: 36px 40px;
-      position: relative;
-      overflow: hidden;
-      transition: background 0.3s;
-    }
-    .mvv-item:hover { background: var(--bg-3); }
-    .mvv-item::before {
-      content: '';
-      position: absolute;
-      left: 0; top: 0; bottom: 0;
-      width: 2px;
-    }
-    .mvv-item:nth-child(1)::before { background: var(--a); }
-    .mvv-item:nth-child(2)::before { background: var(--gray-3); }
-    .mvv-item:nth-child(3)::before { background: var(--habee); }
-
-    .mvv-label {
-      font-size: 0.6875rem;
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-      color: var(--gray-3);
-      font-weight: 600;
-      margin-bottom: 12px;
-    }
-    .mvv-text {
-      font-family: var(--font-head);
-      font-size: 1.3rem;
-      font-weight: 600;
-      color: var(--white);
-      line-height: 1.35;
-    }
-    .mvv-sub {
-      font-size: 0.875rem;
-      color: var(--gray-2);
-      margin-top: 10px;
-      line-height: 1.7;
-    }
-
-    /* ── Values ── */
-    .values-section { padding: 120px 0; background: var(--bg-1); border-top: 1px solid var(--border); }
-    .values-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); margin-top: 64px; }
-    .value-card {
-      background: var(--bg-1);
-      padding: 40px 36px;
-      transition: background 0.3s;
-    }
-    .value-card:hover { background: var(--bg-2); }
-    .value-num {
-      font-family: var(--font-head);
-      font-size: 3rem;
-      font-weight: 600;
-      color: var(--border-h);
-      line-height: 1;
-      margin-bottom: 20px;
-    }
-    .value-card h3 {
-      font-family: var(--font-head);
-      font-size: 1.3rem;
-      font-weight: 600;
-      color: var(--white);
-      margin-bottom: 14px;
-      letter-spacing: -0.01em;
-    }
-    .value-card p { font-size: 0.875rem; color: var(--gray-2); line-height: 1.8; }
-
-    /* ── Team ── */
-    .team-section { padding: 120px 0; border-top: 1px solid var(--border); }
-    .team-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); margin-top: 64px; }
-    .team-card {
-      background: var(--bg);
-      padding: 36px 28px;
-      text-align: center;
-      transition: background 0.3s;
-    }
-    .team-card:hover { background: var(--bg-2); }
-    .team-avatar {
-      width: 64px; height: 64px;
-      border-radius: 50%;
-      background: var(--bg-2);
-      border: 1px solid var(--border-h);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.5rem;
-      margin: 0 auto 18px;
-    }
-    .team-name {
-      font-family: var(--font-head);
-      font-size: 1.1rem; font-weight: 600;
-      color: var(--white); margin-bottom: 4px;
-    }
-    .team-role { font-size: 0.7rem; font-weight: 600; color: var(--a); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.1em; }
-    .team-bio { font-size: 0.8125rem; color: var(--gray-3); line-height: 1.65; }
-
-    /* ── History ── */
-    .history-section { padding: 120px 0; background: var(--bg-1); border-top: 1px solid var(--border); }
-    .timeline { position: relative; margin-top: 64px; }
-    .timeline::before { content: ''; position: absolute; left: 80px; top: 0; bottom: 0; width: 1px; background: var(--border); }
-    .tl-item {
-      display: grid;
-      grid-template-columns: 80px 1fr;
-      gap: 48px;
-      padding: 0 0 52px 0;
-      position: relative;
-    }
-    .tl-item:last-child { padding-bottom: 0; }
-    .tl-dot {
-      position: absolute;
-      left: 74px; top: 6px;
-      width: 13px; height: 13px;
-      border-radius: 50%;
-      background: var(--a);
-      border: 2px solid var(--bg-1);
-    }
-    .tl-year {
-      font-family: var(--font-head);
-      font-size: 0.875rem; font-weight: 600;
-      color: var(--a);
-      padding-top: 4px;
-      text-align: right;
-    }
-    .tl-title { font-size: 1rem; font-weight: 700; color: var(--white); margin-bottom: 8px; }
-    .tl-desc { font-size: 0.875rem; color: var(--gray-2); line-height: 1.75; }
-
-    @media (max-width: 900px) {
-      .story-grid { grid-template-columns: 1fr; gap: 48px; }
-      .story-sticky { position: static; }
-      .values-grid { grid-template-columns: 1fr; }
-      .team-grid { grid-template-columns: repeat(2, 1fr); }
-      .timeline::before { left: 60px; }
-      .tl-item { grid-template-columns: 60px 1fr; gap: 32px; }
-      .tl-dot { left: 54px; }
-    }
-  </style>
+  <link rel="stylesheet" href="../css/about.css">
 </head>
 <body>
 
@@ -371,15 +218,16 @@
 <!-- ── CTA ── -->
 <section style="padding:100px 0; border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
   <div class="container">
-    <div style="display:grid; grid-template-columns:1fr auto; gap:60px; align-items:center;">
-      <div class="fade-up">
+    <div class="about-cta-inner fade-up">
+      <div>
         <span class="label">Join Us</span>
         <h2 class="section-title">一緒に<em>作りませんか？</em></h2>
         <p class="section-lead" style="margin-top:14px;">
           SEjAI のミッションに共感するエンジニア・デザイナーを募集中です。
+          </br>※現在は募集しておりません
         </p>
       </div>
-      <a href="contact.html" class="btn btn-primary fade-up">採用についてお問い合わせ →</a>
+      <a href="contact.html" class="btn btn-primary">採用についてお問い合わせ →</a>
     </div>
   </div>
 </section>

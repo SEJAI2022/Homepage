@@ -1,0 +1,183 @@
+/*
+  services.css — サービス一覧ページ専用スタイル
+  読み込み: pages/services.html
+*/
+
+.page-hero { padding-bottom: 48px; }
+.services-section { padding: 10px 0 10px; }
+
+/* ── Service Block ── */
+.svc-block {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  padding: 80px 0;
+  border-bottom: 1px solid var(--border);
+}
+.svc-block:last-of-type { border-bottom: none; }
+.svc-block.flip .svc-info { order: 2; }
+.svc-block.flip .svc-visual { order: 1; }
+
+.svc-index {
+  font-family: var(--font-head);
+  font-size: 5rem; font-weight: 600;
+  line-height: 1; margin-bottom: 8px;
+  opacity: 0.05; color: var(--white);
+}
+.svc-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 5px 14px; border-radius: 100px;
+  font-size: 0.7rem; font-weight: 600;
+  border: 1px solid; margin-bottom: 20px;
+  letter-spacing: 0.08em;
+}
+.svc-badge.assetry { color: var(--assetry); border-color: rgba(249,115,22,0.3); background: rgba(249,115,22,0.06); }
+.svc-badge.habee   { color: var(--habee);   border-color: rgba(52,211,153,0.3);  background: rgba(52,211,153,0.06); }
+.svc-badge.fridge  { color: var(--fridge);  border-color: rgba(79,140,255,0.3);  background: rgba(79,140,255,0.06); }
+
+/* ★ 新サービス追加時: .svc-badge.{name} をここに追加 */
+
+.svc-block h2 {
+  font-family: var(--font-head);
+  font-size: clamp(2.2rem, 4vw, 3rem);
+  font-weight: 600; letter-spacing: -0.01em; color: var(--white);
+  margin-bottom: 20px;
+}
+.svc-block p { font-size: 0.9375rem; color: var(--gray-2); line-height: 1.85; margin-bottom: 14px; }
+
+.feature-list { display: flex; flex-direction: column; gap: 0; margin-top: 28px; border: 1px solid var(--border); }
+.feature-item {
+  display: flex; align-items: center; gap: 14px;
+  padding: 13px 18px;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.875rem; color: var(--gray-2);
+}
+.feature-item:last-child { border-bottom: none; }
+.feature-item::before { content: '—'; color: var(--a); font-size: 0.75rem; flex-shrink: 0; }
+
+/* ── Visual (フローティングカード) ── */
+.svc-visual {
+  position: relative;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  background: var(--bg-2);
+  display: block;
+  border: none;
+  border-radius: 16px;
+  box-shadow:
+    0 2px 4px rgba(0,0,0,0.3),
+    0 8px 24px rgba(0,0,0,0.4),
+    0 24px 64px rgba(0,0,0,0.35);
+  transform: translateY(0);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+.svc-visual:hover {
+  transform: translateY(-6px);
+  box-shadow:
+    0 4px 8px rgba(0,0,0,0.3),
+    0 16px 40px rgba(0,0,0,0.45),
+    0 40px 80px rgba(0,0,0,0.35);
+}
+
+.svc-visual img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  z-index: 1;
+  transition: transform 0.5s ease;
+}
+.svc-visual:hover img { transform: scale(1.04); }
+
+/* グラデーションオーバーレイ */
+.svc-visual::after {
+  content: '';
+  position: absolute; inset: 0;
+  z-index: 2;
+  background: linear-gradient(
+    135deg,
+    rgba(0,0,0,0.0) 40%,
+    var(--overlay-color, rgba(0,0,0,0.55)) 100%
+  );
+  transition: opacity 0.4s ease;
+}
+.svc-visual:hover::after { opacity: 0.7; }
+
+/* radial glow */
+.svc-visual::before {
+  content: ''; position: absolute; inset: 0; z-index: 0;
+  background: radial-gradient(ellipse 70% 70% at 50% 50%, var(--glow-color, rgba(79,140,255,0.08)) 0%, transparent 70%);
+}
+
+.svc-visual.assetry { --glow-color: rgba(249,115,22,0.12); --overlay-color: rgba(249,115,22,0.4); }
+.svc-visual.habee   { --glow-color: rgba(52,211,153,0.10); --overlay-color: rgba(52,211,153,0.35); }
+.svc-visual.fridge  { --glow-color: rgba(79,140,255,0.10); --overlay-color: rgba(79,140,255,0.35); }
+
+/* ★ 新サービス追加時: .svc-visual.{name} をここに追加 */
+
+.svc-visual-fallback {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 5rem;
+  z-index: 0;
+}
+.svc-visual:has(img) .svc-visual-fallback { display: none; }
+
+/* ── Buttons (services.html専用) ── */
+.svc-cta-row { display: flex; gap: 12px; margin-top: 32px; flex-wrap: wrap; }
+
+.btn-assetry { background: var(--assetry); color: var(--black); border-radius: 0; }
+.btn-assetry:hover { opacity:0.85; transform:translateY(-1px); box-shadow: 0 6px 20px rgba(249,115,22,0.25); }
+.btn-habee   { background: var(--habee);   color: var(--black); border-radius: 0; }
+.btn-habee:hover   { opacity:0.85; transform:translateY(-1px); box-shadow: 0 6px 20px rgba(52,211,153,0.25); }
+.btn-fridge  { background: var(--fridge);  color: var(--black); border-radius: 0; }
+.btn-fridge:hover  { opacity:0.85; transform:translateY(-1px); box-shadow: 0 6px 20px rgba(79,140,255,0.25); }
+
+/* ★ 新サービス追加時: .btn-{name} をここに追加 */
+
+.btn-detail {
+  background: transparent; color: var(--gray-1);
+  border: 1px solid var(--border-h); border-radius: 0;
+  font-size: 0.875rem; font-weight: 600;
+  padding: 12px 22px;
+  display: inline-flex; align-items: center; gap: 6px;
+  transition: all 0.2s;
+}
+.btn-detail:hover { background: var(--bg-2); border-color: var(--a); color: var(--white); }
+
+/* ── Privacy (services.html版タブUI) ── */
+.privacy-section { padding: 100px 0; background: var(--bg-1); border-top: 1px solid var(--border); }
+.pp-tabs { display: flex; gap: 0; flex-wrap: wrap; margin: 48px 0 32px; border: 1px solid var(--border); }
+.pp-tab {
+  padding: 12px 28px; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.06em;
+  cursor: pointer; border: none; border-right: 1px solid var(--border);
+  background: var(--bg-1); color: var(--gray-3); transition: all 0.2s;
+  text-transform: uppercase;
+}
+.pp-tab:last-child { border-right: none; }
+.pp-tab:hover { color: var(--white); background: var(--bg-2); }
+.pp-tab.active.assetry { background: rgba(249,115,22,0.08); color: var(--assetry); }
+.pp-tab.active.habee   { background: rgba(52,211,153,0.08); color: var(--habee); }
+.pp-tab.active.fridge  { background: rgba(79,140,255,0.08); color: var(--fridge); }
+
+/* ★ 新サービス追加時: .pp-tab.active.{name} をここに追加 */
+
+.pp-content { display: none; }
+.pp-content.active { display: block; }
+.pp-box { background: var(--bg-2); border: 1px solid var(--border); padding: 48px; }
+.pp-box h3 { font-family: var(--font-head); font-size: 1.5rem; font-weight: 600; color: var(--white); margin-bottom: 20px; }
+.pp-box h4 { font-size: 0.7875rem; font-weight: 700; color: var(--gray-1); margin: 28px 0 10px; text-transform: uppercase; letter-spacing: 0.1em; }
+.pp-box p { font-size: 0.9rem; color: var(--gray-2); line-height: 1.85; }
+.pp-box ul { margin: 10px 0 16px 24px; list-style: none; }
+.pp-box ul li { font-size: 0.9rem; color: var(--gray-2); line-height: 1.8; }
+.pp-box ul li::before { content: '—  '; color: var(--a); }
+.pp-updated { font-size: 0.8rem; color: var(--gray-3); margin-top: 36px; padding-top: 20px; border-top: 1px solid var(--border); }
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .svc-block { grid-template-columns: 1fr; gap: 40px; }
+  .svc-block.flip .svc-info { order: 1; }
+  .svc-block.flip .svc-visual { order: 2; }
+  .pp-box { padding: 28px 20px; }
+}
