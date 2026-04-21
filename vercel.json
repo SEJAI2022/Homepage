@@ -1,0 +1,14 @@
+{
+  "redirects": [
+    {
+      "source": "/Pages/Services/Habiru-terms.html",
+      "destination": "/pages/services/Habiru-terms.html",
+      "permanent": true
+    },
+    {
+      "source": "/Pages/Services/Habiru-privacy.html",
+      "destination": "/pages/services/Habiru-privacy.html",
+      "permanent": true
+    }
+  ]
+}
