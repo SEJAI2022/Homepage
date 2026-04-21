@@ -2,12 +2,12 @@
   "redirects": [
     {
       "source": "/pages/services/Habiru-terms.html",
-      "destination": "/pages/services/Habiru-terms.html",
+      "destination": "/pages/services/habiru-terms.html",
       "permanent": true
     },
     {
       "source": "/pages/services/Habiru-privacy.html",
-      "destination": "/pages/services/Habiru-privacy.html",
+      "destination": "/pages/services/habiru-privacy.html",
       "permanent": true
     }
   ]
