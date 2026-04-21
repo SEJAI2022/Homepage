@@ -81,16 +81,16 @@
       </a>
     </div>
 
-    <!-- ── Habee ── -->
-    <div class="svc-block flip" id="habee">
-      <a href="services/habee.html" class="svc-visual habee fade-in">
-        <img src="img/services/habee-01.png" alt="Habee">
+    <!-- ── habiru ── -->
+    <div class="svc-block flip" id="habiru">
+      <a href="services/habiru.html" class="svc-visual habiru fade-in">
+        <img src="img/services/habiru-01.png" alt="habiru">
         <div class="svc-visual-fallback">🌿</div>
       </a>
       <div class="svc-info fade-up">
         <div class="svc-index">02</div>
-        <span class="svc-badge habee">Habit Tracking App</span>
-        <h2>Habee</h2>
+        <span class="svc-badge habiru">Habit Tracking App</span>
+        <h2>habiru</h2>
         <p>習慣化を科学するモバイルアプリ。行動パターンを学習し、あなたに最適なタイミングでリマインドと改善提案を届けます。</p>
         <div class="feature-list">
           <div class="feature-item">iOS / Android 対応</div>
@@ -99,8 +99,8 @@
           <div class="feature-item">詳細な進捗分析</div>
         </div>
         <div class="svc-cta-row">
-          <a href="services/habee.html" class="btn-detail">詳細を見る →</a>
-          <a href="contact.html" class="btn btn-habee">試してみる →</a>
+          <a href="services/habiru.html" class="btn-detail">詳細を見る →</a>
+          <a href="contact.html" class="btn btn-habiru">試してみる →</a>
         </div>
       </div>
     </div>
@@ -139,7 +139,7 @@
     <h2 class="section-title fade-up">各サービスの<br><em>プライバシーポリシー</em></h2>
     <div class="pp-tabs fade-up">
       <button class="pp-tab active assetry" data-tab="pp-assetry">Assetry</button>
-      <button class="pp-tab" data-tab="pp-habee">Habee</button>
+      <button class="pp-tab" data-tab="pp-habiru">habiru</button>
       <button class="pp-tab" data-tab="pp-fridge">FridgeChef</button>
     </div>
 
@@ -166,12 +166,12 @@
       </div>
     </div>
 
-    <div id="pp-habee" class="pp-content fade-up">
+    <div id="pp-habiru" class="pp-content fade-up">
       <div class="pp-box">
-        <h3>Habee プライバシーポリシー</h3>
-        <p>当社は、習慣トラッキングアプリ「Habee」において、ユーザーのプライバシーを最優先に設計しています。</p>
+        <h3>habiru プライバシーポリシー</h3>
+        <p>当社は、習慣トラッキングアプリ「habiru」において、ユーザーのプライバシーを最優先に設計しています。</p>
         <h4>1. データの保存方針</h4>
-        <p>Habee は原則として習慣データをデバイス内（ローカルストレージ）にのみ保存します。クラウド同期はユーザーが明示的にオプトインした場合のみ有効となります。</p>
+        <p>habiru は原則として習慣データをデバイス内（ローカルストレージ）にのみ保存します。クラウド同期はユーザーが明示的にオプトインした場合のみ有効となります。</p>
         <h4>2. 収集する情報</h4>
         <ul>
           <li>習慣名・実施記録・ストリークデータ（ローカル保存）</li>
@@ -181,7 +181,7 @@
         <h4>3. SNSシェア機能</h4>
         <p>SNSへのシェアは常にユーザーの明示的な操作によってのみ行われます。自動投稿・サイレント送信は一切行いません。</p>
         <h4>4. お問い合わせ</h4>
-        <p><a href="contact.html" style="color:var(--habee)">こちら</a>からご連絡ください。</p>
+        <p><a href="contact.html" style="color:var(--habiru)">こちら</a>からご連絡ください。</p>
         <p class="pp-updated">最終更新：2026年3月18日</p>
       </div>
     </div>
@@ -221,7 +221,7 @@
       <div class="footer-col">
         <h4>Services</h4>
         <a href="services.html#assetry">Assetry</a>
-        <a href="services.html#habee">Habee</a>
+        <a href="services.html#habiru">habiru</a>
         <a href="services.html#fridgechef">FridgeChef</a>
       </div>
       <div class="footer-col">
@@ -248,10 +248,10 @@
 <script src="../js/main.js"></script>
 <script>
   const tabs = document.querySelectorAll('.pp-tab');
-  const colorMap = { 'pp-assetry': 'assetry', 'pp-habee': 'habee', 'pp-fridge': 'fridge' };
+  const colorMap = { 'pp-assetry': 'assetry', 'pp-habiru': 'habiru', 'pp-fridge': 'fridge' };
   tabs.forEach(tab => {
     tab.addEventListener('click', () => {
-      tabs.forEach(t => t.classList.remove('active', 'assetry', 'habee', 'fridge'));
+      tabs.forEach(t => t.classList.remove('active', 'assetry', 'habiru', 'fridge'));
       document.querySelectorAll('.pp-content').forEach(c => c.classList.remove('active'));
       const id = tab.dataset.tab;
       tab.classList.add('active', colorMap[id] || '');

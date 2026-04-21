@@ -5,7 +5,7 @@
 トップ (index.html)
 ├── Services → pages/services.html
 │   ├── Assetry 詳細    → pages/services/assetry.html
-│   ├── Habee 詳細      → pages/services/habee.html
+│   ├── habiru 詳細      → pages/services/habiru.html
 │   └── FridgeChef 詳細 → pages/services/fridgechef.html
 ├── About   → pages/about.html
 └── Contact → pages/contact.html
@@ -34,12 +34,12 @@ homepage/
     ├── img/
     │   └── services/
     │       ├── assetry-01.png
-    │       ├── habee-01.png
+    │       ├── habiru-01.png
     │       └── {サービス名}-01.png  ← 新サービス追加時に配置
     └── services/
         ├── _template.html      # ★ 新サービス追加用テンプレート
         ├── assetry.html
-        ├── habee.html
+        ├── habiru.html
         └── fridgechef.html
 ```
 

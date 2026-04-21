@@ -33,7 +33,7 @@
   letter-spacing: 0.08em;
 }
 .svc-badge.assetry { color: var(--assetry); border-color: rgba(249,115,22,0.3); background: rgba(249,115,22,0.06); }
-.svc-badge.habee   { color: var(--habee);   border-color: rgba(52,211,153,0.3);  background: rgba(52,211,153,0.06); }
+.svc-badge.habiru   { color: var(--habiru);   border-color: rgba(52,211,153,0.3);  background: rgba(52,211,153,0.06); }
 .svc-badge.fridge  { color: var(--fridge);  border-color: rgba(79,140,255,0.3);  background: rgba(79,140,255,0.06); }
 
 /* ★ 新サービス追加時: .svc-badge.{name} をここに追加 */
@@ -111,7 +111,7 @@
 }
 
 .svc-visual.assetry { --glow-color: rgba(249,115,22,0.12); --overlay-color: rgba(249,115,22,0.4); }
-.svc-visual.habee   { --glow-color: rgba(52,211,153,0.10); --overlay-color: rgba(52,211,153,0.35); }
+.svc-visual.habiru   { --glow-color: rgba(52,211,153,0.10); --overlay-color: rgba(52,211,153,0.35); }
 .svc-visual.fridge  { --glow-color: rgba(79,140,255,0.10); --overlay-color: rgba(79,140,255,0.35); }
 
 /* ★ 新サービス追加時: .svc-visual.{name} をここに追加 */
@@ -129,8 +129,8 @@
 
 .btn-assetry { background: var(--assetry); color: var(--black); border-radius: 0; }
 .btn-assetry:hover { opacity:0.85; transform:translateY(-1px); box-shadow: 0 6px 20px rgba(249,115,22,0.25); }
-.btn-habee   { background: var(--habee);   color: var(--black); border-radius: 0; }
-.btn-habee:hover   { opacity:0.85; transform:translateY(-1px); box-shadow: 0 6px 20px rgba(52,211,153,0.25); }
+.btn-habiru   { background: var(--habiru);   color: var(--black); border-radius: 0; }
+.btn-habiru:hover   { opacity:0.85; transform:translateY(-1px); box-shadow: 0 6px 20px rgba(52,211,153,0.25); }
 .btn-fridge  { background: var(--fridge);  color: var(--black); border-radius: 0; }
 .btn-fridge:hover  { opacity:0.85; transform:translateY(-1px); box-shadow: 0 6px 20px rgba(79,140,255,0.25); }
 
@@ -158,7 +158,7 @@
 .pp-tab:last-child { border-right: none; }
 .pp-tab:hover { color: var(--white); background: var(--bg-2); }
 .pp-tab.active.assetry { background: rgba(249,115,22,0.08); color: var(--assetry); }
-.pp-tab.active.habee   { background: rgba(52,211,153,0.08); color: var(--habee); }
+.pp-tab.active.habiru   { background: rgba(52,211,153,0.08); color: var(--habiru); }
 .pp-tab.active.fridge  { background: rgba(79,140,255,0.08); color: var(--fridge); }
 
 /* ★ 新サービス追加時: .pp-tab.active.{name} をここに追加 */

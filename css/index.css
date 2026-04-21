@@ -295,7 +295,7 @@
   margin-bottom: 20px;
 }
 .svc-card[data-svc="assetry"] .svc-tag-line { color: var(--assetry); }
-.svc-card[data-svc="habee"]   .svc-tag-line { color: var(--habee); }
+.svc-card[data-svc="habiru"]   .svc-tag-line { color: var(--habiru); }
 .svc-card[data-svc="fridge"]  .svc-tag-line { color: var(--fridge); }
 
 .svc-name {
@@ -317,7 +317,7 @@
   transition: gap 0.2s;
 }
 .svc-card[data-svc="assetry"] .svc-arrow { color: var(--assetry); }
-.svc-card[data-svc="habee"]   .svc-arrow { color: var(--habee); }
+.svc-card[data-svc="habiru"]   .svc-arrow { color: var(--habiru); }
 .svc-card[data-svc="fridge"]  .svc-arrow { color: var(--fridge); }
 .svc-card:hover .svc-arrow { gap: 14px; }
 
@@ -331,7 +331,7 @@
   transition: transform 0.4s ease;
 }
 .svc-card[data-svc="assetry"]::after { background: var(--assetry); }
-.svc-card[data-svc="habee"]::after   { background: var(--habee); }
+.svc-card[data-svc="habiru"]::after   { background: var(--habiru); }
 .svc-card[data-svc="fridge"]::after  { background: var(--fridge); }
 .svc-card:hover::after { transform: scaleX(1); }
 
