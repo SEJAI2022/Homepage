@@ -114,6 +114,9 @@
 /* 3枚 */
 .gallery-3 { display: grid; grid-template-columns: 2fr 1fr; gap: 20px; }
 .gallery-3 .gallery-col { display: flex; flex-direction: column; gap: 20px; }
+/* 4枚横並び（縦長スクリーンショット用） */
+.gallery-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+.gallery-4 .gallery-img { aspect-ratio: 1242 / 2688; }
 
 .gallery-img {
   border-radius: 14px; overflow: hidden;
@@ -164,6 +167,7 @@
   .features-grid { grid-template-columns: 1fr; }
   .gallery-2 { grid-template-columns: 1fr; }
   .gallery-3 { grid-template-columns: 1fr; }
+  .gallery-4 { grid-template-columns: repeat(2, 1fr); gap: 14px; }
   .pp-box { padding: 24px 18px; }
 }
 

@@ -6,7 +6,7 @@
 ├── Services → pages/services.html
 │   ├── Assetry 詳細    → pages/services/assetry.html
 │   ├── habiru 詳細      → pages/services/habiru.html
-│   └── FridgeChef 詳細 → pages/services/fridgechef.html
+│   └── へらしぴ 詳細 → pages/services/fridgechef.html
 ├── About   → pages/about.html
 └── Contact → pages/contact.html
 ```
