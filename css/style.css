@@ -133,6 +133,11 @@ ul { list-style: none; }
 .btn-ghost:hover { background: var(--bg-2); border-color: var(--a); color: var(--white); }
 .btn-outline { background: transparent; color: var(--a); border: 1px solid rgba(242,140,56,0.4); }
 .btn-outline:hover { background: var(--a); color: var(--black); }
+/* 配信PF未公開時のプレースホルダー（例: Google Play 近日公開）。公開後は href/target/rel を追加してこのクラスを外す */
+.btn-store-soon { background: transparent; color: var(--gray-3); border: 1px dashed var(--border-h); cursor: default; }
+.btn-store-soon:hover { opacity: 1; transform: none; box-shadow: none; background: transparent; color: var(--gray-3); }
+/* App Store / Google Play を1組として扱い、折り返し時もペアを維持する */
+.store-btn-group { display: flex; gap: 12px; flex-wrap: wrap; }
 
 /* ── Typography helpers ── */
 .label {
