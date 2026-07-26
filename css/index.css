@@ -297,6 +297,8 @@
 .svc-card[data-svc="assetry"] .svc-tag-line { color: var(--assetry); }
 .svc-card[data-svc="habiru"]   .svc-tag-line { color: var(--habiru); }
 .svc-card[data-svc="fridge"]  .svc-tag-line { color: var(--fridge); }
+.svc-card[data-svc="breaze"]  .svc-tag-line { color: var(--breaze); }
+.svc-card[data-svc="rivu"]    .svc-tag-line { color: var(--rivu); }
 
 .svc-name {
   font-family: var(--font-head);
@@ -319,6 +321,8 @@
 .svc-card[data-svc="assetry"] .svc-arrow { color: var(--assetry); }
 .svc-card[data-svc="habiru"]   .svc-arrow { color: var(--habiru); }
 .svc-card[data-svc="fridge"]  .svc-arrow { color: var(--fridge); }
+.svc-card[data-svc="breaze"]  .svc-arrow { color: var(--breaze); }
+.svc-card[data-svc="rivu"]    .svc-arrow { color: var(--rivu); }
 .svc-card:hover .svc-arrow { gap: 14px; }
 
 .svc-card::after {
@@ -333,6 +337,8 @@
 .svc-card[data-svc="assetry"]::after { background: var(--assetry); }
 .svc-card[data-svc="habiru"]::after   { background: var(--habiru); }
 .svc-card[data-svc="fridge"]::after  { background: var(--fridge); }
+.svc-card[data-svc="breaze"]::after  { background: var(--breaze); }
+.svc-card[data-svc="rivu"]::after    { background: var(--rivu); }
 .svc-card:hover::after { transform: scaleX(1); }
 
 /* ── CTA ── */
