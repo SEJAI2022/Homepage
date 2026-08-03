@@ -299,6 +299,7 @@
 .svc-card[data-svc="fridge"]  .svc-tag-line { color: var(--fridge); }
 .svc-card[data-svc="breaze"]  .svc-tag-line { color: var(--breaze); }
 .svc-card[data-svc="rivu"]    .svc-tag-line { color: var(--rivu); }
+.svc-card[data-svc="kimoroku"] .svc-tag-line { color: var(--kimoroku); }
 
 .svc-name {
   font-family: var(--font-head);
@@ -323,6 +324,7 @@
 .svc-card[data-svc="fridge"]  .svc-arrow { color: var(--fridge); }
 .svc-card[data-svc="breaze"]  .svc-arrow { color: var(--breaze); }
 .svc-card[data-svc="rivu"]    .svc-arrow { color: var(--rivu); }
+.svc-card[data-svc="kimoroku"] .svc-arrow { color: var(--kimoroku); }
 .svc-card:hover .svc-arrow { gap: 14px; }
 
 .svc-card::after {
@@ -339,6 +341,7 @@
 .svc-card[data-svc="fridge"]::after  { background: var(--fridge); }
 .svc-card[data-svc="breaze"]::after  { background: var(--breaze); }
 .svc-card[data-svc="rivu"]::after    { background: var(--rivu); }
+.svc-card[data-svc="kimoroku"]::after { background: var(--kimoroku); }
 .svc-card:hover::after { transform: scaleX(1); }
 
 /* ── CTA ── */
